@@ -1,15 +1,37 @@
-# ADK (Agent Development Kit)
+# Personal ADK Agents
 
-This repository contains the ADK server and its associated agents. The ADK server provides a platform for deploying and interacting with various specialized AI agents.
+This repository is a centralized location for storing Agent Development Kit (ADK) agents developed for personal use on a Raspberry Pi. It serves as the configuration and code source for the agents running in my home environment.
 
-## General ADK Server
+## Available Agents
 
-The ADK server is hosted and can be accessed locally at:
-**[adk.karmajuney.com](http://adk.karmajuney.com)**
+### BF6 Achievement Coach (`bf6`)
 
-### Systemctl Setup
+The **BF6 Achievement Coach** is a specialized agent designed to help track progress in *Battlefield 6*, specifically focusing on the "Final Push" for specific achievements and mastery goals.
 
-To manage the ADK server as a systemd service on Linux, follow these steps:
+**Key Features:**
+*   **Real-time Stat Tracking:** Fetches live data from the Tracker.gg API for player profiles.
+*   **Mastery Tracking:** Monitors Kills, Deaths, Wins, and specific Weapon/Class Mastery.
+*   **Achievement Progress:** Calculates and displays visual progress bars for specific target achievements:
+    *   *A Joyful Nurse* (Revives)
+    *   *Rise from Your Grave* (Granite Revives)
+    *   *Mission Accepted* (Objective Captures)
+*   **Smart Data Interpretation:** Automatically handles API limitations and ensures "True Total" statistics by intelligently summing data from various game mode segments (Multiplayer, Redsec/Battle Royale, etc.).
+
+**Usage:**
+Interact with the `bf6_stat_tracker` agent to ask about stats, progress toward trophies, or mastery levels. The agent provides formatted reports with visual bars.
+
+---
+
+## Deployment Setup
+
+These agents are deployed on a local ADK server running on a Raspberry Pi.
+
+**Access:**
+The ADK server is accessible locally at: **[adk.karmajuney.com](http://adk.karmajuney.com)**
+
+### Systemctl Configuration
+
+To manage the ADK server as a systemd service on the Raspberry Pi:
 
 ```bash
 # 1. Refresh systemd to see your new file
@@ -21,23 +43,3 @@ sudo systemctl enable adk
 # 3. Start it right now
 sudo systemctl start adk
 ```
-
----
-
-## Agents
-
-### BF6 Achievement Coach (`bf6`)
-
-The **BF6 Achievement Coach** is a specialized agent designed to help players track their progress in Battlefield 6, specifically focusing on the "Final Push" for specific achievements and mastery goals.
-
-**Key Features:**
-*   **Real-time Stat Tracking:** Fetches live data from the Tracker.gg API for player profiles on Steam.
-*   **Mastery Tracking:** Monitors Kills, Deaths, Wins, and specific Weapon/Class Mastery.
-*   **Achievement Progress:** Calculates and displays visual progress bars for specific achievements, including:
-    *   *A Joyful Nurse* (Revives)
-    *   *Rise from Your Grave* (Granite Revives)
-    *   *Mission Accepted* (Objective Captures)
-*   **Smart Data Interpretation:** Automatically handles API limitations and ensures "True Total" statistics by intelligently summing data from various game mode segments (Multiplayer, Redsec/Battle Royale, etc.).
-
-**How to use:**
-Interact with the `bf6_stat_tracker` agent to ask about your current stats, progress toward specific trophies, or general mastery level. The agent provides formatted reports with visual bars to help you visualize your journey to completion.
