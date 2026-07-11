@@ -12,9 +12,8 @@ The **BF6 Achievement Coach** is a specialized agent designed to help track prog
 *   **Real-time Stat Tracking:** Fetches live data from the Tracker.gg API for player profiles.
 *   **Mastery Tracking:** Monitors Kills, Deaths, Wins, and specific Weapon/Class Mastery.
 *   **Achievement Progress:** Calculates and displays visual progress bars for specific target achievements:
-    *   *A Joyful Nurse* (Revives)
+    *   *A Joyful Nurse* (Support Revives, adjusted for Redsec and seasonal/event modes)
     *   *Rise from Your Grave* (Granite Revives)
-    *   *Mission Accepted* (Objective Captures)
 *   **Smart Data Interpretation:** Automatically handles API limitations and ensures "True Total" statistics by intelligently summing data from various game mode segments (Multiplayer, Redsec/Battle Royale, etc.).
 
 **Usage:**
