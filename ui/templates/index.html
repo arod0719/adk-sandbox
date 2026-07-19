@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Agent Workspace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #131314;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131314;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3c4043;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5f6368;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+            background-color: #1e1e1f;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #2d2f31;
+        }
+        th {
+            background-color: #282a2c;
+            font-weight: 600;
+            color: #e3e3e3;
+        }
+        td {
+            color: #c4c7c5;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="text-[#e3e3e3] h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#1e1e1f] border-r border-[#2d2f31] flex flex-col h-full z-10">
+        <!-- Sidebar Title Header -->
+        <div class="p-5 border-b border-[#2d2f31] flex items-center justify-between">
+            <span class="text-sm font-bold text-gray-300 uppercase tracking-widest flex items-center gap-2">
+                🤖 Workspaces
+            </span>
+        </div>
+
+        <div class="flex-grow px-2 py-4 space-y-2 overflow-y-auto">
+            <span class="px-4 text-xs font-semibold text-[#80868b] uppercase tracking-wider block mb-2">My Agents</span>
+            
+            <!-- Rocket League Coach Toggle -->
+            <button id="agent-rl" onclick="switchAgent('rocket_league')" class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-150 group bg-[#2d2f31]">
+                <div class="w-8 h-8 rounded-full bg-pink-950/40 flex items-center justify-center text-pink-400 group-hover:scale-105 transition-transform duration-150">🏆</div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-medium text-white">RL Coach</span>
+                    <span class="text-xs text-[#80868b]">Stats & Charting</span>
+                </div>
+            </button>
+
+            <!-- BF6 Coach Toggle -->
+            <button id="agent-bf6" onclick="switchAgent('bf6')" class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-150 group hover:bg-[#2d2f31]">
+                <div class="w-8 h-8 rounded-full bg-blue-950/40 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform duration-150">🎯</div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-medium text-[#c4c7c5] group-hover:text-white transition">BF6 Coach</span>
+                    <span class="text-xs text-[#80868b]">Achievements Tracker</span>
+                </div>
+            </button>
+        </div>
+
+        <div class="p-4 border-t border-[#2d2f31] flex items-center gap-3 bg-[#131314]/30">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-pink-500 to-violet-600 flex items-center justify-center text-xs font-bold text-white shadow-md">KJ</div>
+            <div class="flex flex-col">
+                <span class="text-xs font-semibold text-white">karmajuney</span>
+                <span class="text-[10px] text-green-400 font-medium">● Local server active</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <section class="flex-grow flex flex-col h-full relative bg-[#131314]">
+        
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="flex-grow flex flex-col items-center justify-center px-4 max-w-2xl mx-auto text-center space-y-4">
+            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-pink-400 to-violet-500 bg-clip-text text-transparent select-none animate-gradient">
+                Hello, karmajuney.
+            </h2>
+            <p id="welcome-sub" class="text-xl text-[#c4c7c5] font-light">
+                I'm your Rocket League Coach. How can I help you today?
+            </p>
+        </div>
+
+        <!-- Chat Feed -->
+        <div id="chat-feed" class="hidden flex-grow overflow-y-auto px-6 py-8 space-y-8 max-w-4xl w-full mx-auto">
+            <!-- Messages -->
+        </div>
+
+        <!-- Input Frame -->
+        <div class="p-6 bg-[#131314] max-w-4xl w-full mx-auto">
+            <div class="relative bg-[#1e1e1f] rounded-3xl border border-[#444746] focus-within:border-white/50 transition-colors shadow-lg p-2 pl-4 flex items-center gap-2">
+                <input id="user-input" type="text" placeholder="Ask about MMR, compare players, check news..." 
+                       class="flex-grow bg-transparent border-none text-white text-base py-3 focus:outline-none placeholder-[#80868b]">
+                <button id="send-btn" class="w-12 h-12 bg-transparent hover:bg-[#2d2f31] active:scale-95 transition-all text-[#c4c7c5] hover:text-white rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 transform rotate-90" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                </button>
+            </div>
+            <p class="text-[10px] text-center text-[#80868b] mt-3 select-none">
+                Gemini Workspace may display inaccurate info. Always double-check stats.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        let currentAgent = "rocket_league";
+        let activeSessions = {
+            "rocket_league": "session_" + Math.random().toString(36).substring(7),
+            "bf6": "session_" + Math.random().toString(36).substring(7)
+        };
+        let chatHistories = {
+            "rocket_league": [],
+            "bf6": []
+        };
+
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const welcomeSub = document.getElementById('welcome-sub');
+        const chatFeed = document.getElementById('chat-feed');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        function switchAgent(agent) {
+            if (currentAgent === agent) return;
+            
+            document.getElementById('agent-rl').className = agent === 'rocket_league' 
+                ? "w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-150 group bg-[#2d2f31]"
+                : "w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-150 group hover:bg-[#2d2f31]";
+            document.getElementById('agent-bf6').className = agent === 'bf6'
+                ? "w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-150 group bg-[#2d2f31]"
+                : "w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-150 group hover:bg-[#2d2f31]";
+
+            currentAgent = agent;
+            
+            chatFeed.innerHTML = "";
+            const history = chatHistories[currentAgent];
+            
+            if (history.length === 0) {
+                welcomeScreen.classList.remove('hidden');
+                chatFeed.classList.add('hidden');
+                welcomeSub.innerText = agent === 'rocket_league' 
+                    ? "I'm your Rocket League Coach. How can I help you today?"
+                    : "I'm your Battlefield 6 Achievement Coach. How's the final push going?";
+            } else {
+                welcomeScreen.classList.add('hidden');
+                chatFeed.classList.remove('hidden');
+                history.forEach(msg => renderMessageDiv(msg.sender, msg.text));
+            }
+            userInput.placeholder = agent === 'rocket_league' ? "Ask about MMR, compare players, check news..." : "Check achievement progress, guides, class setups...";
+        }
+
+        function renderMessageDiv(sender, text) {
+            const container = document.createElement('div');
+            container.className = `flex gap-4 ${sender === 'User' ? 'justify-end' : 'justify-start'}`;
+
+            const avatar = document.createElement('div');
+            if (sender === 'User') {
+                avatar.className = "w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-violet-600 flex items-center justify-center text-xs font-bold text-white shadow-md order-2";
+                avatar.innerText = "KJ";
+            } else {
+                avatar.className = `w-8 h-8 rounded-full flex items-center justify-center text-sm shadow-md order-1 ${currentAgent === 'rocket_league' ? 'bg-pink-900/60' : 'bg-blue-900/60'}`;
+                avatar.innerText = currentAgent === 'rocket_league' ? '🏆' : '🎯';
+            }
+
+            const bubble = document.createElement('div');
+            bubble.className = `p-4 rounded-2xl max-w-[80%] leading-relaxed ${sender === 'User' ? 'bg-[#2d2f31] text-white order-1 rounded-tr-none' : 'bg-[#1e1e1f] text-[#e3e3e3] order-2 rounded-tl-none border border-[#2d2f31]'}`;
+            
+            if (sender === 'Coach') {
+                // Dynamically route images and cover assets to port 9999
+                let parsedText = text.replace(/src="\/dev-ui\//g, 'src="http://' + window.location.hostname + ':9999/dev-ui/');
+                parsedText = parsedText.replace(/!\[MMR Chart\]\(\/dev-ui\//g, '![MMR Chart](http://' + window.location.hostname + ':9999/dev-ui/');
+                bubble.innerHTML = marked.parse(parsedText);
+            } else {
+                bubble.innerHTML = `<p>${text}</p>`;
+            }
+
+            container.appendChild(avatar);
+            container.appendChild(bubble);
+            chatFeed.appendChild(container);
+            chatFeed.scrollTop = chatFeed.scrollHeight;
+        }
+
+        async function handleSend() {
+            const query = userInput.value.trim();
+            if (!query) return;
+
+            welcomeScreen.classList.add('hidden');
+            chatFeed.classList.remove('hidden');
+
+            chatHistories[currentAgent].push({ sender: 'User', text: query });
+            renderMessageDiv('User', query);
+            userInput.value = '';
+
+            const loadingContainer = document.createElement('div');
+            loadingContainer.id = "temp-loader";
+            loadingContainer.className = "flex gap-4 justify-start items-center";
+            loadingContainer.innerHTML = `
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm shadow-md ${currentAgent === 'rocket_league' ? 'bg-pink-950/40' : 'bg-blue-950/40'}">${currentAgent === 'rocket_league' ? '🏆' : '🎯'}</div>
+                <div class="flex space-x-2 p-4 bg-[#1e1e1f] rounded-2xl border border-[#2d2f31] animate-pulse">
+                    <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
+                    <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                    <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                </div>
+            `;
+            chatFeed.appendChild(loadingContainer);
+            chatFeed.scrollTop = chatFeed.scrollHeight;
+
+            try {
+                const res = await fetch('http://' + window.location.hostname + ':9999/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        message: query, 
+                        session_id: activeSessions[currentAgent],
+                        agent: currentAgent
+                    })
+                });
+                
+                const data = await res.json();
+                
+                document.getElementById('temp-loader').remove();
+
+                chatHistories[currentAgent].push({ sender: 'Coach', text: data.reply });
+                renderMessageDiv('Coach', data.reply);
+            } catch (err) {
+                document.getElementById('temp-loader').remove();
+                
+                const errorText = `Error: ${err.message}`;
+                chatHistories[currentAgent].push({ sender: 'Coach', text: errorText });
+                renderMessageDiv('Coach', errorText);
+            }
+        }
+
+        sendBtn.addEventListener('click', handleSend);
+        userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
+    </script>
+</body>
+</html>
