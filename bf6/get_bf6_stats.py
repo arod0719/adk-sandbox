@@ -18,7 +18,7 @@ def load_or_fetch_stats(
     saved_platform = tool_context.state.get("current_platform", DEFAULT_PLATFORM)
 
     target_id = profile_id if profile_id else saved_id
-    target_platform = platform if platform else saved_platform
+    target_platform = platform.lower() if platform else ("steam" if profile_id else saved_platform)
 
     config_changed = (target_id != saved_id) or (target_platform != saved_platform)
 
@@ -50,7 +50,7 @@ def get_bf6_profile_stats(
     tool_context: ToolContext, 
     refresh: bool = False, 
     profile_id: str = None, 
-    platform: str = None
+    platform: str = 'steam'
 ) -> str:
     """
     Fetches the raw BF6 stats JSON. Handles ID switching and state persistence.

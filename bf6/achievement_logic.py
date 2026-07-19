@@ -1,11 +1,14 @@
 from google.adk.tools.tool_context import ToolContext
 import json
-from .get_bf6_stats import load_or_fetch_stats
+try:
+    from .get_bf6_stats import load_or_fetch_stats
+except ImportError:
+    from get_bf6_stats import load_or_fetch_stats
 
 def get_achievement_metrics(
     tool_context: ToolContext,
     profile_id: str = None,
-    platform: str = None
+    platform: str = 'steam'
 ) -> str:
     """
     Retrieves progress for the user's REMAINING achievements.
