@@ -1,6 +1,10 @@
 import os
 import time
 import json
+import io
+import base64
+import matplotlib.pyplot as plt
+import google.genai.types as types
 from google.adk.tools.tool_context import ToolContext
 try:
     from .rl_api import PLATFORM_MAP, PLAYLIST_MAP, PLAYLIST_MMR_KEY_MAP, F2P_SEASON_OFFSET
@@ -25,13 +29,10 @@ def get_rank_lines_for_chart(gamemode: str, min_m: int, max_m: int):
                 brain_data = json.load(f)
             ranges = brain_data.get(gamemode, [])
             
-            # Key tiers to label
-            target_tiers = ['Diamond I', 'Champion I', 'Grand Champion I', 'Supersonic Legend']
             for rank in ranges:
-                if rank['name'] in target_tiers:
-                    threshold = rank['min_mmr']
-                    if min_m <= threshold <= max_m:
-                        marks.append((threshold, rank['name']))
+                threshold = rank['min_mmr']
+                if min_m <= threshold <= max_m:
+                    marks.append((threshold, rank['name']))
         except Exception:
             pass
     return sorted(marks)
@@ -68,274 +69,194 @@ def parse_seasons_string(seasons_str: str) -> list:
                 pass
     return sorted(list(seasons))
 
-def generate_mmr_graph(tool_context: ToolContext, gamemode: str, limit_seasons: int = None, seasons: str = None):
-    """
-    Generates a beautiful season-by-season MMR progression ASCII chart.
-    Allows specifying limit_seasons to restrict the number of seasons plotted (e.g. limit_seasons=4 shows only the last 4 played seasons).
-    Allows specifying seasons (e.g., seasons="1,6,8,10" or seasons="10-16") to only plot those specific seasons.
-    """
-    data = tool_context.state.get("latest_rl_stats")
-    if not data:
-        return "No player profile is loaded. Please run get_player_stats first to retrieve player statistics."
-        
-    gamemode = gamemode if gamemode in ['1v1', '2v2', '3v3'] else '3v3'
-    playlist_id = '10' if gamemode == '1v1' else ('11' if gamemode == '2v2' else '13')
-    
-    ranked_seasons = data.get('RankedSeasons', {})
-    if not ranked_seasons:
-        return "No historical season stats found for this player."
-        
-    # Gather data points
-    seasons_list = []
-    mmr_values = []
-    
-    for api_season, season_data in ranked_seasons.items():
-        playlist_data = season_data.get(playlist_id)
-        if playlist_data:
-            skill_rating = playlist_data.get('SkillRating', 0)
-            if skill_rating > 100: # exclude unplayed
-                f2p_season = int(api_season) - F2P_SEASON_OFFSET
-                seasons_list.append(f2p_season)
-                mmr_values.append(skill_rating)
-                
-    if len(seasons_list) < 2:
-        return f"Not enough historical data points in {gamemode} to draw a graph (needs at least 2 seasons)."
-        
-    # Sort by season number chronological
-    sorted_points = sorted(zip(seasons_list, mmr_values))
-    
-    # Filter by specific seasons if provided
-    if seasons:
-        target_seasons = parse_seasons_string(seasons)
-        if target_seasons:
-            sorted_points = [pt for pt in sorted_points if pt[0] in target_seasons]
-    # Filter by last N seasons if specified
-    elif limit_seasons and isinstance(limit_seasons, int) and limit_seasons > 0:
-        sorted_points = sorted_points[-limit_seasons:]
-        
-    seasons_plotted = [pt[0] for pt in sorted_points]
-    mmrs = [pt[1] for pt in sorted_points]
-    
-    min_s, max_s = min(seasons_plotted), max(seasons_plotted)
-    min_m, max_m = min(mmrs), max(mmrs)
-    
-    # Pad MMR range
-    m_range = max_m - min_m if max_m != min_m else 100
-    min_m_pad = max(0, min_m - int(m_range * 0.15) - 30)
-    max_m_pad = max_m + int(m_range * 0.15) + 30
-    
-    height = 12
-    width = len(sorted_points) * 11
-    
-    # Create empty grid
-    grid = [[' ' for _ in range(width)] for _ in range(height)]
-    
-    # Map points onto grid
-    for i, (s, m) in enumerate(sorted_points):
-        x = i * 11 + 3
-        y = int((m - min_m_pad) / (max_m_pad - min_m_pad) * (height - 1)) if max_m_pad != min_m_pad else 0
-        y = max(0, min(height - 1, y))
-        grid[y][x] = '*'
-        
-        # Label the MMR next to the point
-        m_str = str(m)
-        for j, char in enumerate(m_str):
-            if x + 2 + j < width:
-                grid[y][x + 2 + j] = char
-                
-    # Get rank threshold marks
-    rank_marks = get_rank_lines_for_chart(gamemode, min_m_pad, max_m_pad)
-    
-    chart = []
-    title = f"MMR PROGRESSION: {data.get('DisplayName')} ({gamemode.upper()})"
-    chart.append("```")
-    chart.append("=" * (width + 12))
-    chart.append(f" {title}")
-    chart.append("=" * (width + 12))
-    
-    # Render rows from top to bottom
-    for r in range(height - 1, -1, -1):
-        row_mmr = int(min_m_pad + (r / (height - 1)) * (max_m_pad - min_m_pad))
-        line_content = ''.join(grid[r])
-        
-        # Add rank indicator line details if applicable
-        indicator = ""
-        for threshold, rank_name in rank_marks:
-            # If the threshold falls within the range represented by this row
-            row_min = row_mmr - int((max_m_pad - min_m_pad) / (height * 2))
-            row_max = row_mmr + int((max_m_pad - min_m_pad) / (height * 2))
-            if row_min <= threshold <= row_max:
-                indicator = f" <--- {rank_name} Bound ({threshold} MMR)"
-                break
-                
-        chart.append(f"{row_mmr:5d} | {line_content}{indicator}")
-        
-    # Draw X axis line
-    chart.append("      +" + "-" * width)
-    
-    # Draw X axis labels (Seasons)
-    labels_line = "        "
-    for s in seasons_plotted:
-        labels_line += f"S{s:<11d}"
-    chart.append(labels_line[:width + 8])
-    chart.append("```")
-    
-    return "\n".join(chart)
+GAMEMODE_TO_PLAYLIST_ID = {
+    '1v1': '10', 'duel': '10', 'duel(1v1)': '10',
+    '2v2': '11', 'doubles': '11', 'doubles(2v2)': '11',
+    '3v3': '13', 'standard': '13', 'standard(3v3)': '13',
+    'hoops': '27',
+    'rumble': '28',
+    'dropshot': '29',
+    'snowday': '30',
+    'tournament': '34',
+    'quads': '61', 'chaos': '61', 'chaos(4v4)': '61',
+    'heatseeker': '63'
+}
 
-def compare_players_graph(tool_context: ToolContext, player1_id: str, player1_platform: str, player2_id: str, player2_platform: str, gamemode: str, limit_seasons: int = None, seasons: str = None):
+def cleanup_old_charts():
+    try:
+        import google.adk
+        adk_dir = os.path.dirname(google.adk.__file__)
+        browser_dir = os.path.join(adk_dir, 'cli', 'browser')
+        if os.path.exists(browser_dir):
+            for f in os.listdir(browser_dir):
+                if f.startswith("mmr_graph_") and f.endswith(".png"):
+                    filepath = os.path.join(browser_dir, f)
+                    if time.time() - os.path.getmtime(filepath) > 300:
+                        os.remove(filepath)
+    except Exception:
+        pass
+
+async def generate_multi_player_graph(tool_context: ToolContext, gamemode: str, players: list[dict], limit_seasons: int = None, seasons: str = None, metric: str = "mmr"):
     """
-    Generates a beautiful season-by-season MMR comparison ASCII chart for two players.
-    Allows specifying limit_seasons to restrict the number of seasons plotted (e.g. limit_seasons=4 shows only the last 4 played seasons).
-    Allows specifying seasons (e.g., seasons="1,6,8,10" or seasons="10-16") to only plot those specific seasons.
+    Generates a beautiful season-by-season line chart for one or more players.
+    Supports metrics: "mmr" (default) or "matches" (matches played).
+    Saves the image to the local static directory and registers it in session artifacts.
     """
-    gamemode = gamemode if gamemode in ['1v1', '2v2', '3v3'] else '3v3'
-    playlist_id = '10' if gamemode == '1v1' else ('11' if gamemode == '2v2' else '13')
-    
-    # Fetch player 1 stats
-    plat1_id = PLATFORM_MAP.get(player1_platform.lower())
-    plat2_id = PLATFORM_MAP.get(player2_platform.lower())
-    if not plat1_id or not plat2_id:
-        return "Error: Invalid platform selected."
-        
-    url = "https://api.rlstats.net/v1/profile/stats"
+    cleanup_old_charts()
+
+    if isinstance(players, str):
+        try:
+            players = json.loads(players)
+        except Exception:
+            pass
+    if isinstance(players, dict):
+        players = [players]
+    if not isinstance(players, list) or not players:
+        return "Error: Invalid players format or empty players list."
+
+    gamemode_clean = gamemode.lower().replace(' ', '').replace('(', '').replace(')', '')
+    playlist_id = GAMEMODE_TO_PLAYLIST_ID.get(gamemode_clean, '13')
+    playlist_name = PLAYLIST_MAP.get(playlist_id, gamemode.upper())
+
+    player_datasets = []
+    playlist_mmr_key = PLAYLIST_MMR_KEY_MAP.get(playlist_id, '3v3')
+
+    for p in players:
+        p_id = p.get('player_id')
+        p_platform = p.get('platform') or 'steam'
+        if not p_id:
+            continue
+
+        plat_id = PLATFORM_MAP.get(p_platform.lower())
+        if not plat_id:
+            continue
+
+        p_data = None
+        cached_stats = tool_context.state.get("latest_rl_stats")
+        if cached_stats and cached_stats.get("DisplayName", "").lower() == p_id.lower():
+            p_data = cached_stats
+        else:
+            url = "https://api.rlstats.net/v1/profile/stats"
+            try:
+                r = requests.post(url, json={"apikey": API_KEY, "platformid": plat_id, "playerid": p_id}, timeout=10)
+                r.raise_for_status()
+                p_data = r.json()
+            except Exception:
+                pass
+
+        if not p_data or p_data.get('Message') == 'Not Found':
+            continue
+
+        p_seasons = []
+        p_values = []
+        display_name = p_data.get('DisplayName', p_id)
+
+        for api_season, season_data in p_data.get('RankedSeasons', {}).items():
+            pd = season_data.get(playlist_id)
+            if pd:
+                skill_rating = pd.get('SkillRating', 0)
+                matches = pd.get('MatchesPlayed', 0)
+                val = skill_rating if metric == "mmr" else matches
+
+                if matches > 0 or skill_rating > 100:
+                    f2p_season = int(api_season) - F2P_SEASON_OFFSET
+                    p_seasons.append(f2p_season)
+                    p_values.append(val)
+
+        if p_seasons:
+            sorted_p_points = sorted(zip(p_seasons, p_values))
+            
+            if seasons:
+                target_seasons = parse_seasons_string(seasons)
+                if target_seasons:
+                    sorted_p_points = [pt for pt in sorted_p_points if pt[0] in target_seasons]
+            elif limit_seasons and isinstance(limit_seasons, int) and limit_seasons > 0:
+                sorted_p_points = sorted_p_points[-limit_seasons:]
+
+            if sorted_p_points:
+                player_datasets.append({
+                    'display_name': display_name,
+                    'points': sorted_p_points
+                })
+
+    if not player_datasets:
+        return f"No historical stats found in {playlist_name} for the specified players/seasons."
+
+    all_seasons = set()
+    all_vals = []
+    for dataset in player_datasets:
+        for s, v in dataset['points']:
+            all_seasons.add(s)
+            all_vals.append(v)
+
+    combined_seasons = sorted(list(all_seasons))
+    min_val, max_val = min(all_vals), max(all_vals)
+
+    plt.style.use('dark_background')
+    fig, ax = plt.subplots(figsize=(8, 4.5), dpi=120)
+    fig.patch.set_facecolor('#121212')
+    ax.set_facecolor('#1a1a1a')
+
+    colors = ['#00e5ff', '#ff9100', '#00e676', '#d500f9', '#ffea00', '#ff1744']
+    markers = ['o', 'x', '^', 's', 'D', 'v']
+
+    for i, dataset in enumerate(player_datasets):
+        p_x = [pt[0] for pt in dataset['points']]
+        p_y = [pt[1] for pt in dataset['points']]
+        p_color = colors[i % len(colors)]
+        p_marker = markers[i % len(markers)]
+
+        ax.plot(p_x, p_y, marker=p_marker, color=p_color, linewidth=2.5, markersize=7, label=dataset['display_name'])
+
+        if len(player_datasets) <= 2:
+            offset = 10 if i == 0 or len(player_datasets) == 1 else -15
+            anno_color = '#ffffff' if len(player_datasets) == 1 else p_color
+            for s, v in dataset['points']:
+                ax.annotate(f"{v}", (s, v), textcoords="offset points", xytext=(0, offset), ha='center', fontweight='bold', color=anno_color, fontsize=8)
+
+    if metric == "mmr":
+        rank_marks = get_rank_lines_for_chart(playlist_mmr_key, min_val - 100, max_val + 100)
+        for threshold, rank_name in rank_marks:
+            ax.axhline(y=threshold, color='#ff007f', linestyle=':', linewidth=1.5, alpha=0.8)
+            ax.text(combined_seasons[0], threshold + 10, f"{rank_name} Bound ({threshold} MMR)", color='#ff007f', alpha=0.8, fontsize=8, fontweight='bold')
+
+    metric_label = "MMR" if metric == "mmr" else "Matches Played"
+    playlist_name_clean = playlist_name.replace('(', '').replace(')', '')
+    title_players = " vs ".join([d['display_name'] for d in player_datasets])
+    ax.set_title(f"{metric_label.upper()} {playlist_name_clean.upper()}:\n{title_players}", fontsize=11, fontweight='bold', pad=25)
+    ax.set_xlabel("Season", fontsize=10, labelpad=10)
+    ax.set_ylabel(metric_label, fontsize=10, labelpad=10)
+
+    ax.set_xticks(combined_seasons)
+    ax.set_xticklabels([f"S{s}" for s in combined_seasons])
+    ax.grid(True, linestyle='--', alpha=0.2, color='#ffffff')
+    ax.legend(loc='lower left', bbox_to_anchor=(0.0, 1.02), ncol=3, borderaxespad=0, frameon=False, fontsize=9)
+
+    plt.tight_layout()
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png', facecolor=fig.get_facecolor(), edgecolor='none')
+    png_bytes = buf.getvalue()
+    plt.close()
+
+    timestamp = int(time.time())
+    filename = f"mmr_graph_{timestamp}.png"
     
     try:
-        r1 = requests.post(url, json={"apikey": API_KEY, "platformid": plat1_id, "playerid": player1_id}, timeout=10)
-        r2 = requests.post(url, json={"apikey": API_KEY, "platformid": plat2_id, "playerid": player2_id}, timeout=10)
-        r1.raise_for_status()
-        r2.raise_for_status()
-        p1_data = r1.json()
-        p2_data = r2.json()
-    except Exception as e:
-        return f"Error loading comparison data: {e}"
-        
-    if p1_data.get('Message') == 'Not Found' or p2_data.get('Message') == 'Not Found':
-        return "Error: One or both players were not found."
-        
-    # Process Player 1 points
-    p1_seasons, p1_mmr = [], []
-    for api_season, season_data in p1_data.get('RankedSeasons', {}).items():
-        pd = season_data.get(playlist_id)
-        if pd and pd.get('SkillRating', 0) > 100:
-            p1_seasons.append(int(api_season) - F2P_SEASON_OFFSET)
-            p1_mmr.append(pd.get('SkillRating'))
-            
-    # Process Player 2 points
-    p2_seasons, p2_mmr = [], []
-    for api_season, season_data in p2_data.get('RankedSeasons', {}).items():
-        pd = season_data.get(playlist_id)
-        if pd and pd.get('SkillRating', 0) > 100:
-            p2_seasons.append(int(api_season) - F2P_SEASON_OFFSET)
-            p2_mmr.append(pd.get('SkillRating'))
-            
-    if not p1_seasons and not p2_seasons:
-        return "Not enough historical data points to construct a comparison graph."
-        
-    # Sort and slice Player 1
-    s1 = sorted(zip(p1_seasons, p1_mmr))
-    if seasons:
-        target_seasons = parse_seasons_string(seasons)
-        if target_seasons:
-            s1 = [pt for pt in s1 if pt[0] in target_seasons]
-    elif limit_seasons and isinstance(limit_seasons, int) and limit_seasons > 0:
-        s1 = s1[-limit_seasons:]
-        
-    # Sort and slice Player 2
-    s2 = sorted(zip(p2_seasons, p2_mmr))
-    if seasons:
-        target_seasons = parse_seasons_string(seasons)
-        if target_seasons:
-            s2 = [pt for pt in s2 if pt[0] in target_seasons]
-    elif limit_seasons and isinstance(limit_seasons, int) and limit_seasons > 0:
-        s2 = s2[-limit_seasons:]
-        
-    p1_active_seasons = [pt[0] for pt in s1]
-    p2_active_seasons = [pt[0] for pt in s2]
-    
-    # Combined active seasons chronologically
-    combined_seasons = sorted(list(set(p1_active_seasons + p2_active_seasons)))
-    if not combined_seasons:
-         return "No active seasons to compare."
-         
-    all_mmrs = [pt[1] for pt in s1] + [pt[1] for pt in s2]
-    min_m, max_m = min(all_mmrs), max(all_mmrs)
-    m_range = max_m - min_m if max_m != min_m else 100
-    min_m_pad = max(0, min_m - int(m_range * 0.15) - 30)
-    max_m_pad = max_m + int(m_range * 0.15) + 30
-    
-    height = 12
-    width = len(combined_seasons) * 11
-    
-    grid = [[' ' for _ in range(width)] for _ in range(height)]
-    
-    # Map Player 1 onto grid as 'x'
-    p1_dict = dict(s1)
-    p2_dict = dict(s2)
-    
-    for i, s in enumerate(combined_seasons):
-        x = i * 11 + 3
-        m1 = p1_dict.get(s)
-        m2 = p2_dict.get(s)
-        
-        if m1 and m2:
-            # Overlap row mapped
-            y1 = max(0, min(height - 1, int((m1 - min_m_pad) / (max_m_pad - min_m_pad) * (height - 1))))
-            y2 = max(0, min(height - 1, int((m2 - min_m_pad) / (max_m_pad - min_m_pad) * (height - 1))))
-            if y1 == y2:
-                grid[y1][x] = '@' # Overlap point representation
-                lbl = f"x:{m1} o:{m2}"
-                for j, char in enumerate(lbl):
-                    if x + 2 + j < width:
-                        grid[y1][x + 2 + j] = char
-            else:
-                grid[y1][x] = 'x'
-                grid[y2][x] = 'o'
-                lbl1 = f"{m1}"
-                lbl2 = f"{m2}"
-                for j, char in enumerate(lbl1):
-                    if x + 2 + j < width:
-                        grid[y1][x + 2 + j] = char
-                for j, char in enumerate(lbl2):
-                    if x + 2 + j < width:
-                        grid[y2][x + 2 + j] = char
-        elif m1:
-            y1 = max(0, min(height - 1, int((m1 - min_m_pad) / (max_m_pad - min_m_pad) * (height - 1))))
-            grid[y1][x] = 'x'
-            lbl1 = f"{m1}"
-            for j, char in enumerate(lbl1):
-                if x + 2 + j < width:
-                    grid[y1][x + 2 + j] = char
-        elif m2:
-            y2 = max(0, min(height - 1, int((m2 - min_m_pad) / (max_m_pad - min_m_pad) * (height - 1))))
-            grid[y2][x] = 'o'
-            lbl2 = f"{m2}"
-            for j, char in enumerate(lbl2):
-                if x + 2 + j < width:
-                    grid[y2][x + 2 + j] = char
-                    
-    chart = []
-    p1_name = p1_data.get('DisplayName')
-    p2_name = p2_data.get('DisplayName')
-    title = f"MMR COMPARISON: {p1_name} (x) vs {p2_name} (o) in {gamemode.upper()}"
-    
-    chart.append("```")
-    chart.append("=" * (width + 12))
-    chart.append(f" {title}")
-    chart.append("=" * (width + 12))
-    
-    # Render rows from top to bottom
-    for r in range(height - 1, -1, -1):
-        row_mmr = int(min_m_pad + (r / (height - 1)) * (max_m_pad - min_m_pad))
-        line_content = ''.join(grid[r])
-        chart.append(f"{row_mmr:5d} | {line_content}")
-        
-    chart.append("      +" + "-" * width)
-    
-    # Draw X axis labels (Seasons)
-    labels_line = "        "
-    for s in combined_seasons:
-        labels_line += f"S{s:<11d}"
-    chart.append(labels_line[:width + 8])
-    chart.append("```")
-    
-    return "\n".join(chart)
+        import google.adk
+        adk_dir = os.path.dirname(google.adk.__file__)
+        browser_dir = os.path.join(adk_dir, 'cli', 'browser')
+        if os.path.exists(browser_dir):
+            with open(os.path.join(browser_dir, filename), 'wb') as f:
+                f.write(png_bytes)
+    except Exception:
+        pass
+
+    image_artifact = types.Part.from_bytes(data=png_bytes, mime_type="image/png")
+    try:
+        await tool_context.save_artifact(filename=filename, artifact=image_artifact)
+    except Exception:
+        pass
+
+    static_url = f"/dev-ui/{filename}"
+    return f"![MMR Chart]({static_url})\n\n*Saved to session artifacts as `{filename}`*"

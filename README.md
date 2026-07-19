@@ -19,6 +19,17 @@ The **BF6 Achievement Coach** is a specialized agent designed to help track prog
 **Usage:**
 Interact with the `bf6_stat_tracker` agent to ask about stats, progress toward trophies, or mastery levels. The agent provides formatted reports with visual bars.
 
+### Rocket League Stat Tracker & Coach (`rocket_league`)
+
+The **Rocket League Coach** is a stat tracker, comparison utility, progression plotter, news fetcher, and coach for Rocket League.
+
+**Key Features:**
+*   **Multi-Player Line Graphs:** Beautifully plots MMR or Matches Played curves for single or multiple players across any playlist (1v1, 2v2, 3v3, hoops, rumble, dropshot, snowday, tournament, quads, heatseeker).
+*   **Dynamic Rank Boundaries:** Automatically displays relevant horizontal rank lines (e.g. Grand Champion, Champion) on the graph view based on the player's active MMR.
+*   **Instant Inline Image Rendering:** Renders graph PNG images inline in the chat history using static asset serving (`/dev-ui/...`).
+*   **JSON News Feed:** Fetches news using the official API, featuring pagination recaps and inline cover image thumbnails.
+*   **Grounding Search:** Performs Google Search fallback when querying details outside the local API datasets.
+
 ---
 
 ## Deployment Setup
@@ -39,6 +50,43 @@ sudo systemctl daemon-reload
 # 2. Enable it to start automatically on boot
 sudo systemctl enable adk
 
-# 3. Start it right now
-sudo systemctl start adk
+# 3. Start/Restart it
+sudo systemctl restart adk
 ```
+
+---
+
+## Agent / Developer Instructions
+
+If you are an AI agent or a developer taking over this project, here is how you can verify and extend it:
+
+### 1. verification
+To verify stats, news, and graphing functionalities run the comprehensive test script:
+```bash
+.venv/bin/python .gemini/antigravity-ide/brain/a85f40ef-0939-48b9-b2b4-b2ad549d0858/scratch/test_all_v2.py
+```
+
+### 2. Setting up ADK Docs MCP Server
+To allow Antigravity to search and read the official ADK documentation:
+1. Open the MCP store via the `...` (more) menu in the agent panel.
+2. Select **Manage MCP Servers** -> **View raw config**.
+3. Add the following entry to `mcp_config.json`:
+```json
+{
+  "mcpServers": {
+    "adk-docs-mcp": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "mcpdoc",
+        "mcpdoc",
+        "--urls",
+        "AgentDevelopmentKit:https://adk.dev/llms.txt",
+        "--transport",
+        "stdio"
+      ]
+    }
+  }
+}
+```
+*Note: Make sure that `uv` and `uvx` are installed and available in the PATH context of the running IDE client.*

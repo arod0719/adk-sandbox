@@ -46,7 +46,7 @@ PLAYLIST_MMR_KEY_MAP = {
 
 F2P_SEASON_OFFSET = 14
 
-def get_player_stats(tool_context: ToolContext, playerid: str, platform: str, season: int = None, is_legacy: bool = False, refresh: bool = True):
+def get_player_stats(tool_context: ToolContext, playerid: str, platform: str = 'steam', season: int = None, is_legacy: bool = False, refresh: bool = True):
     """
     Retrieves Rocket League stats for a specific player and platform.
     If season is specified (e.g., F2P season 23), it fetches stats for that season.
@@ -161,7 +161,7 @@ def format_stats_output(data: dict, platform: str, season: int = None, is_legacy
         
     return "\n".join(result)
 
-def compare_players(tool_context: ToolContext, player1_id: str, player1_platform: str, player2_id: str, player2_platform: str, season: int = None, is_legacy: bool = False):
+def compare_players(tool_context: ToolContext, player1_id: str, player2_id: str, player1_platform: str = 'steam', player2_platform: str = 'steam', season: int = None, is_legacy: bool = False):
     """
     Compares stats for two different players.
     """
