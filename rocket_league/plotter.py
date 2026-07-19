@@ -70,15 +70,15 @@ def parse_seasons_string(seasons_str: str) -> list:
     return sorted(list(seasons))
 
 GAMEMODE_TO_PLAYLIST_ID = {
-    '1v1': '10', 'duel': '10', 'duel(1v1)': '10',
-    '2v2': '11', 'doubles': '11', 'doubles(2v2)': '11',
-    '3v3': '13', 'standard': '13', 'standard(3v3)': '13',
+    '1v1': '10', 'duel': '10', 'duel1v1': '10', 'solo': '10',
+    '2v2': '11', 'doubles': '11', 'doubles2v2': '11', 'standard2v2': '11',
+    '3v3': '13', 'standard': '13', 'standard3v3': '13',
     'hoops': '27',
     'rumble': '28',
     'dropshot': '29',
     'snowday': '30',
     'tournament': '34',
-    'quads': '61', 'chaos': '61', 'chaos(4v4)': '61',
+    'quads': '61', 'chaos': '61', 'chaos4v4': '61', '4v4': '61',
     'heatseeker': '63'
 }
 
