@@ -192,8 +192,8 @@
             
             if (sender === 'Coach') {
                 // Dynamically route images and cover assets to port 9999
-                let parsedText = text.replace(/src="\/dev-ui\//g, 'src="http://' + window.location.hostname + ':9999/dev-ui/');
-                parsedText = parsedText.replace(/!\[MMR Chart\]\(\/dev-ui\//g, '![MMR Chart](http://' + window.location.hostname + ':9999/dev-ui/');
+                let parsedText = text.replace(/src="\/dev-ui\//g, 'src="/dev-ui/');
+                parsedText = parsedText.replace(/!\[MMR Chart\]\(\/dev-ui\//g, '![MMR Chart](/dev-ui/');
                 bubble.innerHTML = marked.parse(parsedText);
             } else {
                 bubble.innerHTML = `<p>${text}</p>`;
@@ -231,7 +231,7 @@
             chatFeed.scrollTop = chatFeed.scrollHeight;
 
             try {
-                const res = await fetch('http://' + window.location.hostname + ':9999/api/chat', {
+                const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
