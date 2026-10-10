@@ -1,2 +1,4 @@
 google-adk
 curl_cffi
+beautifulsoup4
+matplotlib
