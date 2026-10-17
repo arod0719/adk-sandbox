@@ -163,8 +163,12 @@ bf6/.adk/
 .DS_Store
 Thumbs.db
 
+# Local agent customizations
+.agents/
+
 # Local UI service
 ui/adk-ui.service
 ui/static/
 ui/templates/static/
 *.png
+

@@ -16,7 +16,7 @@ from google.adk.code_executors.unsafe_local_code_executor import UnsafeLocalCode
 from google.adk.tools.google_search_agent_tool import create_google_search_agent, GoogleSearchAgentTool
 
 # Google Search grounding tool
-search_agent = create_google_search_agent(model="gemini-2.5-flash")
+search_agent = create_google_search_agent(model="gemini-3.8-flash")
 google_search_tool = GoogleSearchAgentTool(agent=search_agent)
 
 # Discover and load skills from skills/ directory
@@ -60,7 +60,7 @@ You leverage your specialized skills in the `skills/` directory to track stats, 
 """
 
 root_agent = Agent(
-    model="gemini-2.5-flash",
+    model="gemini-3.8-flash",
     name="gaming_assistant",
     description="A unified gaming coach and tracker for Rocket League and Battlefield 6 powered by ADK Skills.",
     instruction=system_instruction,
