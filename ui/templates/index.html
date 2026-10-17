@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming Assistant | ADK Workspace</title>
+    <title>Gaming Assistant | ADK Skills Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -16,8 +16,8 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
         ::-webkit-scrollbar {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
             background: #0e0e11;
@@ -29,7 +29,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #3f3f46;
         }
-        /* Markdown prose enhancements */
+        /* Markdown prose styling */
         .chat-prose {
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
@@ -43,8 +43,8 @@
             margin-top: 1rem;
             margin-bottom: 0.5rem;
         }
-        .chat-prose h1 { font-size: 1.4rem; }
-        .chat-prose h2 { font-size: 1.2rem; }
+        .chat-prose h1 { font-size: 1.35rem; }
+        .chat-prose h2 { font-size: 1.18rem; }
         .chat-prose h3 { font-size: 1.05rem; }
         .chat-prose p {
             margin-bottom: 0.75rem;
@@ -152,109 +152,199 @@
 <body class="text-[#e4e4e7] h-screen flex overflow-hidden">
 
     <!-- Lightbox for Image Zooming -->
-    <div id="image-modal" onclick="closeModal()" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 cursor-pointer">
-        <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center">
+    <div id="image-modal" onclick="closeModal()" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 cursor-pointer">
+        <div class="relative max-w-5xl max-h-[92vh] flex flex-col items-center">
             <img id="modal-img" src="" class="max-w-full max-h-[85vh] rounded-xl object-contain shadow-2xl border border-white/10" alt="Full view">
-            <span class="text-xs text-gray-400 mt-2 select-none">Click anywhere to close</span>
+            <span class="text-xs text-gray-400 mt-2 select-none">Click anywhere to close full view</span>
         </div>
     </div>
 
     <!-- Sidebar -->
-    <aside class="w-68 bg-[#131316] border-r border-[#202024] flex flex-col h-full z-10 shrink-0 select-none">
-        <!-- Sidebar Title Header -->
-        <div class="p-5 border-b border-[#202024] flex items-center justify-between">
+    <aside class="w-72 bg-[#131316] border-r border-[#202024] flex flex-col h-full z-10 shrink-0 select-none">
+        
+        <!-- Sidebar Header -->
+        <div class="p-4 border-b border-[#202024] flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-500 flex items-center justify-center text-sm shadow-md shadow-violet-900/30">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 via-indigo-600 to-pink-500 flex items-center justify-center text-sm shadow-md shadow-violet-900/30">
                     🎮
                 </div>
                 <div class="flex flex-col">
                     <span class="text-sm font-bold text-white tracking-wide">Gaming Assistant</span>
                     <span class="text-[10px] text-emerald-400 font-medium flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-live"></span> ADK Skills Active
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-live"></span> gemini-3.8-flash active
                     </span>
                 </div>
             </div>
         </div>
 
-        <div class="flex-grow px-3 py-4 space-y-4 overflow-y-auto">
-            <!-- Mode Selector -->
+        <!-- Scrollable Navigation and Friends List -->
+        <div class="flex-grow px-3 py-4 space-y-5 overflow-y-auto">
+            
+            <!-- Workspaces Section -->
             <div>
-                <span class="px-3 text-[11px] font-semibold text-[#71717a] uppercase tracking-wider block mb-2">Workspaces</span>
+                <span class="px-2 text-[11px] font-semibold text-[#71717a] uppercase tracking-wider block mb-2">Workspaces</span>
                 <div class="space-y-1">
-                    <!-- Unified Assistant Toggle -->
-                    <button id="nav-all" onclick="switchAgent('gaming_assistant')" class="w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group bg-[#222227] text-white">
-                        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-purple-500/20 to-indigo-500/20 border border-purple-500/30 flex items-center justify-center text-sm">✨</div>
-                        <div class="flex flex-col">
-                            <span class="text-xs font-semibold">Unified Assistant</span>
-                            <span class="text-[10px] text-[#a1a1aa]">RL, BF6 & Friends</span>
-                        </div>
-                    </button>
-
                     <!-- Rocket League Toggle -->
-                    <button id="nav-rl" onclick="switchAgent('rocket_league')" class="w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white">
-                        <div class="w-7 h-7 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-sm text-pink-400">🏆</div>
+                    <button id="nav-rl" onclick="switchAgent('rocket_league')" class="w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group bg-[#222227] text-white">
+                        <div class="w-7 h-7 rounded-lg bg-pink-500/20 border border-pink-500/30 flex items-center justify-center text-sm text-pink-400 shrink-0">🏆</div>
                         <div class="flex flex-col">
                             <span class="text-xs font-semibold">Rocket League</span>
-                            <span class="text-[10px] text-[#71717a]">Rank, MMR & Coach</span>
+                            <span class="text-[10px] text-[#a1a1aa]">Rank, Coaching & MMR Graphs</span>
                         </div>
                     </button>
 
                     <!-- BF6 Toggle -->
-                    <button id="nav-bf6" onclick="switchAgent('bf6')" class="w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white">
-                        <div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-sm text-cyan-400">🎯</div>
+                    <button id="nav-bf6" onclick="switchAgent('bf6')" class="w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white">
+                        <div class="w-7 h-7 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-sm text-cyan-400 shrink-0">🎯</div>
                         <div class="flex flex-col">
                             <span class="text-xs font-semibold">Battlefield 6</span>
-                            <span class="text-[10px] text-[#71717a]">Combat & Weapons</span>
+                            <span class="text-[10px] text-[#71717a]">Combat, Classes & Weapons</span>
+                        </div>
+                    </button>
+
+                    <!-- Unified Assistant Toggle -->
+                    <button id="nav-all" onclick="switchAgent('gaming_assistant')" class="w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white">
+                        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-purple-500/20 to-indigo-500/20 border border-purple-500/30 flex items-center justify-center text-sm shrink-0">✨</div>
+                        <div class="flex flex-col">
+                            <span class="text-xs font-semibold">Unified Hub</span>
+                            <span class="text-[10px] text-[#71717a]">Cross-Game Multi-Tracker</span>
                         </div>
                     </button>
                 </div>
             </div>
 
-            <!-- Friends Roster (Player Mappings) -->
-            <div class="pt-2 border-t border-[#202024]">
-                <div class="flex items-center justify-between px-3 mb-2">
+            <!-- ONE-STOP SHOP: Friends Roster by Game -->
+            <div class="pt-3 border-t border-[#202024]">
+                <div class="flex items-center justify-between px-2 mb-2">
                     <span class="text-[11px] font-semibold text-[#71717a] uppercase tracking-wider">Friends Roster</span>
-                    <span class="text-[9px] bg-indigo-500/20 text-indigo-300 px-1.5 py-0.5 rounded font-mono">mapped</span>
+                    <span id="roster-badge" class="text-[9px] bg-pink-500/20 text-pink-300 px-1.5 py-0.5 rounded font-mono">Rocket League</span>
                 </div>
-                <div class="space-y-1">
-                    <div onclick="quickAsk('Check my 3v3 rank in Rocket League')" class="px-3 py-1.5 rounded-lg hover:bg-[#1a1a1e] cursor-pointer flex items-center justify-between group transition">
-                        <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 rounded-full bg-gradient-to-tr from-pink-500 to-violet-600 text-[10px] font-bold text-white flex items-center justify-center">KJ</div>
-                            <span class="text-xs text-white group-hover:text-pink-300">Alex (me)</span>
-                        </div>
-                        <span class="text-[10px] text-gray-500 font-mono">karmajuney</span>
+
+                <!-- ROCKET LEAGUE SQUAD (Alex, Will, Erik, David, Emilio) -->
+                <div id="roster-rl" class="space-y-1.5">
+                    <div class="flex items-center justify-between px-2 py-1 bg-pink-950/20 rounded-lg border border-pink-500/20 mb-2">
+                        <span class="text-[10px] text-pink-300 font-medium">Rocket League Squad (5)</span>
+                        <button onclick="quickAsk('Give me a quick rank and MMR snapshot for everyone: Alex, Will, Erik, David, and Emilio')" class="text-[10px] text-pink-400 hover:text-pink-200 underline">⚡ All Stats</button>
                     </div>
 
-                    <div onclick="quickAsk('What is Will rank in Rocket League 2s?')" class="px-3 py-1.5 rounded-lg hover:bg-[#1a1a1e] cursor-pointer flex items-center justify-between group transition">
-                        <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-semibold flex items-center justify-center">W</div>
-                            <span class="text-xs text-gray-300 group-hover:text-blue-300">Will (Priesty)</span>
+                    <!-- Alex (me) -->
+                    <div class="p-2 rounded-xl bg-[#18181b]/60 border border-[#27272a]/60 hover:border-pink-500/30 transition group">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-pink-500 to-violet-600 text-[10px] font-bold text-white flex items-center justify-center">KJ</div>
+                                <span class="text-xs font-semibold text-white">Alex (me)</span>
+                            </div>
+                            <span class="text-[9px] text-[#71717a] font-mono">karmajuney</span>
                         </div>
-                        <span class="text-[10px] text-gray-500 font-mono">itspriesty</span>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="quickAsk('Check my 2v2 and 3v3 rank in Rocket League')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-pink-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">Rank</button>
+                            <button onclick="quickAsk('Plot my rank in ranked 2s for the last 5 seasons')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-pink-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">📈 Graph</button>
+                            <button onclick="quickAsk('Analyze my coaching ratios and give me advice in 2s')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-pink-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">Coach</button>
+                        </div>
                     </div>
 
-                    <div onclick="quickAsk('Show Erik stats in Rocket League')" class="px-3 py-1.5 rounded-lg hover:bg-[#1a1a1e] cursor-pointer flex items-center justify-between group transition">
-                        <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-semibold flex items-center justify-center">E</div>
-                            <span class="text-xs text-gray-300 group-hover:text-amber-300">Erik (Rumble)</span>
+                    <!-- Will (Priesty) -->
+                    <div class="p-2 rounded-xl bg-[#18181b]/60 border border-[#27272a]/60 hover:border-blue-500/30 transition group">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-semibold flex items-center justify-center">W</div>
+                                <span class="text-xs font-semibold text-white">Will (Priesty)</span>
+                            </div>
+                            <span class="text-[9px] text-[#71717a] font-mono">itspriesty</span>
                         </div>
-                        <span class="text-[10px] text-gray-500 font-mono">tweenty7</span>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="quickAsk('What is Will rank in Rocket League 2s and 3s?')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-blue-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">Rank</button>
+                            <button onclick="quickAsk('Plot Will rank in 2s for the last 5 seasons')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-blue-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">📈 Graph</button>
+                            <button onclick="quickAsk('Compare me and Will in 2s for the last 4 seasons')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-blue-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">⚔️ Compare</button>
+                        </div>
                     </div>
 
-                    <div onclick="quickAsk('What is David rank in 3v3 in Rocket League?')" class="px-3 py-1.5 rounded-lg hover:bg-[#1a1a1e] cursor-pointer flex items-center justify-between group transition">
-                        <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold flex items-center justify-center">D</div>
-                            <span class="text-xs text-gray-300 group-hover:text-emerald-300">David</span>
+                    <!-- Erik (Rumble) -->
+                    <div class="p-2 rounded-xl bg-[#18181b]/60 border border-[#27272a]/60 hover:border-amber-500/30 transition group">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-semibold flex items-center justify-center">E</div>
+                                <span class="text-xs font-semibold text-white">Erik (Rumble)</span>
+                            </div>
+                            <span class="text-[9px] text-[#71717a] font-mono">tweenty7</span>
                         </div>
-                        <span class="text-[10px] text-gray-500 font-mono">ID64</span>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="quickAsk('Show Erik stats and ranks in Rocket League')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-amber-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">Rank</button>
+                            <button onclick="quickAsk('Plot Erik rank in 2s for the last 5 seasons')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-amber-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">📈 Graph</button>
+                            <button onclick="quickAsk('Compare me and Erik in 2s')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-amber-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">⚔️ Compare</button>
+                        </div>
                     </div>
 
-                    <div onclick="quickAsk('Check Emilio rank in Rocket League')" class="px-3 py-1.5 rounded-lg hover:bg-[#1a1a1e] cursor-pointer flex items-center justify-between group transition">
-                        <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-semibold flex items-center justify-center">F</div>
-                            <span class="text-xs text-gray-300 group-hover:text-purple-300">Emilio (Flux)</span>
+                    <!-- David -->
+                    <div class="p-2 rounded-xl bg-[#18181b]/60 border border-[#27272a]/60 hover:border-emerald-500/30 transition group">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold flex items-center justify-center">D</div>
+                                <span class="text-xs font-semibold text-white">David</span>
+                            </div>
+                            <span class="text-[9px] text-[#71717a] font-mono">ID64</span>
                         </div>
-                        <span class="text-[10px] text-gray-500 font-mono">FluxRL</span>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="quickAsk('What is David rank in 3v3 in Rocket League?')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-emerald-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">Rank</button>
+                            <button onclick="quickAsk('Plot David rank in 3s for the last 5 seasons')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-emerald-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">📈 Graph</button>
+                            <button onclick="quickAsk('Compare me and David in 3s')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-emerald-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">⚔️ Compare</button>
+                        </div>
+                    </div>
+
+                    <!-- Emilio (Flux) -->
+                    <div class="p-2 rounded-xl bg-[#18181b]/60 border border-[#27272a]/60 hover:border-purple-500/30 transition group">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-semibold flex items-center justify-center">F</div>
+                                <span class="text-xs font-semibold text-white">Emilio (Flux)</span>
+                            </div>
+                            <span class="text-[9px] text-[#71717a] font-mono">FluxRL</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="quickAsk('Check Emilio rank and MMR in Rocket League')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-purple-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">Rank</button>
+                            <button onclick="quickAsk('Plot Emilio rank in 2s for the last 5 seasons')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-purple-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">📈 Graph</button>
+                            <button onclick="quickAsk('Compare me and Emilio in 2s')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-purple-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">⚔️ Compare</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BATTLEFIELD 6 SQUAD (Alex, Will) -->
+                <div id="roster-bf6" class="space-y-1.5 mt-2 hidden">
+                    <div class="flex items-center justify-between px-2 py-1 bg-cyan-950/20 rounded-lg border border-cyan-500/20 mb-2">
+                        <span class="text-[10px] text-cyan-300 font-medium">Battlefield 6 Squad (2)</span>
+                        <button onclick="quickAsk('Compare Alex and Priesty combat stats, K/D, and top weapons in BF6')" class="text-[10px] text-cyan-400 hover:text-cyan-200 underline">⚔️ Compare Both</button>
+                    </div>
+
+                    <!-- Alex (me) -->
+                    <div class="p-2 rounded-xl bg-[#18181b]/60 border border-[#27272a]/60 hover:border-cyan-500/30 transition group">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 text-[10px] font-bold text-white flex items-center justify-center">KJ</div>
+                                <span class="text-xs font-semibold text-white">Alex (me)</span>
+                            </div>
+                            <span class="text-[9px] text-[#71717a] font-mono">2770616530</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="quickAsk('Check my K/D and combat overview in BF6')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-cyan-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">🎯 Combat</button>
+                            <button onclick="quickAsk('Show my top weapons and accuracy in BF6')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-cyan-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">🔫 Weapons</button>
+                            <button onclick="quickAsk('Show my class and kit breakdown in BF6')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-cyan-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">🛡️ Classes</button>
+                        </div>
+                    </div>
+
+                    <!-- Will (Priesty) -->
+                    <div class="p-2 rounded-xl bg-[#18181b]/60 border border-[#27272a]/60 hover:border-blue-500/30 transition group">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-semibold flex items-center justify-center">W</div>
+                                <span class="text-xs font-semibold text-white">Will (Priesty)</span>
+                            </div>
+                            <span class="text-[9px] text-[#71717a] font-mono">1002157303178</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="quickAsk('Show Will BF6 combat stats and K/D')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-blue-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">🎯 Combat</button>
+                            <button onclick="quickAsk('Show Will top weapons in BF6')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-blue-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">🔫 Weapons</button>
+                            <button onclick="quickAsk('Compare me and Will BF6 stats')" class="flex-1 text-[10px] py-1 px-1.5 bg-[#202024] hover:bg-blue-600/30 text-gray-300 hover:text-white rounded-md transition text-center font-medium">⚔️ Compare</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -264,8 +354,8 @@
         <div class="p-4 border-t border-[#202024] flex items-center gap-3 bg-[#0a0a0c]">
             <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-violet-600 flex items-center justify-center text-xs font-bold text-white shadow-md">KJ</div>
             <div class="flex flex-col">
-                <span class="text-xs font-semibold text-white">karmajuney</span>
-                <span class="text-[10px] text-emerald-400 font-medium">● Local Server Active (:9999)</span>
+                <span class="text-xs font-semibold text-white">Alex (karmajuney)</span>
+                <span class="text-[10px] text-emerald-400 font-medium">● Local Server (:9999)</span>
             </div>
         </div>
     </aside>
@@ -275,52 +365,22 @@
         
         <!-- Welcome Screen -->
         <div id="welcome-screen" class="flex-grow flex flex-col items-center justify-center px-6 max-w-3xl mx-auto text-center space-y-6">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-violet-600/30 via-indigo-600/20 to-pink-500/30 border border-white/10 flex items-center justify-center text-3xl shadow-xl shadow-violet-950/20">
-                🎮
+            <div id="welcome-icon" class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-pink-600/20 via-purple-600/20 to-blue-500/20 border border-white/10 flex items-center justify-center text-3xl shadow-xl shadow-pink-950/20">
+                🏆
             </div>
             
             <div class="space-y-2">
-                <h2 id="welcome-title" class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-pink-400 to-violet-400 bg-clip-text text-transparent select-none">
-                    Hello, karmajuney.
+                <h2 id="welcome-title" class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 via-purple-300 to-blue-400 bg-clip-text text-transparent select-none">
+                    Rocket League Coach
                 </h2>
                 <p id="welcome-sub" class="text-lg text-[#a1a1aa] font-light max-w-lg mx-auto">
-                    Your personal Gaming Assistant powered by ADK Skills. What would you like to track or plot today?
+                    Track live ranks, plot multi-season MMR charts, evaluate coaching ratios, and check the squad.
                 </p>
             </div>
 
             <!-- Quick Action Suggestion Chips -->
             <div id="suggestion-chips" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-xl text-left mt-4">
-                <button onclick="quickAsk('Plot my rank in ranked 2s for the last 5 seasons')" class="p-3.5 rounded-xl bg-[#18181b] hover:bg-[#202024] border border-[#27272a] hover:border-pink-500/40 transition-all flex items-start gap-3 group text-left">
-                    <span class="text-lg">📈</span>
-                    <div>
-                        <div class="text-xs font-semibold text-white group-hover:text-pink-300">Plot 2s Progression</div>
-                        <div class="text-[11px] text-[#71717a]">"Plot my rank in ranked 2s for the last 5 seasons"</div>
-                    </div>
-                </button>
-
-                <button onclick="quickAsk('Compare me and Priesty in 2s for the last 4 seasons')" class="p-3.5 rounded-xl bg-[#18181b] hover:bg-[#202024] border border-[#27272a] hover:border-violet-500/40 transition-all flex items-start gap-3 group text-left">
-                    <span class="text-lg">⚔️</span>
-                    <div>
-                        <div class="text-xs font-semibold text-white group-hover:text-violet-300">Compare with Friend</div>
-                        <div class="text-[11px] text-[#71717a]">"Compare me and Priesty in 2s for the last 4 seasons"</div>
-                    </div>
-                </button>
-
-                <button onclick="quickAsk('Check my K/D and top weapons in BF6')" class="p-3.5 rounded-xl bg-[#18181b] hover:bg-[#202024] border border-[#27272a] hover:border-cyan-500/40 transition-all flex items-start gap-3 group text-left">
-                    <span class="text-lg">🎯</span>
-                    <div>
-                        <div class="text-xs font-semibold text-white group-hover:text-cyan-300">BF6 Combat Overview</div>
-                        <div class="text-[11px] text-[#71717a]">"Check my K/D and top weapons in BF6"</div>
-                    </div>
-                </button>
-
-                <button onclick="quickAsk('What is David rank in 3v3 in Rocket League?')" class="p-3.5 rounded-xl bg-[#18181b] hover:bg-[#202024] border border-[#27272a] hover:border-emerald-500/40 transition-all flex items-start gap-3 group text-left">
-                    <span class="text-lg">🔍</span>
-                    <div>
-                        <div class="text-xs font-semibold text-white group-hover:text-emerald-300">Check Friend Rank</div>
-                        <div class="text-[11px] text-[#71717a]">"What is David's rank in 3v3?"</div>
-                    </div>
-                </button>
+                <!-- Dynamically populated per workspace -->
             </div>
         </div>
 
@@ -332,79 +392,149 @@
         <!-- Input Frame -->
         <div class="p-5 bg-[#0e0e11] max-w-4xl w-full mx-auto">
             <div class="relative bg-[#18181b] rounded-2xl border border-[#27272a] focus-within:border-violet-500/60 focus-within:ring-2 focus-within:ring-violet-500/20 transition-all shadow-xl p-2 pl-4 flex items-center gap-2">
-                <input id="user-input" type="text" placeholder="Ask about ranks, compare friends, plot MMR graphs, or check BF6 stats..." 
+                <input id="user-input" type="text" placeholder="Plot my rank in 2s for last 5 seasons, compare me and Priesty, or check stats..." 
                        class="flex-grow bg-transparent border-none text-white text-sm md:text-base py-2.5 focus:outline-none placeholder-[#71717a]">
-                <button id="send-btn" class="w-10 h-10 bg-gradient-to-tr from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 active:scale-95 transition-all text-white rounded-xl flex items-center justify-center shadow-md shadow-violet-950/40 shrink-0">
+                <button id="send-btn" class="w-10 h-10 bg-gradient-to-tr from-pink-600 to-violet-600 hover:from-pink-500 hover:to-violet-500 active:scale-95 transition-all text-white rounded-xl flex items-center justify-center shadow-md shadow-violet-950/40 shrink-0">
                     <svg class="w-5 h-5 transform rotate-90" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                     </svg>
                 </button>
             </div>
             <div class="flex items-center justify-between text-[11px] text-[#71717a] mt-2 px-2 select-none">
-                <span>Gaming Assistant powered by ADK Skills</span>
+                <span id="footer-agent-tag">Rocket League Coach powered by ADK Skills</span>
                 <span>Press Enter to send</span>
             </div>
         </div>
     </section>
 
     <script>
-        let currentAgent = "gaming_assistant";
+        let currentAgent = "rocket_league";
         let activeSessions = {
-            "gaming_assistant": "session_" + Math.random().toString(36).substring(7),
             "rocket_league": "session_" + Math.random().toString(36).substring(7),
-            "bf6": "session_" + Math.random().toString(36).substring(7)
+            "bf6": "session_" + Math.random().toString(36).substring(7),
+            "gaming_assistant": "session_" + Math.random().toString(36).substring(7)
         };
         let chatHistories = {
-            "gaming_assistant": [],
             "rocket_league": [],
-            "bf6": []
+            "bf6": [],
+            "gaming_assistant": []
         };
 
         const welcomeScreen = document.getElementById('welcome-screen');
+        const welcomeIcon = document.getElementById('welcome-icon');
         const welcomeTitle = document.getElementById('welcome-title');
         const welcomeSub = document.getElementById('welcome-sub');
+        const suggestionChips = document.getElementById('suggestion-chips');
         const chatFeed = document.getElementById('chat-feed');
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
         const imageModal = document.getElementById('image-modal');
         const modalImg = document.getElementById('modal-img');
+        const rosterRL = document.getElementById('roster-rl');
+        const rosterBF6 = document.getElementById('roster-bf6');
+        const rosterBadge = document.getElementById('roster-badge');
+        const footerAgentTag = document.getElementById('footer-agent-tag');
+
+        const suggestionTemplates = {
+            "rocket_league": [
+                { icon: "📈", title: "Plot 2s Progression", text: "Plot my rank in ranked 2s for the last 5 seasons", color: "pink" },
+                { icon: "⚔️", title: "Compare with Priesty", text: "Compare me and Priesty in 2s for the last 4 seasons", color: "violet" },
+                { icon: "🔍", title: "Check David's Rank", text: "What is David's rank in 3v3 in Rocket League?", color: "emerald" },
+                { icon: "🧠", title: "Coaching Ratios", text: "Analyze my shot accuracy and defensive ratios in 2s", color: "blue" }
+            ],
+            "bf6": [
+                { icon: "🎯", title: "Combat Performance", text: "Check my K/D and combat overview in BF6", color: "cyan" },
+                { icon: "🔫", title: "Weapon Masteries", text: "Show my top weapons, kill counts, and accuracy in BF6", color: "blue" },
+                { icon: "🛡️", title: "Class Breakdown", text: "Show my class and kit performance breakdown in BF6", color: "indigo" },
+                { icon: "⚔️", title: "Compare with Priesty", text: "Compare Alex and Priesty's combat stats and K/D in BF6", color: "purple" }
+            ],
+            "gaming_assistant": [
+                { icon: "🏆", title: "RL Season Chart", text: "Graph out my rank in ranked 2s for the last 5 seasons", color: "pink" },
+                { icon: "🎯", title: "BF6 Stats", text: "Check my K/D and top weapons in BF6", color: "cyan" },
+                { icon: "⚔️", title: "RL Squad Comparison", text: "Compare me and Will in 2s for the last 4 seasons", color: "violet" },
+                { icon: "📰", title: "Game News", text: "What are the latest patch notes and updates for Rocket League?", color: "amber" }
+            ]
+        };
+
+        function renderSuggestions(agent) {
+            suggestionChips.innerHTML = "";
+            const chips = suggestionTemplates[agent] || suggestionTemplates["gaming_assistant"];
+            chips.forEach(c => {
+                const btn = document.createElement('button');
+                btn.className = `p-3.5 rounded-xl bg-[#18181b] hover:bg-[#202024] border border-[#27272a] hover:border-${c.color}-500/40 transition-all flex items-start gap-3 group text-left`;
+                btn.onclick = () => quickAsk(c.text);
+                btn.innerHTML = `
+                    <span class="text-lg">${c.icon}</span>
+                    <div>
+                        <div class="text-xs font-semibold text-white group-hover:text-${c.color}-300">${c.title}</div>
+                        <div class="text-[11px] text-[#71717a]">"${c.text}"</div>
+                    </div>
+                `;
+                suggestionChips.appendChild(btn);
+            });
+        }
 
         function switchAgent(agent) {
             if (currentAgent === agent) return;
             
-            document.getElementById('nav-all').className = agent === 'gaming_assistant' 
-                ? "w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group bg-[#222227] text-white"
-                : "w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white";
+            currentAgent = agent;
 
+            // Nav styling
             document.getElementById('nav-rl').className = agent === 'rocket_league' 
-                ? "w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group bg-[#222227] text-white"
-                : "w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white";
+                ? "w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group bg-[#222227] text-white"
+                : "w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white";
 
             document.getElementById('nav-bf6').className = agent === 'bf6' 
-                ? "w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group bg-[#222227] text-white"
-                : "w-full text-left px-3.5 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white";
+                ? "w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group bg-[#222227] text-white"
+                : "w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white";
 
-            currentAgent = agent;
+            document.getElementById('nav-all').className = agent === 'gaming_assistant' 
+                ? "w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group bg-[#222227] text-white"
+                : "w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all duration-150 group hover:bg-[#1a1a1e] text-[#a1a1aa] hover:text-white";
+
+            // Roster display filter by game
+            if (agent === 'rocket_league') {
+                rosterRL.classList.remove('hidden');
+                rosterBF6.classList.add('hidden');
+                rosterBadge.innerText = "Rocket League";
+                rosterBadge.className = "text-[9px] bg-pink-500/20 text-pink-300 px-1.5 py-0.5 rounded font-mono";
+                welcomeIcon.innerText = "🏆";
+                welcomeTitle.innerText = "Rocket League Coach";
+                welcomeSub.innerText = "Track live ranks, plot multi-season MMR charts, evaluate coaching ratios, and check the squad.";
+                userInput.placeholder = "Plot my rank in 2s for last 5 seasons, compare me and Priesty, or check stats...";
+                footerAgentTag.innerText = "Rocket League Coach powered by ADK Skills";
+                sendBtn.className = "w-10 h-10 bg-gradient-to-tr from-pink-600 to-violet-600 hover:from-pink-500 hover:to-violet-500 active:scale-95 transition-all text-white rounded-xl flex items-center justify-center shadow-md shadow-pink-950/40 shrink-0";
+            } else if (agent === 'bf6') {
+                rosterRL.classList.add('hidden');
+                rosterBF6.classList.remove('hidden');
+                rosterBadge.innerText = "Battlefield 6";
+                rosterBadge.className = "text-[9px] bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded font-mono";
+                welcomeIcon.innerText = "🎯";
+                welcomeTitle.innerText = "Battlefield 6 Tracker";
+                welcomeSub.innerText = "Review your K/D ratio, combat efficiency, weapon masteries, and class performance.";
+                userInput.placeholder = "Check my K/D and top weapons, compare me and Priesty, or view class stats...";
+                footerAgentTag.innerText = "Battlefield 6 Tracker powered by ADK Skills";
+                sendBtn.className = "w-10 h-10 bg-gradient-to-tr from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 active:scale-95 transition-all text-white rounded-xl flex items-center justify-center shadow-md shadow-cyan-950/40 shrink-0";
+            } else {
+                rosterRL.classList.remove('hidden');
+                rosterBF6.classList.remove('hidden');
+                rosterBadge.innerText = "All Games";
+                rosterBadge.className = "text-[9px] bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded font-mono";
+                welcomeIcon.innerText = "🎮";
+                welcomeTitle.innerText = "Hello, Alex.";
+                welcomeSub.innerText = "Your unified Gaming Assistant powered by ADK Skills. What would you like to track or plot today?";
+                userInput.placeholder = "Ask about Rocket League ranks, plot MMR graphs, or check BF6 stats...";
+                footerAgentTag.innerText = "Gaming Assistant powered by ADK Skills";
+                sendBtn.className = "w-10 h-10 bg-gradient-to-tr from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 active:scale-95 transition-all text-white rounded-xl flex items-center justify-center shadow-md shadow-violet-950/40 shrink-0";
+            }
+
+            renderSuggestions(agent);
+
             chatFeed.innerHTML = "";
             const history = chatHistories[currentAgent];
-            
             if (history.length === 0) {
                 welcomeScreen.classList.remove('hidden');
                 chatFeed.classList.add('hidden');
-                
-                if (agent === 'rocket_league') {
-                    welcomeTitle.innerText = "Rocket League Coach";
-                    welcomeSub.innerText = "Ask about MMR ranks, season progression graphs, or tactical advice.";
-                    userInput.placeholder = "e.g. Plot my 2s rank for the last 5 seasons, compare me and Priesty...";
-                } else if (agent === 'bf6') {
-                    welcomeTitle.innerText = "Battlefield 6 Tracker";
-                    welcomeSub.innerText = "Check your K/D ratio, combat performance, weapon masteries, and class stats.";
-                    userInput.placeholder = "e.g. Check my K/D and top weapons, show assault class stats...";
-                } else {
-                    welcomeTitle.innerText = "Hello, karmajuney.";
-                    welcomeSub.innerText = "Your personal Gaming Assistant powered by ADK Skills. What would you like to track or plot today?";
-                    userInput.placeholder = "Ask about ranks, compare friends, plot MMR graphs, or check BF6 stats...";
-                }
             } else {
                 welcomeScreen.classList.add('hidden');
                 chatFeed.classList.remove('hidden');
@@ -449,12 +579,10 @@
             }`;
             
             if (sender === 'Coach') {
-                // Ensure static image routes point directly to /dev-ui/
                 let parsedText = text.replace(/!\[(.*?)\]\(\/dev-ui\/(.*?)\)/g, '![$1](/dev-ui/$2)');
                 let html = marked.parse(parsedText);
                 bubble.innerHTML = html;
 
-                // Add lightbox click handler to all rendered images
                 bubble.querySelectorAll('img').forEach(img => {
                     img.addEventListener('click', () => openModal(img.src));
                 });
@@ -485,9 +613,9 @@
             loadingContainer.innerHTML = `
                 <div class="w-8 h-8 rounded-xl bg-[#202024] border border-[#2d2d32] flex items-center justify-center text-sm shadow-md">${currentAgent === 'rocket_league' ? '🏆' : (currentAgent === 'bf6' ? '🎯' : '🎮')}</div>
                 <div class="flex items-center gap-2 px-4 py-3 bg-[#18181b] rounded-2xl border border-[#27272a]">
-                    <div class="w-2 h-2 bg-violet-400 rounded-full animate-bounce"></div>
-                    <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce [animation-delay:0.2s]"></div>
-                    <div class="w-2 h-2 bg-pink-400 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                    <div class="w-2 h-2 bg-pink-400 rounded-full animate-bounce"></div>
+                    <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                    <div class="w-2 h-2 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.4s]"></div>
                     <span class="text-xs text-gray-400 ml-1 font-mono">Executing skill scripts...</span>
                 </div>
             `;
@@ -522,6 +650,9 @@
                 renderMessageDiv('Coach', errorText);
             }
         }
+
+        // Initialize default view
+        renderSuggestions("rocket_league");
 
         sendBtn.addEventListener('click', handleSend);
         userInput.addEventListener('keypress', (e) => { 
