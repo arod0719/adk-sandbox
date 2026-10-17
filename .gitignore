@@ -165,3 +165,6 @@ Thumbs.db
 
 # Local UI service
 ui/adk-ui.service
+ui/static/
+ui/templates/static/
+*.png
