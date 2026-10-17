@@ -7,16 +7,24 @@ This repository is a centralized location for storing Agent Development Kit (ADK
 Instead of fragmented standalone agent runtimes, this repository adopts the **ADK Skills Best Practice** architecture: a single host agent process powered by a modular `skills/` directory.
 
 ```
-my_gaming_assistant/
+gaming_assistant/
+├── __init__.py
 ├── agent.py                 # Single host agent & SkillToolset runner
 └── skills/
-    ├── bf6-tracker/         # BF6 mastery & achievement tracker skill
-    │   ├── SKILL.md         # Playbook: profile defaults, tracker.gg gotchas
-    │   ├── references/      # Sample cached profile references
+    ├── player-mappings/     # Friendly name to gamer tag & platform mapping
+    │   ├── SKILL.md
+    │   ├── references/
+    │   │   └── friends.json # Database of friends and platform IDs
     │   └── scripts/
-    │       └── fetch_bf6.py # Scraper & achievement calculator script
-    └── rocket-league/       # Rocket League coach & stat tracker skill
-        ├── SKILL.md         # Playbook: rank evaluation & coaching logic
+    │       └── resolve_player.py
+    ├── bf6-tracker/         # BF6 combat & class/weapon stat tracker
+    │   ├── SKILL.md
+    │   ├── references/
+    │   │   └── sample_profile.json
+    │   └── scripts/
+    │       └── fetch_bf6.py
+    └── rocket-league/       # Rocket League coach & multi-player progression tracker
+        ├── SKILL.md
         ├── references/
         │   ├── rank_tiers.json     # MMR rank thresholds & player percentiles
         │   └── coaching_rules.md   # Diagnostic ratio benchmarks & guides
@@ -30,21 +38,31 @@ my_gaming_assistant/
 
 ## Available Skills
 
-### 1. Battlefield 6 Tracker (`bf6-tracker`)
-- **Real-time Stat Tracking:** Fetches live data from Tracker.gg with TLS fingerprint impersonation (`curl_cffi`) and local fallback caching to navigate anti-bot protections.
-- **Mastery Tracking:** Monitors Kills, Deaths, Wins, K/D, and class metrics.
-- **Achievement Progress:** Calculates exact progress bars and numbers for key trophies:
-  - *A Joyful Nurse* (Support revives adjusted for persistent vs. seasonal event modes)
-  - *Rise from Your Grave* (Granite / Redsec revives)
-- **Formatting:** Returns clean Markdown table dashboards with visual progress bars (`🟩🟩🟩⬛⬛ 60%`).
-- **Grounding:** Google Search subagent fallback for tactical guides, map loadouts, and revival rotations.
+### 1. Player Identity Mapping (`player-mappings`)
+- Automatically maps friendly names and nicknames to platform-specific handles:
+  - **Rocket League:**
+    - `me` / `Alex` -> `karmajuney` (Steam)
+    - `will` / `priesty` -> `itspriesty` (Steam)
+    - `erik` / `rumble` -> `tweenty7` (Steam)
+    - `david` -> `76561198053263580` (Steam ID64)
+    - `emilio` / `flux` -> `FluxRL` (Steam)
+  - **Battlefield 6:**
+    - `me` / `Alex` -> `2770616530` (Steam)
+    - `will` / `priesty` -> `1002157303178` (Steam)
 
 ### 2. Rocket League Coach & Tracker (`rocket-league`)
-- **Rank & Percentile Diagnostics:** Fetches live player profile stats from the RLStats API, reporting active MMR alongside global player base percentiles (e.g. Top 1.18%).
-- **Multi-Player Line Graphs:** Plots season-by-season MMR and Matches Played progression curves with horizontal rank boundaries (Grand Champion, Champion) using dark-mode Matplotlib styling.
-- **Dynamic Coaching Analysis:** Evaluates shot accuracy %, defensive ratios (saves/win), and playmaker ratios (assists/win) against reference benchmarks to identify weaknesses.
+- **Dynamic Season Detection:** Dynamically resolves the latest active season (e.g. Season 24 / API Season 38).
+- **Natural Language & Multi-Player Graphing:** Supports queries like *"graph out my rank in ranked 2s for the last 5 seasons"* or *"compare me and itspriesty on steam's ranks in 2s for the last 4 seasons"*.
+- **Rank & Percentile Diagnostics:** Reports MMR alongside global player base percentiles (e.g. Top 1.18%).
+- **Coaching Engine:** Evaluates shot accuracy %, defensive ratios (saves/win), and playmaker ratios (assists/win) against reference benchmarks.
 - **Web Grounding:** Searches for targeted custom training pack codes and curated YouTube tutorial guides.
 - **News Feed & Article Summaries:** Fetches the latest official news articles with cover thumbnails and scrapes full article texts.
+
+### 3. Battlefield 6 Tracker (`bf6-tracker`)
+- **Pure Combat & Mastery Stats:** Strictly tracks player combat metrics (K/D, KDA, Kills/Min, Win %, Damage/Min, Headshot %, Playtime, Score).
+- **Class/Kit Mastery:** Assault, Engineer, Support, and Recon performance breakdowns.
+- **Top Weapons:** Highlights top weapons with kill counts, accuracy percentages, and headshots.
+- **Anti-Bot Navigation:** Utilizes TLS fingerprint impersonation (`curl_cffi`) and local fallback caching to navigate Cloudflare protection.
 
 ---
 
@@ -61,26 +79,12 @@ GOOGLE_GENAI_USE_VERTEXAI=False
 RLSTATS_API_KEY=your_rlstats_api_key_here
 ```
 
-> **Security Note:** All `.env` files are strictly ignored by `.gitignore` and must never be committed to version control.
-
 ---
 
 ## Custom Gemini-Style Front-End (`ui`)
 
 The repository includes a custom web UI styled like **gemini.google.com** running locally on port **`9999`**.
 
-- **FastAPI Backend:** [ui/server.py](file:///home/raspberrypi4/ADK/ui/server.py) loads the unified `my_gaming_assistant` host agent via `Runner` and serves chat interactions over `/api/chat`.
+- **FastAPI Backend:** [ui/server.py](file:///home/raspberrypi4/ADK/ui/server.py) loads the unified `gaming_assistant` host agent via `Runner` and serves chat interactions over `/api/chat`.
 - **Inline Charts & Media:** Mounts `/dev-ui` to statically serve generated Matplotlib PNG charts inline in chat history.
-- **Separated Workspace Contexts:** The UI maintains distinct sessions for Rocket League and Battlefield 6 queries while routing both through the unified SkillToolset.
-
-### Managing System Services
-
-```bash
-# UI Service (Port 9999)
-kill $(pgrep -f "ui/server.py")  # Graceful restart via systemd auto-restart
-# Or via sudo:
-# sudo systemctl restart adk-ui
-
-# ADK Web UI Service (Port 8000)
-# sudo systemctl restart adk
-```
+- **Multi-Player Sessions:** Supports separate chat tab contexts while routing all queries through the unified host agent.

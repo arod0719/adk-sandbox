@@ -2,6 +2,7 @@
 """
 Deterministic stats retrieval, player comparison, and coaching ratio evaluator for Rocket League.
 Interacts with the RLStats API and references/rank_tiers.json.
+Supports friend name resolution, dynamic latest season detection, and gamemode aliases.
 """
 
 import os
@@ -59,14 +60,50 @@ PLAYLIST_MMR_KEY_MAP = {
     "63": "heatseeker"
 }
 
+GAMEMODE_ALIAS_MAP = {
+    "1v1": "10", "1s": "10", "ranked1s": "10", "duel": "10", "duel1v1": "10", "solo": "10", "ones": "10",
+    "2v2": "11", "2s": "11", "ranked2s": "11", "doubles": "11", "doubles2v2": "11", "twos": "11",
+    "3v3": "13", "3s": "13", "ranked3s": "13", "standard": "13", "standard3v3": "13", "threes": "13",
+    "hoops": "27", "dunk": "27",
+    "rumble": "28", "rng": "28",
+    "dropshot": "29", "drop": "29",
+    "snowday": "30", "hockey": "30",
+    "tournament": "34", "tourney": "34",
+    "quads": "61", "chaos": "61", "4v4": "61", "4s": "61",
+    "heatseeker": "63"
+}
+
 F2P_SEASON_OFFSET = 14
+
+PLAYER_NAME_MAPPINGS = {
+    "me": {"player_id": "karmajuney", "platform": "steam"},
+    "alex": {"player_id": "karmajuney", "platform": "steam"},
+    "karmajuney": {"player_id": "karmajuney", "platform": "steam"},
+    "will": {"player_id": "itspriesty", "platform": "steam"},
+    "priesty": {"player_id": "itspriesty", "platform": "steam"},
+    "itspriesty": {"player_id": "itspriesty", "platform": "steam"},
+    "erik": {"player_id": "tweenty7", "platform": "steam"},
+    "rumble": {"player_id": "tweenty7", "platform": "steam"},
+    "tweenty7": {"player_id": "tweenty7", "platform": "steam"},
+    "david": {"player_id": "76561198053263580", "platform": "steam"},
+    "76561198053263580": {"player_id": "76561198053263580", "platform": "steam"},
+    "emilio": {"player_id": "FluxRL", "platform": "steam"},
+    "flux": {"player_id": "FluxRL", "platform": "steam"},
+    "fluxrl": {"player_id": "FluxRL", "platform": "steam"}
+}
+
+def resolve_player(raw_id: str, raw_platform: str = "steam") -> tuple[str, str]:
+    clean_id = raw_id.strip().lower()
+    if clean_id in PLAYER_NAME_MAPPINGS:
+        mapping = PLAYER_NAME_MAPPINGS[clean_id]
+        return mapping["player_id"], mapping["platform"]
+    return raw_id.strip(), (raw_platform.strip().lower() if raw_platform else "steam")
 
 def get_rank_tiers_path() -> Path:
     candidates = [
         Path("references/rank_tiers.json"),
         Path(__file__).parent.parent / "references" / "rank_tiers.json",
-        Path("/home/raspberrypi4/ADK/my_gaming_assistant/skills/rocket-league/references/rank_tiers.json"),
-        Path("/home/raspberrypi4/ADK/rocket_league/brain/rank_ranges.json")
+        Path("/home/raspberrypi4/ADK/gaming_assistant/skills/rocket-league/references/rank_tiers.json")
     ]
     for p in candidates:
         if p.exists():
@@ -89,21 +126,31 @@ def get_rank_name_from_mmr(mmr: float, playlist_key: str):
         return ("Unknown", "N/A")
 
 def fetch_player_data(player_id: str, platform: str = "steam") -> dict:
-    plat_id = PLATFORM_MAP.get(platform.lower())
+    resolved_id, resolved_plat = resolve_player(player_id, platform)
+    plat_id = PLATFORM_MAP.get(resolved_plat.lower())
     if not plat_id:
-        raise ValueError(f"Invalid platform '{platform}'. Choose from: {list(PLATFORM_MAP.keys())}")
+        raise ValueError(f"Invalid platform '{resolved_plat}'. Choose from: {list(PLATFORM_MAP.keys())}")
 
     url = "https://api.rlstats.net/v1/profile/stats"
-    r = requests.post(url, json={"apikey": API_KEY, "platformid": plat_id, "playerid": player_id}, timeout=10)
+    r = requests.post(url, json={"apikey": API_KEY, "platformid": plat_id, "playerid": resolved_id}, timeout=10)
     r.raise_for_status()
     data = r.json()
     if not data or data.get("Message") == "Not Found":
-        raise ValueError(f"Player '{player_id}' not found on {platform}.")
+        raise ValueError(f"Player '{resolved_id}' not found on {resolved_plat}.")
     return data
 
 def parse_season_stats(data: dict, platform: str, season: int = None, is_legacy: bool = False) -> dict:
+    # Dynamically determine the latest active season
     if season is None:
-        target_api_season = str(data.get("SeasonInfo", {}).get("SeasonID", "37"))
+        api_seasons = [int(k) for k in data.get("RankedSeasons", {}).keys() if k.isdigit()]
+        season_id_info = data.get("SeasonInfo", {}).get("SeasonID")
+        if season_id_info:
+            target_api_season = str(season_id_info)
+        elif api_seasons:
+            target_api_season = str(max(api_seasons))
+        else:
+            target_api_season = "38"
+        
         api_season_val = int(target_api_season)
         if api_season_val > F2P_SEASON_OFFSET:
             season_display = f"Season {api_season_val - F2P_SEASON_OFFSET}"
@@ -174,9 +221,9 @@ def parse_season_stats(data: dict, platform: str, season: int = None, is_legacy:
     }
 
 def get_coaching_payload(data: dict, gamemode: str = "3v3", season: int = None, is_legacy: bool = False) -> dict:
-    gamemode = gamemode if gamemode in ["1v1", "2v2", "3v3"] else "3v3"
-    playlist_id = "10" if gamemode == "1v1" else ("11" if gamemode == "2v2" else "13")
-    playlist_name = "Duel (1v1)" if gamemode == "1v1" else ("Doubles (2v2)" if gamemode == "2v2" else "Standard (3v3)")
+    clean_mode = gamemode.lower().replace(" ", "").replace("_", "").replace("-", "")
+    playlist_id = GAMEMODE_ALIAS_MAP.get(clean_mode, "13")
+    playlist_name = PLAYLIST_MAP.get(playlist_id, "Standard (3v3)")
 
     parsed = parse_season_stats(data, platform="steam", season=season, is_legacy=is_legacy)
     playlist_entry = next((p for p in parsed["playlists"] if p["playlist"] == playlist_name), None)
@@ -188,7 +235,7 @@ def get_coaching_payload(data: dict, gamemode: str = "3v3", season: int = None, 
 
     return {
         "player": parsed["display_name"],
-        "gamemode": gamemode,
+        "gamemode": playlist_name,
         "current_rank": current_rank,
         "rank_percentile": percentile,
         "mmr": mmr,
@@ -199,28 +246,31 @@ def get_coaching_payload(data: dict, gamemode: str = "3v3", season: int = None, 
 def main():
     parser = argparse.ArgumentParser(description="Fetch Rocket League Stats, Compare, and Coaching Analysis")
     parser.add_argument("--action", choices=["stats", "compare", "coaching"], default="stats", help="Action")
-    parser.add_argument("--player", default="karmajuney", help="Player ID/Username")
+    parser.add_argument("--player", default="karmajuney", help="Player ID, username, or friend alias")
     parser.add_argument("--platform", default="steam", help="Platform (steam, ps4, xbox, switch, epic)")
     parser.add_argument("--season", type=int, help="Season number (F2P default, or OG if is_legacy)")
     parser.add_argument("--is_legacy", action="store_true", help="Query legacy OG seasons")
     parser.add_argument("--player2", help="Second player for comparison")
     parser.add_argument("--player2_platform", default="steam", help="Platform for second player")
-    parser.add_argument("--gamemode", default="3v3", choices=["1v1", "2v2", "3v3"], help="Gamemode for coaching")
+    parser.add_argument("--gamemode", default="3v3", help="Gamemode (e.g. 2v2, 2s, ranked 2s, 3v3, 1v1)")
     args = parser.parse_args()
 
     try:
+        r1_id, r1_plat = resolve_player(args.player, args.platform)
+
         if args.action == "stats":
-            data = fetch_player_data(args.player, args.platform)
-            parsed = parse_season_stats(data, args.platform, season=args.season, is_legacy=args.is_legacy)
+            data = fetch_player_data(r1_id, r1_plat)
+            parsed = parse_season_stats(data, r1_plat, season=args.season, is_legacy=args.is_legacy)
             print(json.dumps(parsed, indent=2))
 
         elif args.action == "compare":
             if not args.player2:
                 raise ValueError("--player2 is required for comparison.")
-            d1 = fetch_player_data(args.player, args.platform)
-            d2 = fetch_player_data(args.player2, args.player2_platform)
-            p1 = parse_season_stats(d1, args.platform, season=args.season, is_legacy=args.is_legacy)
-            p2 = parse_season_stats(d2, args.player2_platform, season=args.season, is_legacy=args.is_legacy)
+            r2_id, r2_plat = resolve_player(args.player2, args.player2_platform)
+            d1 = fetch_player_data(r1_id, r1_plat)
+            d2 = fetch_player_data(r2_id, r2_plat)
+            p1 = parse_season_stats(d1, r1_plat, season=args.season, is_legacy=args.is_legacy)
+            p2 = parse_season_stats(d2, r2_plat, season=args.season, is_legacy=args.is_legacy)
             output = {
                 "player_1": p1,
                 "player_2": p2
@@ -228,7 +278,7 @@ def main():
             print(json.dumps(output, indent=2))
 
         elif args.action == "coaching":
-            data = fetch_player_data(args.player, args.platform)
+            data = fetch_player_data(r1_id, r1_plat)
             coaching = get_coaching_payload(data, gamemode=args.gamemode, season=args.season, is_legacy=args.is_legacy)
             print(json.dumps(coaching, indent=2))
 

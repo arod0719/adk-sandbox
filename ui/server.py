@@ -24,7 +24,7 @@ from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 
 # Import the unified host agent powered by ADK Skills
-from my_gaming_assistant.agent import root_agent as gaming_agent
+from gaming_assistant.agent import root_agent as gaming_agent
 
 app = FastAPI()
 

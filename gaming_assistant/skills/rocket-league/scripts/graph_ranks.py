@@ -2,12 +2,14 @@
 """
 Deterministic graphing script for Rocket League MMR and Match progression across seasons.
 Generates dark-mode charts with rank threshold lines and outputs markdown image references.
+Supports natural language gamemode aliases and friend name resolution.
 """
 
 import os
 import sys
 import json
 import time
+import ast
 import argparse
 from pathlib import Path
 import matplotlib
@@ -63,27 +65,51 @@ PLAYLIST_MMR_KEY_MAP = {
     "63": "heatseeker"
 }
 
-GAMEMODE_TO_PLAYLIST_ID = {
-    "1v1": "10", "duel": "10", "duel1v1": "10", "solo": "10",
-    "2v2": "11", "doubles": "11", "doubles2v2": "11", "standard2v2": "11",
-    "3v3": "13", "standard": "13", "standard3v3": "13",
-    "hoops": "27",
-    "rumble": "28",
-    "dropshot": "29",
-    "snowday": "30",
-    "tournament": "34",
-    "quads": "61", "chaos": "61", "chaos4v4": "61", "4v4": "61",
+GAMEMODE_ALIAS_MAP = {
+    "1v1": "10", "1s": "10", "ranked1s": "10", "ranked1": "10", "duel": "10", "duel1v1": "10", "solo": "10", "ones": "10", "competitive1s": "10",
+    "2v2": "11", "2s": "11", "ranked2s": "11", "ranked2": "11", "doubles": "11", "doubles2v2": "11", "twos": "11", "standard2v2": "11", "competitive2s": "11",
+    "3v3": "13", "3s": "13", "ranked3s": "13", "ranked3": "13", "standard": "13", "standard3v3": "13", "threes": "13", "competitive3s": "13",
+    "hoops": "27", "dunk": "27",
+    "rumble": "28", "rng": "28",
+    "dropshot": "29", "drop": "29",
+    "snowday": "30", "hockey": "30", "puck": "30",
+    "tournament": "34", "tourney": "34",
+    "quads": "61", "chaos": "61", "chaos4v4": "61", "4v4": "61", "4s": "61", "ranked4s": "61",
     "heatseeker": "63"
 }
 
 F2P_SEASON_OFFSET = 14
 
+# Built-in player mappings fallback
+PLAYER_NAME_MAPPINGS = {
+    "me": {"player_id": "karmajuney", "platform": "steam"},
+    "alex": {"player_id": "karmajuney", "platform": "steam"},
+    "karmajuney": {"player_id": "karmajuney", "platform": "steam"},
+    "will": {"player_id": "itspriesty", "platform": "steam"},
+    "priesty": {"player_id": "itspriesty", "platform": "steam"},
+    "itspriesty": {"player_id": "itspriesty", "platform": "steam"},
+    "erik": {"player_id": "tweenty7", "platform": "steam"},
+    "rumble": {"player_id": "tweenty7", "platform": "steam"},
+    "tweenty7": {"player_id": "tweenty7", "platform": "steam"},
+    "david": {"player_id": "76561198053263580", "platform": "steam"},
+    "76561198053263580": {"player_id": "76561198053263580", "platform": "steam"},
+    "emilio": {"player_id": "FluxRL", "platform": "steam"},
+    "flux": {"player_id": "FluxRL", "platform": "steam"},
+    "fluxrl": {"player_id": "FluxRL", "platform": "steam"}
+}
+
+def resolve_player(raw_id: str, raw_platform: str = "steam") -> tuple[str, str]:
+    clean_id = raw_id.strip().lower()
+    if clean_id in PLAYER_NAME_MAPPINGS:
+        mapping = PLAYER_NAME_MAPPINGS[clean_id]
+        return mapping["player_id"], mapping["platform"]
+    return raw_id.strip(), (raw_platform.strip().lower() if raw_platform else "steam")
+
 def get_rank_tiers_path() -> Path:
     candidates = [
         Path("references/rank_tiers.json"),
         Path(__file__).parent.parent / "references" / "rank_tiers.json",
-        Path("/home/raspberrypi4/ADK/my_gaming_assistant/skills/rocket-league/references/rank_tiers.json"),
-        Path("/home/raspberrypi4/ADK/rocket_league/brain/rank_ranges.json")
+        Path("/home/raspberrypi4/ADK/gaming_assistant/skills/rocket-league/references/rank_tiers.json")
     ]
     for p in candidates:
         if p.exists():
@@ -148,12 +174,66 @@ def fetch_player_raw_stats(player_id: str, platform: str) -> dict:
     r.raise_for_status()
     return r.json()
 
-def generate_graph(gamemode: str = "3v3", players: list[dict] = None, metric: str = "mmr", seasons_str: str = None, limit_seasons: int = None) -> str:
-    if not players:
-        players = [{"player_id": "karmajuney", "platform": "steam"}]
+def normalize_players_input(raw_input) -> list[dict]:
+    """Robustly normalizes players input from CLI, JSON, dict, or comma-separated strings."""
+    if not raw_input:
+        return [{"player_id": "karmajuney", "platform": "steam"}]
 
-    gamemode_clean = gamemode.lower().replace(" ", "").replace("(", "").replace(")", "")
-    playlist_id = GAMEMODE_TO_PLAYLIST_ID.get(gamemode_clean, "13")
+    if isinstance(raw_input, list):
+        parsed_list = []
+        for item in raw_input:
+            if isinstance(item, dict):
+                pid = item.get("player_id") or item.get("player") or item.get("username")
+                plat = item.get("platform", "steam")
+                r_id, r_plat = resolve_player(pid, plat)
+                parsed_list.append({"player_id": r_id, "platform": r_plat})
+            elif isinstance(item, str):
+                if ":" in item:
+                    pid, plat = item.split(":", 1)
+                    r_id, r_plat = resolve_player(pid, plat)
+                    parsed_list.append({"player_id": r_id, "platform": r_plat})
+                else:
+                    r_id, r_plat = resolve_player(item, "steam")
+                    parsed_list.append({"player_id": r_id, "platform": r_plat})
+        return parsed_list
+
+    if isinstance(raw_input, str):
+        raw_str = raw_input.strip()
+        # Try JSON or Python literal parsing
+        if (raw_str.startswith("[") and raw_str.endswith("]")) or (raw_str.startswith("{") and raw_str.endswith("}")):
+            try:
+                data = json.loads(raw_str)
+                return normalize_players_input(data if isinstance(data, list) else [data])
+            except Exception:
+                try:
+                    data = ast.literal_eval(raw_str)
+                    return normalize_players_input(data if isinstance(data, list) else [data])
+                except Exception:
+                    pass
+
+        # Try comma-separated list
+        parsed_list = []
+        for part in raw_str.split(","):
+            part = part.strip()
+            if not part:
+                continue
+            if ":" in part:
+                pid, plat = part.split(":", 1)
+                r_id, r_plat = resolve_player(pid, plat)
+                parsed_list.append({"player_id": r_id, "platform": r_plat})
+            else:
+                r_id, r_plat = resolve_player(part, "steam")
+                parsed_list.append({"player_id": r_id, "platform": r_plat})
+        return parsed_list
+
+    return [{"player_id": "karmajuney", "platform": "steam"}]
+
+def generate_graph(gamemode: str = "3v3", players: list[dict] = None, metric: str = "mmr", seasons_str: str = None, limit_seasons: int = None) -> str:
+    players = normalize_players_input(players)
+
+    # Normalize gamemode from natural language aliases
+    clean_mode = gamemode.lower().replace(" ", "").replace("_", "").replace("-", "").replace("(", "").replace(")", "")
+    playlist_id = GAMEMODE_ALIAS_MAP.get(clean_mode, "13")
     playlist_name = PLAYLIST_MAP.get(playlist_id, gamemode.upper())
     playlist_mmr_key = PLAYLIST_MMR_KEY_MAP.get(playlist_id, "3v3")
 
@@ -291,30 +371,35 @@ def generate_graph(gamemode: str = "3v3", players: list[dict] = None, metric: st
 
 def main():
     parser = argparse.ArgumentParser(description="Generate Rocket League Rank & MMR Line Graphs")
-    parser.add_argument("--gamemode", default="3v3", help="Gamemode (1v1, 2v2, 3v3, hoops, rumble, dropshot, etc.)")
-    parser.add_argument("--player", default="karmajuney", help="Primary player username / ID")
+    parser.add_argument("--gamemode", default="3v3", help="Gamemode (1v1, 2v2, 3v3, ranked 2s, hoops, rumble, dropshot, etc.)")
+    parser.add_argument("--player", default="karmajuney", help="Primary player username, ID, or friend name")
     parser.add_argument("--platform", default="steam", help="Primary player platform")
-    parser.add_argument("--players", help="Comma-separated player list in format 'id:platform,id2:platform2'")
+    parser.add_argument("--player2", help="Optional second player for comparison")
+    parser.add_argument("--player2_platform", default="steam", help="Platform for second player")
+    parser.add_argument("--players", help="List of players (comma-separated 'id:platform', or JSON array)")
     parser.add_argument("--metric", choices=["mmr", "matches"], default="mmr", help="Metric to plot")
     parser.add_argument("--seasons", help="Season range (e.g. '10-15' or '1,3,5')")
     parser.add_argument("--limit_seasons", type=int, help="Limit to last N seasons")
     args = parser.parse_args()
 
-    players_list = []
+    players_input = []
     if args.players:
-        for entry in args.players.split(","):
-            if ":" in entry:
-                pid, plat = entry.split(":", 1)
-                players_list.append({"player_id": pid.strip(), "platform": plat.strip()})
-            else:
-                players_list.append({"player_id": entry.strip(), "platform": "steam"})
+        players_input = normalize_players_input(args.players)
+    elif args.player2:
+        p1_id, p1_plat = resolve_player(args.player, args.platform)
+        p2_id, p2_plat = resolve_player(args.player2, args.player2_platform)
+        players_input = [
+            {"player_id": p1_id, "platform": p1_plat},
+            {"player_id": p2_id, "platform": p2_plat}
+        ]
     else:
-        players_list.append({"player_id": args.player, "platform": args.platform})
+        p1_id, p1_plat = resolve_player(args.player, args.platform)
+        players_input = [{"player_id": p1_id, "platform": p1_plat}]
 
     try:
         result = generate_graph(
             gamemode=args.gamemode,
-            players=players_list,
+            players=players_input,
             metric=args.metric,
             seasons_str=args.seasons,
             limit_seasons=args.limit_seasons

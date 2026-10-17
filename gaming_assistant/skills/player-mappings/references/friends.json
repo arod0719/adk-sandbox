@@ -1,0 +1,108 @@
+{
+  "rocket_league": {
+    "me": {
+      "player_id": "karmajuney",
+      "platform": "steam",
+      "display_name": "Karmajuney"
+    },
+    "alex": {
+      "player_id": "karmajuney",
+      "platform": "steam",
+      "display_name": "Karmajuney"
+    },
+    "karmajuney": {
+      "player_id": "karmajuney",
+      "platform": "steam",
+      "display_name": "Karmajuney"
+    },
+    "will": {
+      "player_id": "itspriesty",
+      "platform": "steam",
+      "display_name": "Priesty"
+    },
+    "priesty": {
+      "player_id": "itspriesty",
+      "platform": "steam",
+      "display_name": "Priesty"
+    },
+    "itspriesty": {
+      "player_id": "itspriesty",
+      "platform": "steam",
+      "display_name": "Priesty"
+    },
+    "erik": {
+      "player_id": "tweenty7",
+      "platform": "steam",
+      "display_name": "Rumble"
+    },
+    "rumble": {
+      "player_id": "tweenty7",
+      "platform": "steam",
+      "display_name": "Rumble"
+    },
+    "tweenty7": {
+      "player_id": "tweenty7",
+      "platform": "steam",
+      "display_name": "Rumble"
+    },
+    "david": {
+      "player_id": "76561198053263580",
+      "platform": "steam",
+      "display_name": "BlackWraith",
+      "id_type": "steam_id64"
+    },
+    "76561198053263580": {
+      "player_id": "76561198053263580",
+      "platform": "steam",
+      "display_name": "BlackWraith",
+      "id_type": "steam_id64"
+    },
+    "emilio": {
+      "player_id": "FluxRL",
+      "platform": "steam",
+      "display_name": "Flux"
+    },
+    "flux": {
+      "player_id": "FluxRL",
+      "platform": "steam",
+      "display_name": "Flux"
+    },
+    "fluxrl": {
+      "player_id": "FluxRL",
+      "platform": "steam",
+      "display_name": "Flux"
+    }
+  },
+  "bf6": {
+    "me": {
+      "player_id": "2770616530",
+      "platform": "steam",
+      "display_name": "Alex"
+    },
+    "alex": {
+      "player_id": "2770616530",
+      "platform": "steam",
+      "display_name": "Alex"
+    },
+    "2770616530": {
+      "player_id": "2770616530",
+      "platform": "steam",
+      "display_name": "Alex"
+    },
+    "will": {
+      "player_id": "1002157303178",
+      "platform": "steam",
+      "display_name": "Priesty"
+    },
+    "priesty": {
+      "player_id": "1002157303178",
+      "platform": "steam",
+      "display_name": "Priesty"
+    },
+    "1002157303178": {
+      "player_id": "1002157303178",
+      "platform": "steam",
+      "display_name": "Priesty"
+    }
+  }
+}
