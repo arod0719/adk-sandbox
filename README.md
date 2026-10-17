@@ -11,21 +11,17 @@ gaming_assistant/
 ├── __init__.py
 ├── agent.py                 # Single host agent & SkillToolset runner
 └── skills/
-    ├── player-mappings/     # Friendly name to gamer tag & platform mapping
-    │   ├── SKILL.md
-    │   ├── references/
-    │   │   └── friends.json # Database of friends and platform IDs
-    │   └── scripts/
-    │       └── resolve_player.py
     ├── bf6-tracker/         # BF6 combat & class/weapon stat tracker
     │   ├── SKILL.md
     │   ├── references/
+    │   │   ├── friends.json         # Built-in player and friend IDs
     │   │   └── sample_profile.json
     │   └── scripts/
     │       └── fetch_bf6.py
     └── rocket-league/       # Rocket League coach & multi-player progression tracker
         ├── SKILL.md
         ├── references/
+        │   ├── friends.json        # Built-in player and friend IDs
         │   ├── rank_tiers.json     # MMR rank thresholds & player percentiles
         │   └── coaching_rules.md   # Diagnostic ratio benchmarks & guides
         └── scripts/
@@ -38,19 +34,13 @@ gaming_assistant/
 
 ## Available Skills
 
-### 1. Player Identity Mapping (`player-mappings`)
-- Automatically maps friendly names and nicknames to platform-specific handles:
-  - **Rocket League:**
-    - `me` / `Alex` -> `karmajuney` (Steam)
-    - `will` / `priesty` -> `itspriesty` (Steam)
-    - `erik` / `rumble` -> `tweenty7` (Steam)
-    - `david` -> `76561198053263580` (Steam ID64)
-    - `emilio` / `flux` -> `FluxRL` (Steam)
-  - **Battlefield 6:**
-    - `me` / `Alex` -> `2770616530` (Steam)
-    - `will` / `priesty` -> `1002157303178` (Steam)
-
-### 2. Rocket League Coach & Tracker (`rocket-league`)
+### 1. Rocket League Coach & Tracker (`rocket-league`)
+- **Native Friend & Identity Mappings:** Seamlessly recognizes nicknames without platform prompts:
+  - `me` / `Alex` -> `karmajuney` (Steam)
+  - `will` / `priesty` -> `itspriesty` (Steam)
+  - `erik` / `rumble` -> `tweenty7` (Steam)
+  - `david` -> `76561198053263580` (Steam ID64)
+  - `emilio` / `flux` -> `FluxRL` (Steam)
 - **Dynamic Season Detection:** Dynamically resolves the latest active season (e.g. Season 24 / API Season 38).
 - **Natural Language & Multi-Player Graphing:** Supports queries like *"graph out my rank in ranked 2s for the last 5 seasons"* or *"compare me and itspriesty on steam's ranks in 2s for the last 4 seasons"*.
 - **Rank & Percentile Diagnostics:** Reports MMR alongside global player base percentiles (e.g. Top 1.18%).
@@ -58,7 +48,10 @@ gaming_assistant/
 - **Web Grounding:** Searches for targeted custom training pack codes and curated YouTube tutorial guides.
 - **News Feed & Article Summaries:** Fetches the latest official news articles with cover thumbnails and scrapes full article texts.
 
-### 3. Battlefield 6 Tracker (`bf6-tracker`)
+### 2. Battlefield 6 Tracker (`bf6-tracker`)
+- **Native Friend & Identity Mappings:**
+  - `me` / `Alex` -> `2770616530` (Steam)
+  - `will` / `priesty` -> `1002157303178` (Steam)
 - **Pure Combat & Mastery Stats:** Strictly tracks player combat metrics (K/D, KDA, Kills/Min, Win %, Damage/Min, Headshot %, Playtime, Score).
 - **Class/Kit Mastery:** Assault, Engineer, Support, and Recon performance breakdowns.
 - **Top Weapons:** Highlights top weapons with kill counts, accuracy percentages, and headshots.
