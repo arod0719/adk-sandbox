@@ -120,7 +120,15 @@ def get_rank_name_from_mmr(mmr: float, playlist_key: str):
         ranges = brain_data.get(playlist_key, brain_data.get("3v3", []))
         for rank in ranges:
             if rank["min_mmr"] <= mmr <= rank["max_mmr"]:
-                return (rank["name"], f"{rank['percent']}%")
+                div_str = ""
+                divs = rank.get("divisions", {})
+                if divs:
+                    for d_key, d_label in [("div_4", "Div IV"), ("div_3", "Div III"), ("div_2", "Div II"), ("div_1", "Div I")]:
+                        interval = divs.get(d_key)
+                        if interval and interval[0] <= mmr <= interval[1]:
+                            div_str = f" ({d_label})"
+                            break
+                return (f"{rank['name']}{div_str}", f"{rank['percent']}%")
         return ("Unranked", "N/A")
     except Exception:
         return ("Unknown", "N/A")

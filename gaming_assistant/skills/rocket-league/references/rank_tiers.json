@@ -1,242 +1,5122 @@
 {
   "1v1": [
-    {"name": "Bronze I", "min_mmr": 0, "max_mmr": 148, "percent": 0.34},
-    {"name": "Bronze II", "min_mmr": 149, "max_mmr": 216, "percent": 0.30},
-    {"name": "Bronze III", "min_mmr": 217, "max_mmr": 277, "percent": 0.57},
-    {"name": "Silver I", "min_mmr": 278, "max_mmr": 334, "percent": 1.15},
-    {"name": "Silver II", "min_mmr": 335, "max_mmr": 386, "percent": 2.20},
-    {"name": "Silver III", "min_mmr": 387, "max_mmr": 452, "percent": 4.02},
-    {"name": "Gold I", "min_mmr": 453, "max_mmr": 507, "percent": 7.56},
-    {"name": "Gold II", "min_mmr": 508, "max_mmr": 565, "percent": 12.17},
-    {"name": "Gold III", "min_mmr": 566, "max_mmr": 633, "percent": 17.46},
-    {"name": "Platinum I", "min_mmr": 634, "max_mmr": 691, "percent": 19.75},
-    {"name": "Platinum II", "min_mmr": 692, "max_mmr": 745, "percent": 14.33},
-    {"name": "Platinum III", "min_mmr": 746, "max_mmr": 805, "percent": 8.89},
-    {"name": "Diamond I", "min_mmr": 806, "max_mmr": 865, "percent": 5.40},
-    {"name": "Diamond II", "min_mmr": 866, "max_mmr": 925, "percent": 2.84},
-    {"name": "Diamond III", "min_mmr": 926, "max_mmr": 994, "percent": 1.51},
-    {"name": "Champion I", "min_mmr": 995, "max_mmr": 1044, "percent": 0.81},
-    {"name": "Champion II", "min_mmr": 1045, "max_mmr": 1105, "percent": 0.38},
-    {"name": "Champion III", "min_mmr": 1106, "max_mmr": 1174, "percent": 0.18},
-    {"name": "Grand Champion I", "min_mmr": 1175, "max_mmr": 1224, "percent": 0.09},
-    {"name": "Grand Champion II", "min_mmr": 1225, "max_mmr": 1285, "percent": 0.04},
-    {"name": "Grand Champion III", "min_mmr": 1286, "max_mmr": 1354, "percent": 0.02},
-    {"name": "Supersonic Legend", "min_mmr": 1355, "max_mmr": 9999, "percent": 0.02}
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 155,
+      "percent": 0.34,
+      "divisions": {
+        "div_1": [
+          -401,
+          114
+        ],
+        "div_2": [
+          83,
+          140
+        ],
+        "div_3": [
+          107,
+          155
+        ],
+        "div_4": [
+          141,
+          155
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 140,
+      "max_mmr": 215,
+      "percent": 0.3,
+      "divisions": {
+        "div_1": [
+          140,
+          159
+        ],
+        "div_2": [
+          140,
+          185
+        ],
+        "div_3": [
+          168,
+          205
+        ],
+        "div_4": [
+          196,
+          215
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 200,
+      "max_mmr": 275,
+      "percent": 0.57,
+      "divisions": {
+        "div_1": [
+          200,
+          219
+        ],
+        "div_2": [
+          204,
+          248
+        ],
+        "div_3": [
+          223,
+          272
+        ],
+        "div_4": [
+          256,
+          275
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 260,
+      "max_mmr": 335,
+      "percent": 1.15,
+      "divisions": {
+        "div_1": [
+          260,
+          279
+        ],
+        "div_2": [
+          265,
+          309
+        ],
+        "div_3": [
+          286,
+          332
+        ],
+        "div_4": [
+          316,
+          335
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 320,
+      "max_mmr": 395,
+      "percent": 2.2,
+      "divisions": {
+        "div_1": [
+          320,
+          339
+        ],
+        "div_2": [
+          320,
+          373
+        ],
+        "div_3": [
+          346,
+          394
+        ],
+        "div_4": [
+          376,
+          395
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 380,
+      "max_mmr": 455,
+      "percent": 4.02,
+      "divisions": {
+        "div_1": [
+          380,
+          399
+        ],
+        "div_2": [
+          381,
+          433
+        ],
+        "div_3": [
+          405,
+          452
+        ],
+        "div_4": [
+          436,
+          455
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 440,
+      "max_mmr": 515,
+      "percent": 7.56,
+      "divisions": {
+        "div_1": [
+          440,
+          459
+        ],
+        "div_2": [
+          441,
+          495
+        ],
+        "div_3": [
+          461,
+          514
+        ],
+        "div_4": [
+          496,
+          515
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 500,
+      "max_mmr": 575,
+      "percent": 12.17,
+      "divisions": {
+        "div_1": [
+          500,
+          519
+        ],
+        "div_2": [
+          501,
+          552
+        ],
+        "div_3": [
+          524,
+          573
+        ],
+        "div_4": [
+          556,
+          575
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 560,
+      "max_mmr": 635,
+      "percent": 17.46,
+      "divisions": {
+        "div_1": [
+          560,
+          579
+        ],
+        "div_2": [
+          561,
+          610
+        ],
+        "div_3": [
+          584,
+          631
+        ],
+        "div_4": [
+          616,
+          635
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 620,
+      "max_mmr": 695,
+      "percent": 19.75,
+      "divisions": {
+        "div_1": [
+          620,
+          639
+        ],
+        "div_2": [
+          622,
+          669
+        ],
+        "div_3": [
+          644,
+          694
+        ],
+        "div_4": [
+          676,
+          695
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 680,
+      "max_mmr": 755,
+      "percent": 14.33,
+      "divisions": {
+        "div_1": [
+          680,
+          699
+        ],
+        "div_2": [
+          683,
+          733
+        ],
+        "div_3": [
+          705,
+          753
+        ],
+        "div_4": [
+          736,
+          755
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 740,
+      "max_mmr": 815,
+      "percent": 8.89,
+      "divisions": {
+        "div_1": [
+          740,
+          759
+        ],
+        "div_2": [
+          745,
+          794
+        ],
+        "div_3": [
+          767,
+          811
+        ],
+        "div_4": [
+          796,
+          815
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 800,
+      "max_mmr": 875,
+      "percent": 5.4,
+      "divisions": {
+        "div_1": [
+          800,
+          819
+        ],
+        "div_2": [
+          800,
+          851
+        ],
+        "div_3": [
+          821,
+          874
+        ],
+        "div_4": [
+          856,
+          875
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 860,
+      "max_mmr": 935,
+      "percent": 2.84,
+      "divisions": {
+        "div_1": [
+          860,
+          879
+        ],
+        "div_2": [
+          862,
+          911
+        ],
+        "div_3": [
+          888,
+          934
+        ],
+        "div_4": [
+          916,
+          935
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 920,
+      "max_mmr": 995,
+      "percent": 1.51,
+      "divisions": {
+        "div_1": [
+          920,
+          939
+        ],
+        "div_2": [
+          926,
+          973
+        ],
+        "div_3": [
+          944,
+          995
+        ],
+        "div_4": [
+          976,
+          995
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 980,
+      "max_mmr": 1055,
+      "percent": 0.81,
+      "divisions": {
+        "div_1": [
+          980,
+          999
+        ],
+        "div_2": [
+          990,
+          1030
+        ],
+        "div_3": [
+          1013,
+          1054
+        ],
+        "div_4": [
+          1036,
+          1055
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 1040,
+      "max_mmr": 1115,
+      "percent": 0.38,
+      "divisions": {
+        "div_1": [
+          1040,
+          1059
+        ],
+        "div_2": [
+          1051,
+          1093
+        ],
+        "div_3": [
+          1070,
+          1107
+        ],
+        "div_4": [
+          1096,
+          1115
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1100,
+      "max_mmr": 1175,
+      "percent": 0.18,
+      "divisions": {
+        "div_1": [
+          1100,
+          1119
+        ],
+        "div_2": [
+          1104,
+          1142
+        ],
+        "div_3": [
+          1131,
+          1165
+        ],
+        "div_4": [
+          1156,
+          1175
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1160,
+      "max_mmr": 1235,
+      "percent": 0.09,
+      "divisions": {
+        "div_1": [
+          1160,
+          1179
+        ],
+        "div_2": [
+          1166,
+          1200
+        ],
+        "div_3": [
+          1196,
+          1223
+        ],
+        "div_4": [
+          1216,
+          1235
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1220,
+      "max_mmr": 1295,
+      "percent": 0.04,
+      "divisions": {
+        "div_1": [
+          1220,
+          1239
+        ],
+        "div_2": [
+          1239,
+          1258
+        ],
+        "div_3": [
+          1247,
+          1277
+        ],
+        "div_4": [
+          1276,
+          1295
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1280,
+      "max_mmr": 1355,
+      "percent": 0.02,
+      "divisions": {
+        "div_1": [
+          1280,
+          1299
+        ],
+        "div_2": [
+          1299,
+          1317
+        ],
+        "div_3": [
+          1318,
+          1339
+        ],
+        "div_4": [
+          1336,
+          1355
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1340,
+      "max_mmr": 9999,
+      "percent": 0.02
+    }
   ],
   "2v2": [
-    {"name": "Bronze I", "min_mmr": 0, "max_mmr": 208, "percent": 0.35},
-    {"name": "Bronze II", "min_mmr": 209, "max_mmr": 257, "percent": 0.34},
-    {"name": "Bronze III", "min_mmr": 258, "max_mmr": 308, "percent": 0.60},
-    {"name": "Silver I", "min_mmr": 309, "max_mmr": 358, "percent": 1.01},
-    {"name": "Silver II", "min_mmr": 359, "max_mmr": 409, "percent": 1.63},
-    {"name": "Silver III", "min_mmr": 410, "max_mmr": 466, "percent": 2.48},
-    {"name": "Gold I", "min_mmr": 467, "max_mmr": 525, "percent": 3.82},
-    {"name": "Gold II", "min_mmr": 526, "max_mmr": 591, "percent": 5.03},
-    {"name": "Gold III", "min_mmr": 592, "max_mmr": 647, "percent": 6.30},
-    {"name": "Platinum I", "min_mmr": 648, "max_mmr": 711, "percent": 7.79},
-    {"name": "Platinum II", "min_mmr": 712, "max_mmr": 770, "percent": 8.01},
-    {"name": "Platinum III", "min_mmr": 771, "max_mmr": 834, "percent": 8.26},
-    {"name": "Diamond I", "min_mmr": 835, "max_mmr": 914, "percent": 11.32},
-    {"name": "Diamond II", "min_mmr": 915, "max_mmr": 994, "percent": 9.98},
-    {"name": "Diamond III", "min_mmr": 995, "max_mmr": 1074, "percent": 8.74},
-    {"name": "Champion I", "min_mmr": 1075, "max_mmr": 1194, "percent": 10.41},
-    {"name": "Champion II", "min_mmr": 1195, "max_mmr": 1314, "percent": 6.04},
-    {"name": "Champion III", "min_mmr": 1315, "max_mmr": 1434, "percent": 3.79},
-    {"name": "Grand Champion I", "min_mmr": 1435, "max_mmr": 1564, "percent": 2.57},
-    {"name": "Grand Champion II", "min_mmr": 1565, "max_mmr": 1714, "percent": 1.11},
-    {"name": "Grand Champion III", "min_mmr": 1715, "max_mmr": 1864, "percent": 0.32},
-    {"name": "Supersonic Legend", "min_mmr": 1865, "max_mmr": 9999, "percent": 0.11}
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 175,
+      "percent": 0.35,
+      "divisions": {
+        "div_1": [
+          -1560,
+          119
+        ],
+        "div_2": [
+          92,
+          159
+        ],
+        "div_3": [
+          125,
+          174
+        ],
+        "div_4": [
+          156,
+          175
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 160,
+      "max_mmr": 235,
+      "percent": 0.34,
+      "divisions": {
+        "div_1": [
+          160,
+          179
+        ],
+        "div_2": [
+          163,
+          232
+        ],
+        "div_3": [
+          182,
+          232
+        ],
+        "div_4": [
+          216,
+          235
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 220,
+      "max_mmr": 295,
+      "percent": 0.6,
+      "divisions": {
+        "div_1": [
+          220,
+          239
+        ],
+        "div_2": [
+          221,
+          282
+        ],
+        "div_3": [
+          248,
+          292
+        ],
+        "div_4": [
+          276,
+          295
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 280,
+      "max_mmr": 365,
+      "percent": 1.01,
+      "divisions": {
+        "div_1": [
+          280,
+          299
+        ],
+        "div_2": [
+          281,
+          348
+        ],
+        "div_3": [
+          302,
+          354
+        ],
+        "div_4": [
+          336,
+          365
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 340,
+      "max_mmr": 415,
+      "percent": 1.63,
+      "divisions": {
+        "div_1": [
+          340,
+          359
+        ],
+        "div_2": [
+          342,
+          397
+        ],
+        "div_3": [
+          358,
+          412
+        ],
+        "div_4": [
+          396,
+          415
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 400,
+      "max_mmr": 475,
+      "percent": 2.48,
+      "divisions": {
+        "div_1": [
+          400,
+          419
+        ],
+        "div_2": [
+          404,
+          464
+        ],
+        "div_3": [
+          423,
+          475
+        ],
+        "div_4": [
+          456,
+          475
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 460,
+      "max_mmr": 535,
+      "percent": 3.82,
+      "divisions": {
+        "div_1": [
+          460,
+          479
+        ],
+        "div_2": [
+          460,
+          521
+        ],
+        "div_3": [
+          487,
+          535
+        ],
+        "div_4": [
+          516,
+          535
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 520,
+      "max_mmr": 595,
+      "percent": 5.03,
+      "divisions": {
+        "div_1": [
+          520,
+          539
+        ],
+        "div_2": [
+          523,
+          581
+        ],
+        "div_3": [
+          541,
+          594
+        ],
+        "div_4": [
+          576,
+          595
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 580,
+      "max_mmr": 788,
+      "percent": 6.3,
+      "divisions": {
+        "div_1": [
+          580,
+          599
+        ],
+        "div_2": [
+          580,
+          631
+        ],
+        "div_3": [
+          603,
+          650
+        ],
+        "div_4": [
+          636,
+          788
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 640,
+      "max_mmr": 715,
+      "percent": 7.79,
+      "divisions": {
+        "div_1": [
+          640,
+          659
+        ],
+        "div_2": [
+          641,
+          696
+        ],
+        "div_3": [
+          665,
+          714
+        ],
+        "div_4": [
+          696,
+          715
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 700,
+      "max_mmr": 795,
+      "percent": 8.01,
+      "divisions": {
+        "div_1": [
+          700,
+          719
+        ],
+        "div_2": [
+          702,
+          759
+        ],
+        "div_3": [
+          729,
+          773
+        ],
+        "div_4": [
+          756,
+          795
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 760,
+      "max_mmr": 967,
+      "percent": 8.26,
+      "divisions": {
+        "div_1": [
+          760,
+          779
+        ],
+        "div_2": [
+          760,
+          819
+        ],
+        "div_3": [
+          783,
+          834
+        ],
+        "div_4": [
+          816,
+          967
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 820,
+      "max_mmr": 915,
+      "percent": 11.32,
+      "divisions": {
+        "div_1": [
+          820,
+          844
+        ],
+        "div_2": [
+          827,
+          892
+        ],
+        "div_3": [
+          856,
+          915
+        ],
+        "div_4": [
+          891,
+          915
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 900,
+      "max_mmr": 1228,
+      "percent": 9.98,
+      "divisions": {
+        "div_1": [
+          900,
+          924
+        ],
+        "div_2": [
+          906,
+          969
+        ],
+        "div_3": [
+          937,
+          992
+        ],
+        "div_4": [
+          971,
+          1228
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 980,
+      "max_mmr": 1075,
+      "percent": 8.74,
+      "divisions": {
+        "div_1": [
+          980,
+          1004
+        ],
+        "div_2": [
+          994,
+          1062
+        ],
+        "div_3": [
+          1018,
+          1068
+        ],
+        "div_4": [
+          1051,
+          1075
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 1060,
+      "max_mmr": 1195,
+      "percent": 10.41,
+      "divisions": {
+        "div_1": [
+          1060,
+          1094
+        ],
+        "div_2": [
+          1094,
+          1190
+        ],
+        "div_3": [
+          1128,
+          1192
+        ],
+        "div_4": [
+          1161,
+          1195
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 1180,
+      "max_mmr": 1315,
+      "percent": 6.04,
+      "divisions": {
+        "div_1": [
+          1180,
+          1214
+        ],
+        "div_2": [
+          1212,
+          1273
+        ],
+        "div_3": [
+          1245,
+          1290
+        ],
+        "div_4": [
+          1281,
+          1315
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1300,
+      "max_mmr": 1435,
+      "percent": 3.79,
+      "divisions": {
+        "div_1": [
+          1300,
+          1334
+        ],
+        "div_2": [
+          1333,
+          1371
+        ],
+        "div_3": [
+          1368,
+          1432
+        ],
+        "div_4": [
+          1401,
+          1435
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1420,
+      "max_mmr": 1575,
+      "percent": 2.57,
+      "divisions": {
+        "div_1": [
+          1420,
+          1459
+        ],
+        "div_2": [
+          1459,
+          1503
+        ],
+        "div_3": [
+          1498,
+          1536
+        ],
+        "div_4": [
+          1536,
+          1575
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1560,
+      "max_mmr": 1715,
+      "percent": 1.11,
+      "divisions": {
+        "div_1": [
+          1560,
+          1599
+        ],
+        "div_2": [
+          1599,
+          1638
+        ],
+        "div_3": [
+          1638,
+          1676
+        ],
+        "div_4": [
+          1676,
+          1715
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1700,
+      "max_mmr": 1875,
+      "percent": 0.32,
+      "divisions": {
+        "div_1": [
+          1700,
+          1744
+        ],
+        "div_2": [
+          1744,
+          1788
+        ],
+        "div_3": [
+          1788,
+          1831
+        ],
+        "div_4": [
+          1831,
+          1875
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1860,
+      "max_mmr": 9999,
+      "percent": 0.11
+    }
   ],
   "3v3": [
-    {"name": "Bronze I", "min_mmr": 0, "max_mmr": 150, "percent": 0.14},
-    {"name": "Bronze II", "min_mmr": 151, "max_mmr": 218, "percent": 0.19},
-    {"name": "Bronze III", "min_mmr": 219, "max_mmr": 286, "percent": 0.41},
-    {"name": "Silver I", "min_mmr": 287, "max_mmr": 354, "percent": 0.91},
-    {"name": "Silver II", "min_mmr": 355, "max_mmr": 410, "percent": 1.84},
-    {"name": "Silver III", "min_mmr": 411, "max_mmr": 467, "percent": 3.53},
-    {"name": "Gold I", "min_mmr": 468, "max_mmr": 532, "percent": 6.21},
-    {"name": "Gold II", "min_mmr": 533, "max_mmr": 587, "percent": 8.96},
-    {"name": "Gold III", "min_mmr": 588, "max_mmr": 652, "percent": 10.64},
-    {"name": "Platinum I", "min_mmr": 653, "max_mmr": 712, "percent": 11.29},
-    {"name": "Platinum II", "min_mmr": 713, "max_mmr": 771, "percent": 11.04},
-    {"name": "Platinum III", "min_mmr": 772, "max_mmr": 834, "percent": 9.84},
-    {"name": "Diamond I", "min_mmr": 835, "max_mmr": 914, "percent": 11.14},
-    {"name": "Diamond II", "min_mmr": 915, "max_mmr": 993, "percent": 8.37},
-    {"name": "Diamond III", "min_mmr": 994, "max_mmr": 1074, "percent": 5.83},
-    {"name": "Champion I", "min_mmr": 1075, "max_mmr": 1194, "percent": 5.23},
-    {"name": "Champion II", "min_mmr": 1195, "max_mmr": 1313, "percent": 2.39},
-    {"name": "Champion III", "min_mmr": 1314, "max_mmr": 1434, "percent": 1.18},
-    {"name": "Grand Champion I", "min_mmr": 1435, "max_mmr": 1575, "percent": 0.61},
-    {"name": "Grand Champion II", "min_mmr": 1576, "max_mmr": 1705, "percent": 0.20},
-    {"name": "Grand Champion III", "min_mmr": 1706, "max_mmr": 1895, "percent": 0.04},
-    {"name": "Supersonic Legend", "min_mmr": 1896, "max_mmr": 9999, "percent": 0.00}
-  ],
-  "hoops": [
-    {"name": "Bronze I", "min_mmr": -100, "max_mmr": 214, "percent": 0.03},
-    {"name": "Bronze II", "min_mmr": 215, "max_mmr": 275, "percent": 0.07},
-    {"name": "Bronze III", "min_mmr": 276, "max_mmr": 322, "percent": 0.23},
-    {"name": "Silver I", "min_mmr": 323, "max_mmr": 374, "percent": 0.45},
-    {"name": "Silver II", "min_mmr": 375, "max_mmr": 421, "percent": 2.22},
-    {"name": "Silver III", "min_mmr": 422, "max_mmr": 474, "percent": 3.88},
-    {"name": "Gold I", "min_mmr": 475, "max_mmr": 520, "percent": 12.10},
-    {"name": "Gold II", "min_mmr": 521, "max_mmr": 574, "percent": 12.33},
-    {"name": "Gold III", "min_mmr": 575, "max_mmr": 620, "percent": 23.11},
-    {"name": "Platinum I", "min_mmr": 621, "max_mmr": 674, "percent": 13.08},
-    {"name": "Platinum II", "min_mmr": 675, "max_mmr": 720, "percent": 15.39},
-    {"name": "Platinum III", "min_mmr": 721, "max_mmr": 774, "percent": 5.96},
-    {"name": "Diamond I", "min_mmr": 775, "max_mmr": 820, "percent": 5.19},
-    {"name": "Diamond II", "min_mmr": 821, "max_mmr": 874, "percent": 1.96},
-    {"name": "Diamond III", "min_mmr": 875, "max_mmr": 920, "percent": 1.80},
-    {"name": "Champion I", "min_mmr": 921, "max_mmr": 974, "percent": 0.81},
-    {"name": "Champion II", "min_mmr": 975, "max_mmr": 1034, "percent": 0.73},
-    {"name": "Champion III", "min_mmr": 1035, "max_mmr": 1094, "percent": 0.38},
-    {"name": "Grand Champion I", "min_mmr": 1095, "max_mmr": 1146, "percent": 0.19},
-    {"name": "Grand Champion II", "min_mmr": 1147, "max_mmr": 1203, "percent": 0.07},
-    {"name": "Grand Champion III", "min_mmr": 1204, "max_mmr": 1270, "percent": 0.01},
-    {"name": "Supersonic Legend", "min_mmr": 1271, "max_mmr": 9999, "percent": 0.01}
-  ],
-  "rumble": [
-    {"name": "Bronze I", "min_mmr": -100, "max_mmr": 150, "percent": 0.01},
-    {"name": "Bronze II", "min_mmr": 151, "max_mmr": 206, "percent": 0.03},
-    {"name": "Bronze III", "min_mmr": 207, "max_mmr": 274, "percent": 0.08},
-    {"name": "Silver I", "min_mmr": 275, "max_mmr": 334, "percent": 0.24},
-    {"name": "Silver II", "min_mmr": 335, "max_mmr": 394, "percent": 0.76},
-    {"name": "Silver III", "min_mmr": 395, "max_mmr": 454, "percent": 2.29},
-    {"name": "Gold I", "min_mmr": 455, "max_mmr": 514, "percent": 6.15},
-    {"name": "Gold II", "min_mmr": 515, "max_mmr": 574, "percent": 13.18},
-    {"name": "Gold III", "min_mmr": 575, "max_mmr": 634, "percent": 18.90},
-    {"name": "Platinum I", "min_mmr": 635, "max_mmr": 694, "percent": 17.95},
-    {"name": "Platinum II", "min_mmr": 695, "max_mmr": 754, "percent": 15.16},
-    {"name": "Platinum III", "min_mmr": 755, "max_mmr": 814, "percent": 9.64},
-    {"name": "Diamond I", "min_mmr": 815, "max_mmr": 874, "percent": 6.32},
-    {"name": "Diamond II", "min_mmr": 875, "max_mmr": 934, "percent": 3.61},
-    {"name": "Diamond III", "min_mmr": 935, "max_mmr": 994, "percent": 2.40},
-    {"name": "Champion I", "min_mmr": 995, "max_mmr": 1054, "percent": 1.49},
-    {"name": "Champion II", "min_mmr": 1055, "max_mmr": 1114, "percent": 0.80},
-    {"name": "Champion III", "min_mmr": 1115, "max_mmr": 1194, "percent": 0.58},
-    {"name": "Grand Champion I", "min_mmr": 1195, "max_mmr": 1273, "percent": 0.28},
-    {"name": "Grand Champion II", "min_mmr": 1274, "max_mmr": 1345, "percent": 0.09},
-    {"name": "Grand Champion III", "min_mmr": 1346, "max_mmr": 1444, "percent": 0.02},
-    {"name": "Supersonic Legend", "min_mmr": 1445, "max_mmr": 9999, "percent": 0.01}
-  ],
-  "dropshot": [
-    {"name": "Bronze I", "min_mmr": -100, "max_mmr": 174, "percent": 0.20},
-    {"name": "Bronze II", "min_mmr": 175, "max_mmr": 234, "percent": 0.32},
-    {"name": "Bronze III", "min_mmr": 235, "max_mmr": 294, "percent": 0.78},
-    {"name": "Silver I", "min_mmr": 295, "max_mmr": 340, "percent": 1.86},
-    {"name": "Silver II", "min_mmr": 341, "max_mmr": 394, "percent": 2.31},
-    {"name": "Silver III", "min_mmr": 395, "max_mmr": 441, "percent": 6.21},
-    {"name": "Gold I", "min_mmr": 442, "max_mmr": 494, "percent": 6.80},
-    {"name": "Gold II", "min_mmr": 495, "max_mmr": 540, "percent": 14.36},
-    {"name": "Gold III", "min_mmr": 541, "max_mmr": 594, "percent": 11.52},
-    {"name": "Platinum I", "min_mmr": 595, "max_mmr": 640, "percent": 17.49},
-    {"name": "Platinum II", "min_mmr": 641, "max_mmr": 694, "percent": 10.05},
-    {"name": "Platinum III", "min_mmr": 695, "max_mmr": 740, "percent": 11.39},
-    {"name": "Diamond I", "min_mmr": 741, "max_mmr": 794, "percent": 5.31},
-    {"name": "Diamond II", "min_mmr": 795, "max_mmr": 840, "percent": 5.14},
-    {"name": "Diamond III", "min_mmr": 841, "max_mmr": 894, "percent": 2.12},
-    {"name": "Champion I", "min_mmr": 895, "max_mmr": 941, "percent": 1.94},
-    {"name": "Champion II", "min_mmr": 942, "max_mmr": 994, "percent": 0.75},
-    {"name": "Champion III", "min_mmr": 995, "max_mmr": 1054, "percent": 0.80},
-    {"name": "Grand Champion I", "min_mmr": 1055, "max_mmr": 1105, "percent": 0.43},
-    {"name": "Grand Champion II", "min_mmr": 1106, "max_mmr": 1163, "percent": 0.17},
-    {"name": "Grand Champion III", "min_mmr": 1164, "max_mmr": 1234, "percent": 0.03},
-    {"name": "Supersonic Legend", "min_mmr": 1235, "max_mmr": 9999, "percent": 0.01}
-  ],
-  "snowday": [
-    {"name": "Bronze I", "min_mmr": -100, "max_mmr": 215, "percent": 0.05},
-    {"name": "Bronze II", "min_mmr": 216, "max_mmr": 274, "percent": 0.15},
-    {"name": "Bronze III", "min_mmr": 275, "max_mmr": 320, "percent": 0.55},
-    {"name": "Silver I", "min_mmr": 321, "max_mmr": 374, "percent": 0.97},
-    {"name": "Silver II", "min_mmr": 375, "max_mmr": 420, "percent": 3.91},
-    {"name": "Silver III", "min_mmr": 421, "max_mmr": 474, "percent": 5.95},
-    {"name": "Gold I", "min_mmr": 475, "max_mmr": 520, "percent": 15.27},
-    {"name": "Gold II", "min_mmr": 521, "max_mmr": 574, "percent": 12.94},
-    {"name": "Gold III", "min_mmr": 575, "max_mmr": 620, "percent": 19.75},
-    {"name": "Platinum I", "min_mmr": 621, "max_mmr": 674, "percent": 10.94},
-    {"name": "Platinum II", "min_mmr": 675, "max_mmr": 721, "percent": 12.37},
-    {"name": "Platinum III", "min_mmr": 722, "max_mmr": 774, "percent": 5.67},
-    {"name": "Diamond I", "min_mmr": 775, "max_mmr": 821, "percent": 5.38},
-    {"name": "Diamond II", "min_mmr": 822, "max_mmr": 874, "percent": 2.12},
-    {"name": "Diamond III", "min_mmr": 875, "max_mmr": 921, "percent": 1.94},
-    {"name": "Champion I", "min_mmr": 922, "max_mmr": 974, "percent": 0.80},
-    {"name": "Champion II", "min_mmr": 975, "max_mmr": 1034, "percent": 0.66},
-    {"name": "Champion III", "min_mmr": 1035, "max_mmr": 1094, "percent": 0.38},
-    {"name": "Grand Champion I", "min_mmr": 1095, "max_mmr": 1146, "percent": 0.15},
-    {"name": "Grand Champion II", "min_mmr": 1147, "max_mmr": 1201, "percent": 0.05},
-    {"name": "Grand Champion III", "min_mmr": 1202, "max_mmr": 1262, "percent": 0.01},
-    {"name": "Supersonic Legend", "min_mmr": 1263, "max_mmr": 9999, "percent": 0.01}
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 175,
+      "percent": 0.14,
+      "divisions": {
+        "div_1": [
+          -386,
+          119
+        ],
+        "div_2": [
+          100,
+          153
+        ],
+        "div_3": [
+          124,
+          169
+        ],
+        "div_4": [
+          156,
+          175
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 160,
+      "max_mmr": 235,
+      "percent": 0.19,
+      "divisions": {
+        "div_1": [
+          160,
+          179
+        ],
+        "div_2": [
+          166,
+          231
+        ],
+        "div_3": [
+          183,
+          232
+        ],
+        "div_4": [
+          216,
+          235
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 220,
+      "max_mmr": 295,
+      "percent": 0.41,
+      "divisions": {
+        "div_1": [
+          220,
+          239
+        ],
+        "div_2": [
+          224,
+          280
+        ],
+        "div_3": [
+          246,
+          295
+        ],
+        "div_4": [
+          276,
+          295
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 280,
+      "max_mmr": 355,
+      "percent": 0.91,
+      "divisions": {
+        "div_1": [
+          280,
+          299
+        ],
+        "div_2": [
+          281,
+          337
+        ],
+        "div_3": [
+          304,
+          351
+        ],
+        "div_4": [
+          336,
+          355
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 340,
+      "max_mmr": 432,
+      "percent": 1.84,
+      "divisions": {
+        "div_1": [
+          340,
+          359
+        ],
+        "div_2": [
+          344,
+          402
+        ],
+        "div_3": [
+          361,
+          411
+        ],
+        "div_4": [
+          396,
+          432
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 400,
+      "max_mmr": 475,
+      "percent": 3.53,
+      "divisions": {
+        "div_1": [
+          400,
+          419
+        ],
+        "div_2": [
+          402,
+          471
+        ],
+        "div_3": [
+          421,
+          473
+        ],
+        "div_4": [
+          456,
+          475
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 460,
+      "max_mmr": 535,
+      "percent": 6.21,
+      "divisions": {
+        "div_1": [
+          460,
+          479
+        ],
+        "div_2": [
+          463,
+          528
+        ],
+        "div_3": [
+          483,
+          535
+        ],
+        "div_4": [
+          516,
+          535
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 520,
+      "max_mmr": 595,
+      "percent": 8.96,
+      "divisions": {
+        "div_1": [
+          520,
+          539
+        ],
+        "div_2": [
+          521,
+          581
+        ],
+        "div_3": [
+          543,
+          594
+        ],
+        "div_4": [
+          576,
+          595
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 580,
+      "max_mmr": 655,
+      "percent": 10.64,
+      "divisions": {
+        "div_1": [
+          580,
+          599
+        ],
+        "div_2": [
+          581,
+          648
+        ],
+        "div_3": [
+          602,
+          652
+        ],
+        "div_4": [
+          636,
+          655
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 640,
+      "max_mmr": 740,
+      "percent": 11.29,
+      "divisions": {
+        "div_1": [
+          640,
+          659
+        ],
+        "div_2": [
+          640,
+          696
+        ],
+        "div_3": [
+          661,
+          712
+        ],
+        "div_4": [
+          696,
+          740
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 700,
+      "max_mmr": 857,
+      "percent": 11.04,
+      "divisions": {
+        "div_1": [
+          700,
+          719
+        ],
+        "div_2": [
+          703,
+          762
+        ],
+        "div_3": [
+          722,
+          774
+        ],
+        "div_4": [
+          756,
+          857
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 760,
+      "max_mmr": 914,
+      "percent": 9.84,
+      "divisions": {
+        "div_1": [
+          760,
+          779
+        ],
+        "div_2": [
+          760,
+          829
+        ],
+        "div_3": [
+          777,
+          835
+        ],
+        "div_4": [
+          816,
+          914
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 820,
+      "max_mmr": 915,
+      "percent": 11.14,
+      "divisions": {
+        "div_1": [
+          820,
+          844
+        ],
+        "div_2": [
+          827,
+          913
+        ],
+        "div_3": [
+          859,
+          911
+        ],
+        "div_4": [
+          891,
+          915
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 900,
+      "max_mmr": 998,
+      "percent": 8.37,
+      "divisions": {
+        "div_1": [
+          900,
+          924
+        ],
+        "div_2": [
+          908,
+          977
+        ],
+        "div_3": [
+          937,
+          994
+        ],
+        "div_4": [
+          971,
+          998
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 980,
+      "max_mmr": 1075,
+      "percent": 5.83,
+      "divisions": {
+        "div_1": [
+          980,
+          1004
+        ],
+        "div_2": [
+          981,
+          1056
+        ],
+        "div_3": [
+          1018,
+          1073
+        ],
+        "div_4": [
+          1051,
+          1075
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 1060,
+      "max_mmr": 1195,
+      "percent": 5.23,
+      "divisions": {
+        "div_1": [
+          1060,
+          1094
+        ],
+        "div_2": [
+          1092,
+          1162
+        ],
+        "div_3": [
+          1125,
+          1182
+        ],
+        "div_4": [
+          1161,
+          1195
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 1180,
+      "max_mmr": 1315,
+      "percent": 2.39,
+      "divisions": {
+        "div_1": [
+          1180,
+          1214
+        ],
+        "div_2": [
+          1213,
+          1249
+        ],
+        "div_3": [
+          1246,
+          1285
+        ],
+        "div_4": [
+          1281,
+          1315
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1300,
+      "max_mmr": 1435,
+      "percent": 1.18,
+      "divisions": {
+        "div_1": [
+          1300,
+          1334
+        ],
+        "div_2": [
+          1330,
+          1372
+        ],
+        "div_3": [
+          1368,
+          1402
+        ],
+        "div_4": [
+          1401,
+          1435
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1420,
+      "max_mmr": 1575,
+      "percent": 0.61,
+      "divisions": {
+        "div_1": [
+          1420,
+          1459
+        ],
+        "div_2": [
+          1459,
+          1498
+        ],
+        "div_3": [
+          1498,
+          1536
+        ],
+        "div_4": [
+          1536,
+          1575
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1560,
+      "max_mmr": 1715,
+      "percent": 0.2,
+      "divisions": {
+        "div_1": [
+          1560,
+          1599
+        ],
+        "div_2": [
+          1599,
+          1638
+        ],
+        "div_3": [
+          1638,
+          1676
+        ],
+        "div_4": [
+          1676,
+          1715
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1700,
+      "max_mmr": 1875,
+      "percent": 0.04,
+      "divisions": {
+        "div_1": [
+          1700,
+          1744
+        ],
+        "div_2": [
+          1744,
+          1788
+        ],
+        "div_3": [
+          1788,
+          1831
+        ],
+        "div_4": [
+          1831,
+          1875
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1860,
+      "max_mmr": 9999,
+      "percent": 0.0
+    }
   ],
   "tournament": [
-    {"name": "Bronze I", "min_mmr": -100, "max_mmr": 160, "percent": 0.27},
-    {"name": "Bronze II", "min_mmr": 161, "max_mmr": 220, "percent": 0.26},
-    {"name": "Bronze III", "min_mmr": 221, "max_mmr": 280, "percent": 0.45},
-    {"name": "Silver I", "min_mmr": 282, "max_mmr": 342, "percent": 0.77},
-    {"name": "Silver II", "min_mmr": 343, "max_mmr": 400, "percent": 1.34},
-    {"name": "Silver III", "min_mmr": 401, "max_mmr": 460, "percent": 2.26},
-    {"name": "Gold I", "min_mmr": 461, "max_mmr": 520, "percent": 3.64},
-    {"name": "Gold II", "min_mmr": 521, "max_mmr": 580, "percent": 5.10},
-    {"name": "Gold III", "min_mmr": 581, "max_mmr": 640, "percent": 6.47},
-    {"name": "Platinum I", "min_mmr": 641, "max_mmr": 700, "percent": 7.83},
-    {"name": "Platinum II", "min_mmr": 701, "max_mmr": 760, "percent": 8.47},
-    {"name": "Platinum III", "min_mmr": 761, "max_mmr": 823, "percent": 8.85},
-    {"name": "Diamond I", "min_mmr": 824, "max_mmr": 902, "percent": 11.67},
-    {"name": "Diamond II", "min_mmr": 903, "max_mmr": 980, "percent": 10.41},
-    {"name": "Diamond III", "min_mmr": 981, "max_mmr": 1060, "percent": 9.04},
-    {"name": "Champion I", "min_mmr": 1061, "max_mmr": 1180, "percent": 10.23},
-    {"name": "Champion II", "min_mmr": 1181, "max_mmr": 1300, "percent": 5.66},
-    {"name": "Champion III", "min_mmr": 1301, "max_mmr": 1420, "percent": 3.51},
-    {"name": "Grand Champion I", "min_mmr": 1421, "max_mmr": 1561, "percent": 2.30},
-    {"name": "Grand Champion II", "min_mmr": 1562, "max_mmr": 1702, "percent": 1.08},
-    {"name": "Grand Champion III", "min_mmr": 1703, "max_mmr": 1861, "percent": 0.31},
-    {"name": "Supersonic Legend", "min_mmr": 1862, "max_mmr": 9999, "percent": 0.08}
-  ],
-  "4v4": [
-    {"name": "Bronze I", "min_mmr": -100, "max_mmr": 175, "percent": 0.21},
-    {"name": "Bronze II", "min_mmr": 176, "max_mmr": 235, "percent": 0.32},
-    {"name": "Bronze III", "min_mmr": 236, "max_mmr": 295, "percent": 0.64},
-    {"name": "Silver I", "min_mmr": 296, "max_mmr": 355, "percent": 1.37},
-    {"name": "Silver II", "min_mmr": 356, "max_mmr": 415, "percent": 2.63},
-    {"name": "Silver III", "min_mmr": 416, "max_mmr": 475, "percent": 6.39},
-    {"name": "Gold I", "min_mmr": 476, "max_mmr": 535, "percent": 7.65},
-    {"name": "Gold II", "min_mmr": 536, "max_mmr": 596, "percent": 8.98},
-    {"name": "Gold III", "min_mmr": 597, "max_mmr": 639, "percent": 5.34},
-    {"name": "Platinum I", "min_mmr": 640, "max_mmr": 675, "percent": 8.75},
-    {"name": "Platinum II", "min_mmr": 676, "max_mmr": 735, "percent": 14.49},
-    {"name": "Platinum III", "min_mmr": 736, "max_mmr": 775, "percent": 10.56},
-    {"name": "Diamond I", "min_mmr": 776, "max_mmr": 836, "percent": 10.15},
-    {"name": "Diamond II", "min_mmr": 837, "max_mmr": 875, "percent": 4.91},
-    {"name": "Diamond III", "min_mmr": 876, "max_mmr": 935, "percent": 6.04},
-    {"name": "Champion I", "min_mmr": 936, "max_mmr": 975, "percent": 2.98},
-    {"name": "Champion II", "min_mmr": 976, "max_mmr": 1035, "percent": 3.36},
-    {"name": "Champion III", "min_mmr": 1036, "max_mmr": 1095, "percent": 2.12},
-    {"name": "Grand Champion I", "min_mmr": 1096, "max_mmr": 1121, "percent": 1.57},
-    {"name": "Grand Champion II", "min_mmr": 1122, "max_mmr": 1155, "percent": 1.57},
-    {"name": "Grand Champion III", "min_mmr": 1156, "max_mmr": 1158, "percent": 1.53},
-    {"name": "Supersonic Legend", "min_mmr": 1159, "max_mmr": 9999, "percent": 0.00}
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 175,
+      "percent": 0.27,
+      "divisions": {
+        "div_1": [
+          -371,
+          119
+        ],
+        "div_2": [
+          110,
+          154
+        ],
+        "div_3": [
+          129,
+          175
+        ],
+        "div_4": [
+          156,
+          175
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 160,
+      "max_mmr": 235,
+      "percent": 0.26,
+      "divisions": {
+        "div_1": [
+          160,
+          179
+        ],
+        "div_2": [
+          168,
+          212
+        ],
+        "div_3": [
+          185,
+          231
+        ],
+        "div_4": [
+          216,
+          235
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 220,
+      "max_mmr": 295,
+      "percent": 0.45,
+      "divisions": {
+        "div_1": [
+          220,
+          239
+        ],
+        "div_2": [
+          227,
+          277
+        ],
+        "div_3": [
+          246,
+          290
+        ],
+        "div_4": [
+          276,
+          295
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 280,
+      "max_mmr": 355,
+      "percent": 0.77,
+      "divisions": {
+        "div_1": [
+          280,
+          299
+        ],
+        "div_2": [
+          282,
+          327
+        ],
+        "div_3": [
+          307,
+          354
+        ],
+        "div_4": [
+          336,
+          355
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 340,
+      "max_mmr": 415,
+      "percent": 1.34,
+      "divisions": {
+        "div_1": [
+          340,
+          359
+        ],
+        "div_2": [
+          345,
+          398
+        ],
+        "div_3": [
+          340,
+          412
+        ],
+        "div_4": [
+          396,
+          415
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 400,
+      "max_mmr": 475,
+      "percent": 2.26,
+      "divisions": {
+        "div_1": [
+          400,
+          419
+        ],
+        "div_2": [
+          400,
+          458
+        ],
+        "div_3": [
+          400,
+          470
+        ],
+        "div_4": [
+          456,
+          475
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 460,
+      "max_mmr": 535,
+      "percent": 3.64,
+      "divisions": {
+        "div_1": [
+          460,
+          479
+        ],
+        "div_2": [
+          465,
+          516
+        ],
+        "div_3": [
+          483,
+          532
+        ],
+        "div_4": [
+          516,
+          535
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 520,
+      "max_mmr": 595,
+      "percent": 5.1,
+      "divisions": {
+        "div_1": [
+          520,
+          539
+        ],
+        "div_2": [
+          522,
+          571
+        ],
+        "div_3": [
+          547,
+          595
+        ],
+        "div_4": [
+          576,
+          595
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 580,
+      "max_mmr": 655,
+      "percent": 6.47,
+      "divisions": {
+        "div_1": [
+          580,
+          599
+        ],
+        "div_2": [
+          582,
+          639
+        ],
+        "div_3": [
+          597,
+          654
+        ],
+        "div_4": [
+          636,
+          655
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 640,
+      "max_mmr": 748,
+      "percent": 7.83,
+      "divisions": {
+        "div_1": [
+          640,
+          659
+        ],
+        "div_2": [
+          643,
+          696
+        ],
+        "div_3": [
+          667,
+          714
+        ],
+        "div_4": [
+          696,
+          748
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 700,
+      "max_mmr": 775,
+      "percent": 8.47,
+      "divisions": {
+        "div_1": [
+          700,
+          719
+        ],
+        "div_2": [
+          700,
+          760
+        ],
+        "div_3": [
+          700,
+          773
+        ],
+        "div_4": [
+          700,
+          775
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 760,
+      "max_mmr": 835,
+      "percent": 8.85,
+      "divisions": {
+        "div_1": [
+          760,
+          779
+        ],
+        "div_2": [
+          760,
+          813
+        ],
+        "div_3": [
+          760,
+          834
+        ],
+        "div_4": [
+          760,
+          835
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 820,
+      "max_mmr": 915,
+      "percent": 11.67,
+      "divisions": {
+        "div_1": [
+          820,
+          844
+        ],
+        "div_2": [
+          820,
+          884
+        ],
+        "div_3": [
+          865,
+          912
+        ],
+        "div_4": [
+          891,
+          915
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 900,
+      "max_mmr": 995,
+      "percent": 10.41,
+      "divisions": {
+        "div_1": [
+          900,
+          924
+        ],
+        "div_2": [
+          900,
+          955
+        ],
+        "div_3": [
+          900,
+          989
+        ],
+        "div_4": [
+          900,
+          995
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 980,
+      "max_mmr": 1075,
+      "percent": 9.04,
+      "divisions": {
+        "div_1": [
+          980,
+          1004
+        ],
+        "div_2": [
+          980,
+          1041
+        ],
+        "div_3": [
+          980,
+          1072
+        ],
+        "div_4": [
+          980,
+          1075
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 1060,
+      "max_mmr": 1195,
+      "percent": 10.23,
+      "divisions": {
+        "div_1": [
+          1060,
+          1094
+        ],
+        "div_2": [
+          1087,
+          1144
+        ],
+        "div_3": [
+          1127,
+          1176
+        ],
+        "div_4": [
+          1060,
+          1195
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 1180,
+      "max_mmr": 1315,
+      "percent": 5.66,
+      "divisions": {
+        "div_1": [
+          1180,
+          1214
+        ],
+        "div_2": [
+          1180,
+          1263
+        ],
+        "div_3": [
+          1180,
+          1288
+        ],
+        "div_4": [
+          1180,
+          1315
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1300,
+      "max_mmr": 1435,
+      "percent": 3.51,
+      "divisions": {
+        "div_1": [
+          1300,
+          1334
+        ],
+        "div_2": [
+          1327,
+          1368
+        ],
+        "div_3": [
+          1359,
+          1410
+        ],
+        "div_4": [
+          1401,
+          1435
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1420,
+      "max_mmr": 1575,
+      "percent": 2.3,
+      "divisions": {
+        "div_1": [
+          1420,
+          1459
+        ],
+        "div_2": [
+          1455,
+          1498
+        ],
+        "div_3": [
+          1495,
+          1536
+        ],
+        "div_4": [
+          1536,
+          1575
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1560,
+      "max_mmr": 1715,
+      "percent": 1.08,
+      "divisions": {
+        "div_1": [
+          1560,
+          1599
+        ],
+        "div_2": [
+          1595,
+          1638
+        ],
+        "div_3": [
+          1635,
+          1676
+        ],
+        "div_4": [
+          1676,
+          1715
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1700,
+      "max_mmr": 1875,
+      "percent": 0.31,
+      "divisions": {
+        "div_1": [
+          1700,
+          1744
+        ],
+        "div_2": [
+          1744,
+          1787
+        ],
+        "div_3": [
+          1788,
+          1831
+        ],
+        "div_4": [
+          1831,
+          1875
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1860,
+      "max_mmr": 9999,
+      "percent": 0.08
+    }
   ],
   "heatseeker": [
-    {"name": "Bronze I", "min_mmr": -100, "max_mmr": 174, "percent": 3.41},
-    {"name": "Bronze II", "min_mmr": 175, "max_mmr": 234, "percent": 2.23},
-    {"name": "Bronze III", "min_mmr": 235, "max_mmr": 294, "percent": 3.43},
-    {"name": "Silver I", "min_mmr": 295, "max_mmr": 354, "percent": 5.43},
-    {"name": "Silver II", "min_mmr": 355, "max_mmr": 401, "percent": 7.46},
-    {"name": "Silver III", "min_mmr": 402, "max_mmr": 454, "percent": 6.28},
-    {"name": "Gold I", "min_mmr": 455, "max_mmr": 514, "percent": 11.05},
-    {"name": "Gold II", "min_mmr": 515, "max_mmr": 574, "percent": 11.90},
-    {"name": "Gold III", "min_mmr": 575, "max_mmr": 620, "percent": 11.61},
-    {"name": "Platinum I", "min_mmr": 621, "max_mmr": 674, "percent": 7.54},
-    {"name": "Platinum II", "min_mmr": 675, "max_mmr": 734, "percent": 9.70},
-    {"name": "Platinum III", "min_mmr": 735, "max_mmr": 794, "percent": 7.65},
-    {"name": "Diamond I", "min_mmr": 795, "max_mmr": 854, "percent": 5.40},
-    {"name": "Diamond II", "min_mmr": 855, "max_mmr": 900, "percent": 3.10},
-    {"name": "Diamond III", "min_mmr": 901, "max_mmr": 954, "percent": 1.28},
-    {"name": "Champion I", "min_mmr": 955, "max_mmr": 1014, "percent": 1.19},
-    {"name": "Champion II", "min_mmr": 1015, "max_mmr": 1067, "percent": 0.59},
-    {"name": "Champion III", "min_mmr": 1068, "max_mmr": 1131, "percent": 0.36},
-    {"name": "Grand Champion I", "min_mmr": 1132, "max_mmr": 1184, "percent": 0.25},
-    {"name": "Grand Champion II", "min_mmr": 1185, "max_mmr": 1250, "percent": 0.07},
-    {"name": "Grand Champion III", "min_mmr": 1251, "max_mmr": 1303, "percent": 0.03},
-    {"name": "Supersonic Legend", "min_mmr": 1304, "max_mmr": 9999, "percent": 0.04}
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 175,
+      "percent": 3.41,
+      "divisions": {
+        "div_1": [
+          -1207,
+          119
+        ],
+        "div_2": [
+          81,
+          165
+        ],
+        "div_3": [
+          110,
+          174
+        ],
+        "div_4": [
+          156,
+          175
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 160,
+      "max_mmr": 235,
+      "percent": 2.23,
+      "divisions": {
+        "div_1": [
+          160,
+          179
+        ],
+        "div_2": [
+          161,
+          227
+        ],
+        "div_3": [
+          179,
+          234
+        ],
+        "div_4": [
+          216,
+          235
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 220,
+      "max_mmr": 295,
+      "percent": 3.43,
+      "divisions": {
+        "div_1": [
+          220,
+          239
+        ],
+        "div_2": [
+          220,
+          287
+        ],
+        "div_3": [
+          239,
+          295
+        ],
+        "div_4": [
+          276,
+          295
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 280,
+      "max_mmr": 355,
+      "percent": 5.43,
+      "divisions": {
+        "div_1": [
+          280,
+          299
+        ],
+        "div_2": [
+          281,
+          340
+        ],
+        "div_3": [
+          304,
+          354
+        ],
+        "div_4": [
+          336,
+          355
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 340,
+      "max_mmr": 415,
+      "percent": 7.46,
+      "divisions": {
+        "div_1": [
+          340,
+          359
+        ],
+        "div_2": [
+          340,
+          398
+        ],
+        "div_3": [
+          360,
+          415
+        ],
+        "div_4": [
+          396,
+          415
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 400,
+      "max_mmr": 455,
+      "percent": 6.28,
+      "divisions": {
+        "div_1": [
+          400,
+          414
+        ],
+        "div_2": [
+          400,
+          441
+        ],
+        "div_3": [
+          404,
+          455
+        ],
+        "div_4": [
+          441,
+          455
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 440,
+      "max_mmr": 515,
+      "percent": 11.05,
+      "divisions": {
+        "div_1": [
+          440,
+          459
+        ],
+        "div_2": [
+          440,
+          495
+        ],
+        "div_3": [
+          458,
+          515
+        ],
+        "div_4": [
+          496,
+          515
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 500,
+      "max_mmr": 575,
+      "percent": 11.9,
+      "divisions": {
+        "div_1": [
+          500,
+          519
+        ],
+        "div_2": [
+          500,
+          567
+        ],
+        "div_3": [
+          521,
+          575
+        ],
+        "div_4": [
+          556,
+          575
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 560,
+      "max_mmr": 635,
+      "percent": 11.61,
+      "divisions": {
+        "div_1": [
+          560,
+          579
+        ],
+        "div_2": [
+          560,
+          615
+        ],
+        "div_3": [
+          578,
+          634
+        ],
+        "div_4": [
+          616,
+          635
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 620,
+      "max_mmr": 681,
+      "percent": 7.54,
+      "divisions": {
+        "div_1": [
+          620,
+          634
+        ],
+        "div_2": [
+          620,
+          664
+        ],
+        "div_3": [
+          622,
+          675
+        ],
+        "div_4": [
+          661,
+          681
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 660,
+      "max_mmr": 735,
+      "percent": 9.7,
+      "divisions": {
+        "div_1": [
+          660,
+          679
+        ],
+        "div_2": [
+          660,
+          717
+        ],
+        "div_3": [
+          680,
+          734
+        ],
+        "div_4": [
+          716,
+          735
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 720,
+      "max_mmr": 795,
+      "percent": 7.65,
+      "divisions": {
+        "div_1": [
+          720,
+          739
+        ],
+        "div_2": [
+          720,
+          776
+        ],
+        "div_3": [
+          740,
+          794
+        ],
+        "div_4": [
+          776,
+          795
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 780,
+      "max_mmr": 855,
+      "percent": 5.4,
+      "divisions": {
+        "div_1": [
+          780,
+          799
+        ],
+        "div_2": [
+          780,
+          833
+        ],
+        "div_3": [
+          802,
+          852
+        ],
+        "div_4": [
+          836,
+          855
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 840,
+      "max_mmr": 915,
+      "percent": 3.1,
+      "divisions": {
+        "div_1": [
+          840,
+          859
+        ],
+        "div_2": [
+          842,
+          894
+        ],
+        "div_3": [
+          855,
+          914
+        ],
+        "div_4": [
+          896,
+          915
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 900,
+      "max_mmr": 960,
+      "percent": 1.28,
+      "divisions": {
+        "div_1": [
+          900,
+          914
+        ],
+        "div_2": [
+          900,
+          943
+        ],
+        "div_3": [
+          908,
+          955
+        ],
+        "div_4": [
+          941,
+          960
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 940,
+      "max_mmr": 1015,
+      "percent": 1.19,
+      "divisions": {
+        "div_1": [
+          940,
+          959
+        ],
+        "div_2": [
+          942,
+          993
+        ],
+        "div_3": [
+          961,
+          1012
+        ],
+        "div_4": [
+          996,
+          1015
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 1000,
+      "max_mmr": 1075,
+      "percent": 0.59,
+      "divisions": {
+        "div_1": [
+          1000,
+          1019
+        ],
+        "div_2": [
+          1002,
+          1048
+        ],
+        "div_3": [
+          1021,
+          1073
+        ],
+        "div_4": [
+          1056,
+          1075
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1060,
+      "max_mmr": 1135,
+      "percent": 0.36,
+      "divisions": {
+        "div_1": [
+          1060,
+          1079
+        ],
+        "div_2": [
+          1061,
+          1111
+        ],
+        "div_3": [
+          1087,
+          1130
+        ],
+        "div_4": [
+          1116,
+          1135
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1120,
+      "max_mmr": 1195,
+      "percent": 0.25,
+      "divisions": {
+        "div_1": [
+          1120,
+          1139
+        ],
+        "div_2": [
+          1126,
+          1171
+        ],
+        "div_3": [
+          1139,
+          1190
+        ],
+        "div_4": [
+          1176,
+          1195
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1180,
+      "max_mmr": 1255,
+      "percent": 0.07,
+      "divisions": {
+        "div_1": [
+          1180,
+          1199
+        ],
+        "div_2": [
+          1180,
+          1225
+        ],
+        "div_3": [
+          1210,
+          1252
+        ],
+        "div_4": [
+          1236,
+          1255
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1240,
+      "max_mmr": 1315,
+      "percent": 0.03,
+      "divisions": {
+        "div_1": [
+          1240,
+          1259
+        ],
+        "div_2": [
+          1251,
+          1289
+        ],
+        "div_3": [
+          1267,
+          1310
+        ],
+        "div_4": [
+          1296,
+          1315
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1300,
+      "max_mmr": 9999,
+      "percent": 0.04
+    }
+  ],
+  "4v4": [
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 166,
+      "percent": 0.21,
+      "divisions": {
+        "div_1": [
+          -123,
+          117
+        ],
+        "div_2": [
+          119,
+          153
+        ],
+        "div_3": [
+          141,
+          169
+        ],
+        "div_4": [
+          160,
+          166
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 161,
+      "max_mmr": 234,
+      "percent": 0.32,
+      "divisions": {
+        "div_1": [
+          161,
+          179
+        ],
+        "div_2": [
+          169,
+          219
+        ],
+        "div_3": [
+          191,
+          234
+        ],
+        "div_4": [
+          216,
+          234
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 221,
+      "max_mmr": 295,
+      "percent": 0.64,
+      "divisions": {
+        "div_1": [
+          221,
+          238
+        ],
+        "div_2": [
+          223,
+          270
+        ],
+        "div_3": [
+          246,
+          294
+        ],
+        "div_4": [
+          276,
+          295
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 280,
+      "max_mmr": 355,
+      "percent": 1.37,
+      "divisions": {
+        "div_1": [
+          280,
+          298
+        ],
+        "div_2": [
+          286,
+          328
+        ],
+        "div_3": [
+          308,
+          354
+        ],
+        "div_4": [
+          336,
+          355
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 340,
+      "max_mmr": 415,
+      "percent": 2.63,
+      "divisions": {
+        "div_1": [
+          340,
+          359
+        ],
+        "div_2": [
+          344,
+          388
+        ],
+        "div_3": [
+          359,
+          412
+        ],
+        "div_4": [
+          396,
+          415
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 400,
+      "max_mmr": 475,
+      "percent": 6.39,
+      "divisions": {
+        "div_1": [
+          400,
+          419
+        ],
+        "div_2": [
+          402,
+          455
+        ],
+        "div_3": [
+          424,
+          472
+        ],
+        "div_4": [
+          456,
+          475
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 460,
+      "max_mmr": 535,
+      "percent": 7.65,
+      "divisions": {
+        "div_1": [
+          460,
+          479
+        ],
+        "div_2": [
+          461,
+          516
+        ],
+        "div_3": [
+          481,
+          535
+        ],
+        "div_4": [
+          516,
+          535
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 520,
+      "max_mmr": 595,
+      "percent": 8.98,
+      "divisions": {
+        "div_1": [
+          520,
+          539
+        ],
+        "div_2": [
+          522,
+          589
+        ],
+        "div_3": [
+          541,
+          594
+        ],
+        "div_4": [
+          576,
+          595
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 580,
+      "max_mmr": 639,
+      "percent": 5.34,
+      "divisions": {
+        "div_1": [
+          580,
+          594
+        ],
+        "div_2": [
+          580,
+          627
+        ],
+        "div_3": [
+          583,
+          634
+        ],
+        "div_4": [
+          621,
+          639
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 620,
+      "max_mmr": 719,
+      "percent": 8.75,
+      "divisions": {
+        "div_1": [
+          620,
+          634
+        ],
+        "div_2": [
+          620,
+          664
+        ],
+        "div_3": [
+          625,
+          675
+        ],
+        "div_4": [
+          661,
+          719
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 660,
+      "max_mmr": 735,
+      "percent": 14.49,
+      "divisions": {
+        "div_1": [
+          660,
+          679
+        ],
+        "div_2": [
+          661,
+          718
+        ],
+        "div_3": [
+          678,
+          733
+        ],
+        "div_4": [
+          716,
+          735
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 720,
+      "max_mmr": 775,
+      "percent": 10.56,
+      "divisions": {
+        "div_1": [
+          720,
+          734
+        ],
+        "div_2": [
+          720,
+          764
+        ],
+        "div_3": [
+          723,
+          775
+        ],
+        "div_4": [
+          761,
+          775
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 760,
+      "max_mmr": 835,
+      "percent": 10.15,
+      "divisions": {
+        "div_1": [
+          760,
+          779
+        ],
+        "div_2": [
+          760,
+          821
+        ],
+        "div_3": [
+          781,
+          835
+        ],
+        "div_4": [
+          816,
+          835
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 820,
+      "max_mmr": 877,
+      "percent": 4.91,
+      "divisions": {
+        "div_1": [
+          820,
+          834
+        ],
+        "div_2": [
+          820,
+          867
+        ],
+        "div_3": [
+          823,
+          875
+        ],
+        "div_4": [
+          861,
+          877
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 860,
+      "max_mmr": 935,
+      "percent": 6.04,
+      "divisions": {
+        "div_1": [
+          860,
+          879
+        ],
+        "div_2": [
+          860,
+          915
+        ],
+        "div_3": [
+          879,
+          933
+        ],
+        "div_4": [
+          916,
+          935
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 920,
+      "max_mmr": 975,
+      "percent": 2.98,
+      "divisions": {
+        "div_1": [
+          920,
+          934
+        ],
+        "div_2": [
+          920,
+          965
+        ],
+        "div_3": [
+          922,
+          975
+        ],
+        "div_4": [
+          961,
+          975
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 960,
+      "max_mmr": 1052,
+      "percent": 3.36,
+      "divisions": {
+        "div_1": [
+          960,
+          979
+        ],
+        "div_2": [
+          961,
+          1013
+        ],
+        "div_3": [
+          983,
+          1032
+        ],
+        "div_4": [
+          1016,
+          1052
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1020,
+      "max_mmr": 1095,
+      "percent": 2.12,
+      "divisions": {
+        "div_1": [
+          1020,
+          1039
+        ],
+        "div_2": [
+          1021,
+          1080
+        ],
+        "div_3": [
+          1042,
+          1095
+        ],
+        "div_4": [
+          1076,
+          1095
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1080,
+      "max_mmr": 1155,
+      "percent": 1.57,
+      "divisions": {
+        "div_1": [
+          1080,
+          1099
+        ],
+        "div_2": [
+          1082,
+          1131
+        ],
+        "div_3": [
+          1094,
+          1154
+        ],
+        "div_4": [
+          1136,
+          1155
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1140,
+      "max_mmr": 1215,
+      "percent": 1.57,
+      "divisions": {
+        "div_1": [
+          1140,
+          1159
+        ],
+        "div_2": [
+          1143,
+          1190
+        ],
+        "div_3": [
+          1161,
+          1213
+        ],
+        "div_4": [
+          1196,
+          1215
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1200,
+      "max_mmr": 1275,
+      "percent": 1.53,
+      "divisions": {
+        "div_1": [
+          1200,
+          1219
+        ],
+        "div_2": [
+          1201,
+          1250
+        ],
+        "div_3": [
+          1208,
+          1272
+        ],
+        "div_4": [
+          1256,
+          1275
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1260,
+      "max_mmr": 9999,
+      "percent": 0.0
+    }
+  ],
+  "hoops": [
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 215,
+      "percent": 0.03,
+      "divisions": {
+        "div_1": [
+          -71,
+          127
+        ],
+        "div_2": [
+          129,
+          157
+        ],
+        "div_3": [
+          158,
+          211
+        ],
+        "div_4": [
+          187,
+          215
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 200,
+      "max_mmr": 275,
+      "percent": 0.07,
+      "divisions": {
+        "div_1": [
+          200,
+          219
+        ],
+        "div_2": [
+          209,
+          247
+        ],
+        "div_3": [
+          230,
+          274
+        ],
+        "div_4": [
+          257,
+          275
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 260,
+      "max_mmr": 335,
+      "percent": 0.23,
+      "divisions": {
+        "div_1": [
+          260,
+          279
+        ],
+        "div_2": [
+          271,
+          309
+        ],
+        "div_3": [
+          295,
+          333
+        ],
+        "div_4": [
+          316,
+          335
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 320,
+      "max_mmr": 375,
+      "percent": 0.45,
+      "divisions": {
+        "div_1": [
+          320,
+          334
+        ],
+        "div_2": [
+          321,
+          360
+        ],
+        "div_3": [
+          331,
+          375
+        ],
+        "div_4": [
+          361,
+          375
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 360,
+      "max_mmr": 453,
+      "percent": 2.22,
+      "divisions": {
+        "div_1": [
+          360,
+          379
+        ],
+        "div_2": [
+          366,
+          414
+        ],
+        "div_3": [
+          382,
+          431
+        ],
+        "div_4": [
+          416,
+          453
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 420,
+      "max_mmr": 475,
+      "percent": 3.88,
+      "divisions": {
+        "div_1": [
+          420,
+          434
+        ],
+        "div_2": [
+          421,
+          464
+        ],
+        "div_3": [
+          425,
+          475
+        ],
+        "div_4": [
+          461,
+          475
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 460,
+      "max_mmr": 535,
+      "percent": 12.1,
+      "divisions": {
+        "div_1": [
+          460,
+          479
+        ],
+        "div_2": [
+          460,
+          518
+        ],
+        "div_3": [
+          483,
+          535
+        ],
+        "div_4": [
+          516,
+          535
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 520,
+      "max_mmr": 575,
+      "percent": 12.33,
+      "divisions": {
+        "div_1": [
+          520,
+          534
+        ],
+        "div_2": [
+          521,
+          563
+        ],
+        "div_3": [
+          527,
+          575
+        ],
+        "div_4": [
+          561,
+          575
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 560,
+      "max_mmr": 635,
+      "percent": 23.11,
+      "divisions": {
+        "div_1": [
+          560,
+          579
+        ],
+        "div_2": [
+          561,
+          614
+        ],
+        "div_3": [
+          582,
+          635
+        ],
+        "div_4": [
+          616,
+          635
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 620,
+      "max_mmr": 675,
+      "percent": 13.08,
+      "divisions": {
+        "div_1": [
+          620,
+          634
+        ],
+        "div_2": [
+          620,
+          667
+        ],
+        "div_3": [
+          628,
+          675
+        ],
+        "div_4": [
+          661,
+          675
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 660,
+      "max_mmr": 735,
+      "percent": 15.39,
+      "divisions": {
+        "div_1": [
+          660,
+          679
+        ],
+        "div_2": [
+          660,
+          712
+        ],
+        "div_3": [
+          682,
+          732
+        ],
+        "div_4": [
+          716,
+          735
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 720,
+      "max_mmr": 775,
+      "percent": 5.96,
+      "divisions": {
+        "div_1": [
+          720,
+          734
+        ],
+        "div_2": [
+          721,
+          765
+        ],
+        "div_3": [
+          723,
+          775
+        ],
+        "div_4": [
+          761,
+          775
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 760,
+      "max_mmr": 835,
+      "percent": 5.19,
+      "divisions": {
+        "div_1": [
+          760,
+          779
+        ],
+        "div_2": [
+          761,
+          825
+        ],
+        "div_3": [
+          782,
+          834
+        ],
+        "div_4": [
+          816,
+          835
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 820,
+      "max_mmr": 875,
+      "percent": 1.96,
+      "divisions": {
+        "div_1": [
+          820,
+          834
+        ],
+        "div_2": [
+          820,
+          852
+        ],
+        "div_3": [
+          828,
+          875
+        ],
+        "div_4": [
+          861,
+          875
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 860,
+      "max_mmr": 935,
+      "percent": 1.8,
+      "divisions": {
+        "div_1": [
+          860,
+          879
+        ],
+        "div_2": [
+          862,
+          914
+        ],
+        "div_3": [
+          886,
+          934
+        ],
+        "div_4": [
+          916,
+          935
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 920,
+      "max_mmr": 975,
+      "percent": 0.81,
+      "divisions": {
+        "div_1": [
+          920,
+          934
+        ],
+        "div_2": [
+          920,
+          958
+        ],
+        "div_3": [
+          933,
+          973
+        ],
+        "div_4": [
+          961,
+          975
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 960,
+      "max_mmr": 1035,
+      "percent": 0.73,
+      "divisions": {
+        "div_1": [
+          960,
+          979
+        ],
+        "div_2": [
+          963,
+          1014
+        ],
+        "div_3": [
+          989,
+          1030
+        ],
+        "div_4": [
+          1016,
+          1035
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1020,
+      "max_mmr": 1095,
+      "percent": 0.38,
+      "divisions": {
+        "div_1": [
+          1020,
+          1039
+        ],
+        "div_2": [
+          1030,
+          1068
+        ],
+        "div_3": [
+          1047,
+          1092
+        ],
+        "div_4": [
+          1076,
+          1095
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1080,
+      "max_mmr": 1155,
+      "percent": 0.19,
+      "divisions": {
+        "div_1": [
+          1080,
+          1099
+        ],
+        "div_2": [
+          1090,
+          1133
+        ],
+        "div_3": [
+          1114,
+          1145
+        ],
+        "div_4": [
+          1136,
+          1155
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1140,
+      "max_mmr": 1215,
+      "percent": 0.07,
+      "divisions": {
+        "div_1": [
+          1140,
+          1159
+        ],
+        "div_2": [
+          1149,
+          1180
+        ],
+        "div_3": [
+          1164,
+          1206
+        ],
+        "div_4": [
+          1196,
+          1215
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1200,
+      "max_mmr": 1275,
+      "percent": 0.01,
+      "divisions": {
+        "div_1": [
+          1200,
+          1219
+        ],
+        "div_2": [
+          1209,
+          1242
+        ],
+        "div_3": [
+          1235,
+          1264
+        ],
+        "div_4": [
+          1256,
+          1275
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1260,
+      "max_mmr": 9999,
+      "percent": 0.01
+    }
+  ],
+  "rumble": [
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 154,
+      "percent": 0.01,
+      "divisions": {
+        "div_1": [
+          -357,
+          113
+        ],
+        "div_2": [
+          114,
+          141
+        ],
+        "div_3": [
+          128,
+          140
+        ],
+        "div_4": [
+          142,
+          154
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 140,
+      "max_mmr": 214,
+      "percent": 0.03,
+      "divisions": {
+        "div_1": [
+          140,
+          159
+        ],
+        "div_2": [
+          158,
+          193
+        ],
+        "div_3": [
+          171,
+          199
+        ],
+        "div_4": [
+          196,
+          214
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 200,
+      "max_mmr": 275,
+      "percent": 0.08,
+      "divisions": {
+        "div_1": [
+          200,
+          218
+        ],
+        "div_2": [
+          214,
+          245
+        ],
+        "div_3": [
+          232,
+          267
+        ],
+        "div_4": [
+          256,
+          275
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 260,
+      "max_mmr": 335,
+      "percent": 0.24,
+      "divisions": {
+        "div_1": [
+          260,
+          279
+        ],
+        "div_2": [
+          266,
+          312
+        ],
+        "div_3": [
+          288,
+          329
+        ],
+        "div_4": [
+          316,
+          335
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 320,
+      "max_mmr": 395,
+      "percent": 0.76,
+      "divisions": {
+        "div_1": [
+          320,
+          339
+        ],
+        "div_2": [
+          324,
+          359
+        ],
+        "div_3": [
+          349,
+          389
+        ],
+        "div_4": [
+          376,
+          395
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 380,
+      "max_mmr": 455,
+      "percent": 2.29,
+      "divisions": {
+        "div_1": [
+          380,
+          399
+        ],
+        "div_2": [
+          388,
+          429
+        ],
+        "div_3": [
+          405,
+          455
+        ],
+        "div_4": [
+          436,
+          455
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 440,
+      "max_mmr": 515,
+      "percent": 6.15,
+      "divisions": {
+        "div_1": [
+          440,
+          459
+        ],
+        "div_2": [
+          445,
+          493
+        ],
+        "div_3": [
+          459,
+          515
+        ],
+        "div_4": [
+          496,
+          515
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 500,
+      "max_mmr": 575,
+      "percent": 13.18,
+      "divisions": {
+        "div_1": [
+          500,
+          519
+        ],
+        "div_2": [
+          500,
+          564
+        ],
+        "div_3": [
+          523,
+          574
+        ],
+        "div_4": [
+          556,
+          575
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 560,
+      "max_mmr": 635,
+      "percent": 18.9,
+      "divisions": {
+        "div_1": [
+          560,
+          579
+        ],
+        "div_2": [
+          564,
+          613
+        ],
+        "div_3": [
+          580,
+          634
+        ],
+        "div_4": [
+          616,
+          635
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 620,
+      "max_mmr": 695,
+      "percent": 17.95,
+      "divisions": {
+        "div_1": [
+          620,
+          639
+        ],
+        "div_2": [
+          622,
+          673
+        ],
+        "div_3": [
+          642,
+          694
+        ],
+        "div_4": [
+          676,
+          695
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 680,
+      "max_mmr": 755,
+      "percent": 15.16,
+      "divisions": {
+        "div_1": [
+          680,
+          699
+        ],
+        "div_2": [
+          683,
+          742
+        ],
+        "div_3": [
+          706,
+          754
+        ],
+        "div_4": [
+          736,
+          755
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 740,
+      "max_mmr": 815,
+      "percent": 9.64,
+      "divisions": {
+        "div_1": [
+          740,
+          759
+        ],
+        "div_2": [
+          741,
+          793
+        ],
+        "div_3": [
+          757,
+          814
+        ],
+        "div_4": [
+          796,
+          815
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 800,
+      "max_mmr": 875,
+      "percent": 6.32,
+      "divisions": {
+        "div_1": [
+          800,
+          819
+        ],
+        "div_2": [
+          801,
+          852
+        ],
+        "div_3": [
+          820,
+          875
+        ],
+        "div_4": [
+          856,
+          875
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 860,
+      "max_mmr": 935,
+      "percent": 3.61,
+      "divisions": {
+        "div_1": [
+          860,
+          879
+        ],
+        "div_2": [
+          861,
+          912
+        ],
+        "div_3": [
+          884,
+          933
+        ],
+        "div_4": [
+          916,
+          935
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 920,
+      "max_mmr": 995,
+      "percent": 2.4,
+      "divisions": {
+        "div_1": [
+          920,
+          939
+        ],
+        "div_2": [
+          922,
+          976
+        ],
+        "div_3": [
+          944,
+          993
+        ],
+        "div_4": [
+          976,
+          995
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 980,
+      "max_mmr": 1055,
+      "percent": 1.49,
+      "divisions": {
+        "div_1": [
+          980,
+          999
+        ],
+        "div_2": [
+          981,
+          1032
+        ],
+        "div_3": [
+          1005,
+          1053
+        ],
+        "div_4": [
+          1036,
+          1055
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 1040,
+      "max_mmr": 1115,
+      "percent": 0.8,
+      "divisions": {
+        "div_1": [
+          1040,
+          1059
+        ],
+        "div_2": [
+          1042,
+          1093
+        ],
+        "div_3": [
+          1066,
+          1115
+        ],
+        "div_4": [
+          1096,
+          1115
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1100,
+      "max_mmr": 1195,
+      "percent": 0.58,
+      "divisions": {
+        "div_1": [
+          1100,
+          1124
+        ],
+        "div_2": [
+          1104,
+          1158
+        ],
+        "div_3": [
+          1147,
+          1193
+        ],
+        "div_4": [
+          1171,
+          1195
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1180,
+      "max_mmr": 1275,
+      "percent": 0.28,
+      "divisions": {
+        "div_1": [
+          1180,
+          1204
+        ],
+        "div_2": [
+          1192,
+          1233
+        ],
+        "div_3": [
+          1224,
+          1264
+        ],
+        "div_4": [
+          1251,
+          1275
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1260,
+      "max_mmr": 1355,
+      "percent": 0.09,
+      "divisions": {
+        "div_1": [
+          1260,
+          1284
+        ],
+        "div_2": [
+          1284,
+          1316
+        ],
+        "div_3": [
+          1307,
+          1334
+        ],
+        "div_4": [
+          1331,
+          1355
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1340,
+      "max_mmr": 1455,
+      "percent": 0.02,
+      "divisions": {
+        "div_1": [
+          1340,
+          1369
+        ],
+        "div_2": [
+          1369,
+          1397
+        ],
+        "div_3": [
+          1398,
+          1426
+        ],
+        "div_4": [
+          1426,
+          1455
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1440,
+      "max_mmr": 9999,
+      "percent": 0.01
+    }
+  ],
+  "dropshot": [
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 175,
+      "percent": 0.2,
+      "divisions": {
+        "div_1": [
+          -201,
+          118
+        ],
+        "div_2": [
+          108,
+          151
+        ],
+        "div_3": [
+          133,
+          174
+        ],
+        "div_4": [
+          156,
+          175
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 160,
+      "max_mmr": 235,
+      "percent": 0.32,
+      "divisions": {
+        "div_1": [
+          160,
+          179
+        ],
+        "div_2": [
+          163,
+          219
+        ],
+        "div_3": [
+          185,
+          226
+        ],
+        "div_4": [
+          216,
+          235
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 220,
+      "max_mmr": 295,
+      "percent": 0.78,
+      "divisions": {
+        "div_1": [
+          220,
+          239
+        ],
+        "div_2": [
+          229,
+          272
+        ],
+        "div_3": [
+          245,
+          294
+        ],
+        "div_4": [
+          276,
+          295
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 280,
+      "max_mmr": 355,
+      "percent": 1.86,
+      "divisions": {
+        "div_1": [
+          280,
+          299
+        ],
+        "div_2": [
+          281,
+          343
+        ],
+        "div_3": [
+          302,
+          354
+        ],
+        "div_4": [
+          336,
+          355
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 340,
+      "max_mmr": 395,
+      "percent": 2.31,
+      "divisions": {
+        "div_1": [
+          340,
+          354
+        ],
+        "div_2": [
+          340,
+          386
+        ],
+        "div_3": [
+          351,
+          395
+        ],
+        "div_4": [
+          381,
+          395
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 380,
+      "max_mmr": 455,
+      "percent": 6.21,
+      "divisions": {
+        "div_1": [
+          380,
+          399
+        ],
+        "div_2": [
+          381,
+          444
+        ],
+        "div_3": [
+          400,
+          455
+        ],
+        "div_4": [
+          436,
+          455
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 440,
+      "max_mmr": 503,
+      "percent": 6.8,
+      "divisions": {
+        "div_1": [
+          440,
+          454
+        ],
+        "div_2": [
+          440,
+          481
+        ],
+        "div_3": [
+          449,
+          495
+        ],
+        "div_4": [
+          481,
+          503
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 480,
+      "max_mmr": 555,
+      "percent": 14.36,
+      "divisions": {
+        "div_1": [
+          480,
+          499
+        ],
+        "div_2": [
+          480,
+          531
+        ],
+        "div_3": [
+          498,
+          554
+        ],
+        "div_4": [
+          536,
+          555
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 540,
+      "max_mmr": 596,
+      "percent": 11.52,
+      "divisions": {
+        "div_1": [
+          540,
+          554
+        ],
+        "div_2": [
+          540,
+          585
+        ],
+        "div_3": [
+          544,
+          595
+        ],
+        "div_4": [
+          581,
+          596
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 580,
+      "max_mmr": 655,
+      "percent": 17.49,
+      "divisions": {
+        "div_1": [
+          580,
+          599
+        ],
+        "div_2": [
+          580,
+          637
+        ],
+        "div_3": [
+          599,
+          654
+        ],
+        "div_4": [
+          636,
+          655
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 640,
+      "max_mmr": 696,
+      "percent": 10.05,
+      "divisions": {
+        "div_1": [
+          640,
+          654
+        ],
+        "div_2": [
+          640,
+          684
+        ],
+        "div_3": [
+          646,
+          695
+        ],
+        "div_4": [
+          681,
+          696
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 680,
+      "max_mmr": 755,
+      "percent": 11.39,
+      "divisions": {
+        "div_1": [
+          680,
+          699
+        ],
+        "div_2": [
+          683,
+          737
+        ],
+        "div_3": [
+          700,
+          754
+        ],
+        "div_4": [
+          736,
+          755
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 740,
+      "max_mmr": 795,
+      "percent": 5.31,
+      "divisions": {
+        "div_1": [
+          740,
+          754
+        ],
+        "div_2": [
+          740,
+          788
+        ],
+        "div_3": [
+          744,
+          795
+        ],
+        "div_4": [
+          781,
+          795
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 780,
+      "max_mmr": 855,
+      "percent": 5.14,
+      "divisions": {
+        "div_1": [
+          780,
+          799
+        ],
+        "div_2": [
+          781,
+          831
+        ],
+        "div_3": [
+          802,
+          854
+        ],
+        "div_4": [
+          836,
+          855
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 840,
+      "max_mmr": 896,
+      "percent": 2.12,
+      "divisions": {
+        "div_1": [
+          840,
+          854
+        ],
+        "div_2": [
+          840,
+          882
+        ],
+        "div_3": [
+          848,
+          895
+        ],
+        "div_4": [
+          881,
+          896
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 880,
+      "max_mmr": 1023,
+      "percent": 1.94,
+      "divisions": {
+        "div_1": [
+          880,
+          899
+        ],
+        "div_2": [
+          881,
+          938
+        ],
+        "div_3": [
+          901,
+          955
+        ],
+        "div_4": [
+          936,
+          1023
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 940,
+      "max_mmr": 1055,
+      "percent": 0.75,
+      "divisions": {
+        "div_1": [
+          940,
+          954
+        ],
+        "div_2": [
+          940,
+          989
+        ],
+        "div_3": [
+          952,
+          994
+        ],
+        "div_4": [
+          981,
+          1055
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 980,
+      "max_mmr": 1055,
+      "percent": 0.8,
+      "divisions": {
+        "div_1": [
+          980,
+          999
+        ],
+        "div_2": [
+          981,
+          1035
+        ],
+        "div_3": [
+          1003,
+          1053
+        ],
+        "div_4": [
+          1036,
+          1055
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1040,
+      "max_mmr": 1115,
+      "percent": 0.43,
+      "divisions": {
+        "div_1": [
+          1040,
+          1059
+        ],
+        "div_2": [
+          1044,
+          1088
+        ],
+        "div_3": [
+          1066,
+          1109
+        ],
+        "div_4": [
+          1096,
+          1115
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1100,
+      "max_mmr": 1175,
+      "percent": 0.17,
+      "divisions": {
+        "div_1": [
+          1100,
+          1119
+        ],
+        "div_2": [
+          1103,
+          1154
+        ],
+        "div_3": [
+          1132,
+          1168
+        ],
+        "div_4": [
+          1156,
+          1175
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1160,
+      "max_mmr": 1235,
+      "percent": 0.03,
+      "divisions": {
+        "div_1": [
+          1160,
+          1179
+        ],
+        "div_2": [
+          1169,
+          1214
+        ],
+        "div_3": [
+          1192,
+          1227
+        ],
+        "div_4": [
+          1216,
+          1235
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1220,
+      "max_mmr": 9999,
+      "percent": 0.01
+    }
+  ],
+  "snowday": [
+    {
+      "name": "Bronze I",
+      "min_mmr": 0,
+      "max_mmr": 215,
+      "percent": 0.05,
+      "divisions": {
+        "div_1": [
+          -79,
+          128
+        ],
+        "div_2": [
+          129,
+          157
+        ],
+        "div_3": [
+          158,
+          186
+        ],
+        "div_4": [
+          186,
+          215
+        ]
+      }
+    },
+    {
+      "name": "Bronze II",
+      "min_mmr": 200,
+      "max_mmr": 274,
+      "percent": 0.15,
+      "divisions": {
+        "div_1": [
+          200,
+          219
+        ],
+        "div_2": [
+          212,
+          237
+        ],
+        "div_3": [
+          224,
+          262
+        ],
+        "div_4": [
+          256,
+          274
+        ]
+      }
+    },
+    {
+      "name": "Bronze III",
+      "min_mmr": 260,
+      "max_mmr": 335,
+      "percent": 0.55,
+      "divisions": {
+        "div_1": [
+          260,
+          278
+        ],
+        "div_2": [
+          260,
+          297
+        ],
+        "div_3": [
+          286,
+          327
+        ],
+        "div_4": [
+          316,
+          335
+        ]
+      }
+    },
+    {
+      "name": "Silver I",
+      "min_mmr": 320,
+      "max_mmr": 375,
+      "percent": 0.97,
+      "divisions": {
+        "div_1": [
+          320,
+          333
+        ],
+        "div_2": [
+          321,
+          354
+        ],
+        "div_3": [
+          334,
+          373
+        ],
+        "div_4": [
+          361,
+          375
+        ]
+      }
+    },
+    {
+      "name": "Silver II",
+      "min_mmr": 360,
+      "max_mmr": 435,
+      "percent": 3.91,
+      "divisions": {
+        "div_1": [
+          360,
+          379
+        ],
+        "div_2": [
+          364,
+          406
+        ],
+        "div_3": [
+          382,
+          427
+        ],
+        "div_4": [
+          416,
+          435
+        ]
+      }
+    },
+    {
+      "name": "Silver III",
+      "min_mmr": 420,
+      "max_mmr": 475,
+      "percent": 5.95,
+      "divisions": {
+        "div_1": [
+          420,
+          434
+        ],
+        "div_2": [
+          421,
+          451
+        ],
+        "div_3": [
+          432,
+          474
+        ],
+        "div_4": [
+          461,
+          475
+        ]
+      }
+    },
+    {
+      "name": "Gold I",
+      "min_mmr": 460,
+      "max_mmr": 535,
+      "percent": 15.27,
+      "divisions": {
+        "div_1": [
+          460,
+          479
+        ],
+        "div_2": [
+          461,
+          513
+        ],
+        "div_3": [
+          479,
+          535
+        ],
+        "div_4": [
+          516,
+          535
+        ]
+      }
+    },
+    {
+      "name": "Gold II",
+      "min_mmr": 520,
+      "max_mmr": 577,
+      "percent": 12.94,
+      "divisions": {
+        "div_1": [
+          520,
+          534
+        ],
+        "div_2": [
+          521,
+          567
+        ],
+        "div_3": [
+          526,
+          575
+        ],
+        "div_4": [
+          561,
+          577
+        ]
+      }
+    },
+    {
+      "name": "Gold III",
+      "min_mmr": 560,
+      "max_mmr": 635,
+      "percent": 19.75,
+      "divisions": {
+        "div_1": [
+          560,
+          579
+        ],
+        "div_2": [
+          561,
+          619
+        ],
+        "div_3": [
+          576,
+          632
+        ],
+        "div_4": [
+          616,
+          635
+        ]
+      }
+    },
+    {
+      "name": "Platinum I",
+      "min_mmr": 620,
+      "max_mmr": 678,
+      "percent": 10.94,
+      "divisions": {
+        "div_1": [
+          620,
+          634
+        ],
+        "div_2": [
+          620,
+          663
+        ],
+        "div_3": [
+          627,
+          675
+        ],
+        "div_4": [
+          661,
+          678
+        ]
+      }
+    },
+    {
+      "name": "Platinum II",
+      "min_mmr": 660,
+      "max_mmr": 735,
+      "percent": 12.37,
+      "divisions": {
+        "div_1": [
+          660,
+          679
+        ],
+        "div_2": [
+          661,
+          713
+        ],
+        "div_3": [
+          680,
+          735
+        ],
+        "div_4": [
+          716,
+          735
+        ]
+      }
+    },
+    {
+      "name": "Platinum III",
+      "min_mmr": 720,
+      "max_mmr": 775,
+      "percent": 5.67,
+      "divisions": {
+        "div_1": [
+          720,
+          734
+        ],
+        "div_2": [
+          720,
+          766
+        ],
+        "div_3": [
+          723,
+          775
+        ],
+        "div_4": [
+          761,
+          775
+        ]
+      }
+    },
+    {
+      "name": "Diamond I",
+      "min_mmr": 760,
+      "max_mmr": 835,
+      "percent": 5.38,
+      "divisions": {
+        "div_1": [
+          760,
+          779
+        ],
+        "div_2": [
+          760,
+          816
+        ],
+        "div_3": [
+          780,
+          835
+        ],
+        "div_4": [
+          816,
+          835
+        ]
+      }
+    },
+    {
+      "name": "Diamond II",
+      "min_mmr": 820,
+      "max_mmr": 875,
+      "percent": 2.12,
+      "divisions": {
+        "div_1": [
+          820,
+          834
+        ],
+        "div_2": [
+          820,
+          867
+        ],
+        "div_3": [
+          823,
+          874
+        ],
+        "div_4": [
+          861,
+          875
+        ]
+      }
+    },
+    {
+      "name": "Diamond III",
+      "min_mmr": 860,
+      "max_mmr": 935,
+      "percent": 1.94,
+      "divisions": {
+        "div_1": [
+          860,
+          879
+        ],
+        "div_2": [
+          862,
+          915
+        ],
+        "div_3": [
+          877,
+          933
+        ],
+        "div_4": [
+          916,
+          935
+        ]
+      }
+    },
+    {
+      "name": "Champion I",
+      "min_mmr": 920,
+      "max_mmr": 975,
+      "percent": 0.8,
+      "divisions": {
+        "div_1": [
+          920,
+          934
+        ],
+        "div_2": [
+          920,
+          948
+        ],
+        "div_3": [
+          924,
+          975
+        ],
+        "div_4": [
+          961,
+          975
+        ]
+      }
+    },
+    {
+      "name": "Champion II",
+      "min_mmr": 960,
+      "max_mmr": 1035,
+      "percent": 0.66,
+      "divisions": {
+        "div_1": [
+          960,
+          979
+        ],
+        "div_2": [
+          961,
+          1013
+        ],
+        "div_3": [
+          985,
+          1032
+        ],
+        "div_4": [
+          1016,
+          1035
+        ]
+      }
+    },
+    {
+      "name": "Champion III",
+      "min_mmr": 1020,
+      "max_mmr": 1095,
+      "percent": 0.38,
+      "divisions": {
+        "div_1": [
+          1020,
+          1039
+        ],
+        "div_2": [
+          1024,
+          1070
+        ],
+        "div_3": [
+          1044,
+          1090
+        ],
+        "div_4": [
+          1076,
+          1095
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion I",
+      "min_mmr": 1080,
+      "max_mmr": 1155,
+      "percent": 0.15,
+      "divisions": {
+        "div_1": [
+          1080,
+          1099
+        ],
+        "div_2": [
+          1088,
+          1129
+        ],
+        "div_3": [
+          1109,
+          1153
+        ],
+        "div_4": [
+          1136,
+          1155
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion II",
+      "min_mmr": 1140,
+      "max_mmr": 1215,
+      "percent": 0.05,
+      "divisions": {
+        "div_1": [
+          1140,
+          1159
+        ],
+        "div_2": [
+          1140,
+          1188
+        ],
+        "div_3": [
+          1169,
+          1203
+        ],
+        "div_4": [
+          1196,
+          1215
+        ]
+      }
+    },
+    {
+      "name": "Grand Champion III",
+      "min_mmr": 1200,
+      "max_mmr": 1275,
+      "percent": 0.01,
+      "divisions": {
+        "div_1": [
+          1200,
+          1219
+        ],
+        "div_2": [
+          1214,
+          1238
+        ],
+        "div_3": [
+          1236,
+          1263
+        ],
+        "div_4": [
+          1256,
+          1275
+        ]
+      }
+    },
+    {
+      "name": "Supersonic Legend",
+      "min_mmr": 1260,
+      "max_mmr": 9999,
+      "percent": 0.01
+    }
   ]
 }
