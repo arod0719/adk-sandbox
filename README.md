@@ -11,13 +11,13 @@ gaming_assistant/
 ├── __init__.py
 ├── agent.py                 # Single host agent & SkillToolset runner
 └── skills/
-    ├── bf6-tracker/         # BF6 combat & class/weapon stat tracker
+    ├── battlefield-tracker/ # Battlefield series stat tracker (GameTools API, defaults to BF6)
     │   ├── SKILL.md
     │   ├── references/
-    │   │   ├── friends.json         # Built-in player and friend IDs
-    │   │   └── sample_profile.json
+    │   │   ├── friends.json         # Built-in player and friend handles
+    │   │   └── sample_profile.json  # Reference profile payload
     │   └── scripts/
-    │       └── fetch_bf6.py
+    │       └── fetch_battlefield.py # Multi-game GameTools API client
     └── rocket-league/       # Rocket League coach & multi-player progression tracker
         ├── SKILL.md
         ├── references/
@@ -48,14 +48,21 @@ gaming_assistant/
 - **Web Grounding:** Searches for targeted custom training pack codes and curated YouTube tutorial guides.
 - **News Feed & Article Summaries:** Fetches the latest official news articles with cover thumbnails and scrapes full article texts.
 
-### 2. Battlefield 6 Tracker (`bf6-tracker`)
+### 2. Battlefield Stat Tracker (`battlefield-tracker`)
+- **Powered by GameTools Network API:** Fully integrated with [GameTools Network API](https://api.gametools.network/docs#), an open, public, keyless REST API for Battlefield statistics. Defaults to **BF6**.
 - **Native Friend & Identity Mappings:**
-  - `me` / `Alex` -> `2770616530` (Steam)
-  - `will` / `priesty` -> `1002157303178` (Steam)
-- **Pure Combat & Mastery Stats:** Strictly tracks player combat metrics (K/D, KDA, Kills/Min, Win %, Damage/Min, Headshot %, Playtime, Score).
-- **Class/Kit Mastery:** Assault, Engineer, Support, and Recon performance breakdowns.
-- **Top Weapons:** Highlights top weapons with kill counts, accuracy percentages, and headshots.
-- **Anti-Bot Navigation:** Utilizes TLS fingerprint impersonation (`curl_cffi`) and local fallback caching to navigate Cloudflare protection.
+  - `me` / `Alex` / `karmajuney` -> `Karmajuney` (PC)
+  - `will` / `priesty` / `itspriesty` -> `pri3s7y` (PC)
+- **Multi-Game Franchise Support:**
+  - Supports `bf6` (default), `bf2042`, `bfv`, `bf1`, `bf4`, and `bf3`.
+  - If no game is specified in natural language, it automatically queries **BF6**.
+- **Dynamic Player Lookups:**
+  - Query any player across platforms by specifying username and platform (`pc`, `xbox`, `psn`).
+- **Comprehensive Telemetry:**
+  - **Combat Overview:** Kills, Deaths, K/D Ratio, Infantry K/D, Human Kill % (filters out bot lobbies), Damage, Damage/Min, KPM, Headshot %, Accuracy %, Win %, Matches, Playtime, Revives, Resupplies, and Vehicle Repairs.
+  - **Class & Kit Mastery (BF6):** Assault, Engineer, Support, and Recon performance breakdowns with high-res SVG class badges.
+  - **Top Weapons:** Highlights top weapons with kill counts, accuracy percentages, headshots, KPM, and WebP CDN images.
+  - **Top Vehicles:** Tracks top ground/air vehicles, vehicle kills, and destroyed counts.
 
 ---
 

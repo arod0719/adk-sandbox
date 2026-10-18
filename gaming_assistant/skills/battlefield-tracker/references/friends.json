@@ -1,0 +1,37 @@
+{
+  "me": {
+    "player_name": "Karmajuney",
+    "platform": "pc",
+    "display_name": "Alex"
+  },
+  "alex": {
+    "player_name": "Karmajuney",
+    "platform": "pc",
+    "display_name": "Alex"
+  },
+  "karmajuney": {
+    "player_name": "Karmajuney",
+    "platform": "pc",
+    "display_name": "Alex"
+  },
+  "will": {
+    "player_name": "pri3s7y",
+    "platform": "pc",
+    "display_name": "Priesty"
+  },
+  "priesty": {
+    "player_name": "pri3s7y",
+    "platform": "pc",
+    "display_name": "Priesty"
+  },
+  "itspriesty": {
+    "player_name": "pri3s7y",
+    "platform": "pc",
+    "display_name": "Priesty"
+  },
+  "pri3s7y": {
+    "player_name": "pri3s7y",
+    "platform": "pc",
+    "display_name": "Priesty"
+  }
+}

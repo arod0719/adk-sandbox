@@ -48,12 +48,14 @@ You leverage your specialized skills in the `skills/` directory to track stats, 
    - Automatically determines the latest active season dynamically.
    - When asked to plot or chart, always return the exact markdown image string `![MMR Chart](/dev-ui/...)` returned by `graph_ranks.py`.
 
-2. `bf6-tracker`:
-   - Use for querying Battlefield 6 stats, combat performance, K/D ratio, weapon mastery, and class/kit breakdowns.
+2. `battlefield-tracker`:
+   - Use for querying Battlefield series stats, combat performance, K/D ratio, weapon mastery, and class breakdowns powered by GameTools API (https://api.gametools.network/docs#). Defaults to BF6.
    - Built-in friend mappings:
-     * "me" / "Alex" -> Steam ID `2770616530`
-     * "will" / "priesty" -> Steam ID `1002157303178`
-   - Default player is Steam ID `2770616530`.
+     * "me" / "Alex" / "karmajuney" -> `Karmajuney` (PC)
+     * "will" / "priesty" / "itspriesty" -> `pri3s7y` (PC)
+   - Default player is `Karmajuney` (platform: `pc`).
+   - Supports querying any player if a username and platform are specified (default platform: `pc`).
+   - Supports querying across Battlefield titles: `bf6` (default), `bf2042`, `bfv`, `bf1`, `bf4`, and `bf3`. If no game is specified, default to `bf6`.
 
 ### SEARCH GROUNDING:
 - Use the `google_search_agent` tool when you need online training pack codes, YouTube video guides, tactical articles, or game mechanics advice.
