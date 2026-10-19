@@ -110,6 +110,33 @@ def get_rank_tiers_path() -> Path:
             return p
     return None
 
+TIER_NAMES = [
+    "Unranked",
+    "Bronze I", "Bronze II", "Bronze III",
+    "Silver I", "Silver II", "Silver III",
+    "Gold I", "Gold II", "Gold III",
+    "Platinum I", "Platinum II", "Platinum III",
+    "Diamond I", "Diamond II", "Diamond III",
+    "Champion I", "Champion II", "Champion III",
+    "Grand Champion I", "Grand Champion II", "Grand Champion III",
+    "Supersonic Legend"
+]
+
+def get_percent_for_tier(playlist_key: str, rank_name: str) -> str:
+    tiers_path = get_rank_tiers_path()
+    if not tiers_path or not tiers_path.exists():
+        return "N/A"
+    try:
+        with open(tiers_path, "r", encoding="utf-8") as f:
+            brain_data = json.load(f)
+        ranges = brain_data.get(playlist_key, brain_data.get("3v3", []))
+        for r in ranges:
+            if r.get("name") == rank_name:
+                return f"{r.get('percent', 'N/A')}%"
+    except Exception:
+        pass
+    return "N/A"
+
 def get_rank_name_from_mmr(mmr: float, playlist_key: str):
     tiers_path = get_rank_tiers_path()
     if not tiers_path or not tiers_path.exists():
@@ -118,17 +145,19 @@ def get_rank_name_from_mmr(mmr: float, playlist_key: str):
         with open(tiers_path, "r", encoding="utf-8") as f:
             brain_data = json.load(f)
         ranges = brain_data.get(playlist_key, brain_data.get("3v3", []))
-        for rank in ranges:
-            if rank["min_mmr"] <= mmr <= rank["max_mmr"]:
-                div_str = ""
-                divs = rank.get("divisions", {})
-                if divs:
-                    for d_key, d_label in [("div_4", "Div IV"), ("div_3", "Div III"), ("div_2", "Div II"), ("div_1", "Div I")]:
-                        interval = divs.get(d_key)
-                        if interval and interval[0] <= mmr <= interval[1]:
-                            div_str = f" ({d_label})"
-                            break
-                return (f"{rank['name']}{div_str}", f"{rank['percent']}%")
+        # Check from highest to lowest rank
+        for rank in reversed(ranges):
+            divs = rank.get("divisions", {})
+            if divs:
+                for d_key, d_label in [("div_4", "Div IV"), ("div_3", "Div III"), ("div_2", "Div II"), ("div_1", "Div I")]:
+                    interval = divs.get(d_key)
+                    if interval and interval[0] <= mmr <= interval[1]:
+                        return (f"{rank['name']} ({d_label})", f"{rank['percent']}%")
+            elif rank.get("min_mmr", 0) <= mmr <= rank.get("max_mmr", 9999):
+                return (rank["name"], f"{rank.get('percent', 'N/A')}%")
+        for rank in reversed(ranges):
+            if rank.get("min_mmr", 0) <= mmr <= rank.get("max_mmr", 9999):
+                return (rank["name"], f"{rank.get('percent', 'N/A')}%")
         return ("Unranked", "N/A")
     except Exception:
         return ("Unknown", "N/A")
@@ -199,7 +228,18 @@ def parse_season_stats(data: dict, platform: str, season: int = None, is_legacy:
             winstreak = pd.get("WinStreak", 0)
             if skill_rating > 100 or matches > 0:
                 key = PLAYLIST_MMR_KEY_MAP.get(playlist_id, "3v3")
-                rank_name, percent = get_rank_name_from_mmr(skill_rating, key)
+                tier_id = pd.get("Tier", 0)
+                div_idx = pd.get("Division", 0)
+                if tier_id and 0 < tier_id < len(TIER_NAMES):
+                    base_rank = TIER_NAMES[tier_id]
+                    if tier_id == 22:
+                        rank_name = base_rank
+                    else:
+                        roman = ["Div I", "Div II", "Div III", "Div IV"][div_idx] if 0 <= div_idx < 4 else f"Div {div_idx+1}"
+                        rank_name = f"{base_rank} ({roman})"
+                    percent = get_percent_for_tier(key, base_rank)
+                else:
+                    rank_name, percent = get_rank_name_from_mmr(skill_rating, key)
                 playlists.append({
                     "playlist": playlist_name,
                     "rank": rank_name,
